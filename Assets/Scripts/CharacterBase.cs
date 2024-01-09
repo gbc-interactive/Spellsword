@@ -11,7 +11,7 @@ namespace Spellsword
         None = 0,
         Move = 1,
         Interact = 2,
-        UseAbility = 4,
+        UseAbility = 3,
         All = ~0
     }
 
@@ -32,13 +32,30 @@ namespace Spellsword
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 5.0f;
 
+        public float _maxHP = 100f;
+        public float _maxMP = 100f;
+        public float _currentHP;
+        public float _currentMP;
+
         [Header("Ability System")]
-        [SerializeField] private float _maxMP = 100f;
-        [SerializeField] private float _currentMP;
         [SerializeField] private Transform _castpoint;
         [SerializeField] private float _timeBetweenCast = 0.25f;
+        [SerializeField] private float _regenIntervalMP = 5.0f;
+        [SerializeField] private float _regenRateMP = 10.0f;
+        private float _timeSinceLastAbility = 0.0f;
 
         private bool isUsingAbility = false;
+
+        private void Update()
+        {
+            //Regen MP
+            _timeSinceLastAbility += Time.deltaTime;
+
+            if (_timeSinceLastAbility >= _regenIntervalMP)
+            {
+                RegenMP();
+            }
+        }
 
         public bool TryMove(Vector3 vector)
         {
@@ -82,10 +99,29 @@ namespace Spellsword
             return EDirection.Default;
         }
 
-        public bool PerformAbility(AbilityBase ability)
+        public virtual bool PerformAbility(AbilityBase ability)
         {
-            ability.PerformAbility();
-            return true;
+            if(_currentMP >= ability.MPCost)
+            {
+                _timeSinceLastAbility = 0;
+                _currentMP -= ability.MPCost;
+                ability.PerformAbility();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public virtual void RegenMP()
+        {
+            _currentMP = Mathf.Clamp(_currentMP + (_regenRateMP * Time.deltaTime), 0f, _maxMP);
+        }
+
+        public void RegenHP()
+        {
+
         }
     }
 }

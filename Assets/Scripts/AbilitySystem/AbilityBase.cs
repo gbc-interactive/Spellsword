@@ -15,7 +15,7 @@ namespace Spellsword
 
         [SerializeField] private EAbilityType _abilityType;
         [SerializeField] private ParticleSystem _particleSystem;
-        [SerializeField] private float _manaCost;
+        [SerializeField] public float MPCost;
 
         public virtual void PerformAbility()
         {
