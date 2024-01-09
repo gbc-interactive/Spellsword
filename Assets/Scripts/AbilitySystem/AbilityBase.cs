@@ -13,8 +13,8 @@ namespace Spellsword
             Default = OneStep
         }
 
+        public ParticleSystem _particleSystem;
         [SerializeField] private EAbilityType _abilityType;
-        [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private float _manaCost;
 
         public virtual void PerformAbility()
