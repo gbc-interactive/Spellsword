@@ -93,7 +93,7 @@ namespace Spellsword
         {
             if (_spriteRenderer)
             {
-                return _spriteRenderer.flipX ? EDirection.Left : EDirection.Left;
+                return _spriteRenderer.flipX ? EDirection.Left : EDirection.Right;
             }
 
             return EDirection.Default;
