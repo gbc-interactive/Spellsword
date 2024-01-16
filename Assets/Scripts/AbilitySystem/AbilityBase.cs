@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 namespace Spellsword
 {
     public class AbilityBase : MonoBehaviour
     {
+        void Start()
+        {
+            _particleSystem = GetComponent<ParticleSystem>();
+        }
         public enum EAbilityType
         {
             OneStep,
@@ -21,5 +27,7 @@ namespace Spellsword
         {
             _particleSystem.Play();
         }
+        //https://docs.unity3d.com/Manual/PartSysTriggersModule.html
     }
+
 }
