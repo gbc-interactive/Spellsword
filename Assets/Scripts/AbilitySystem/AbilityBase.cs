@@ -1,27 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
-
 namespace Spellsword
 {
     public class AbilityBase : MonoBehaviour
     {
-        void Start()
-        {
-            _particleSystem = GetComponent<ParticleSystem>();
-        }
-        public enum EAbilityType
-        {
-            OneStep,
-            TwoStep,
-            Default = OneStep
-        }
-
         public ParticleSystem _particleSystem;
         [SerializeField] private EAbilityType _abilityType;
         [SerializeField] private float _manaCost;
+        void Start()
+        {
+            _particleSystem = GetComponent<ParticleSystem>();
+
+        }
+        public enum EAbilityType 
+        {
+            Attack1,
+            Attack2,
+            Default = Attack1
+        }
+
+        public void ApplyDamage(ref float hp,float howmuch)
+        {
+            hp -= howmuch;
+        }
+
+        //ability collision
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                //ApplyDamage(ref HP, 10);
+                Debug.Log("Collsion");
+            }
+            else if (other.CompareTag("Enemy"))
+            {
+                //ApplyDamage(ref HP, 10);
+                Debug.Log("CollsionEnemy");
+            }
+        }
 
         public virtual void PerformAbility()
         {
