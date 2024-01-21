@@ -13,7 +13,8 @@ namespace Spellsword
         FoundPlayer,
         MoveToPlayer,
         CirclePlayer,
-        AttackPlayer
+        AttackPlayer,
+        RunFromPlayer
     }
 
 
@@ -28,12 +29,14 @@ namespace Spellsword
         protected Vector3 _moveVector;
         protected Vector3 _homePosition;
 
+        protected bool _moveClockwise;
+
         [Header("References")]
         [SerializeField] private SphereCollider _sightMaximum;
 
         [Header("Zones Distances")]
-        [SerializeField] private float _safeZoneDistanceMax;
-        [SerializeField] private float _safeZoneDistanceMin;
+        [SerializeField] protected float _safeZoneDistanceMax;
+        [SerializeField] protected float _safeZoneDistanceMin;
 
 
         private void Start()
