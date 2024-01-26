@@ -17,26 +17,25 @@ namespace Spellsword
         RunFromPlayer
     }
 
-
     public class EnemyBehaviour : CharacterBase, ITriggerCallbackable
     {
         private GameObject _playerTarget;
-        protected GameObject _getPlayerTarget
+        public GameObject _getPlayerTarget
         {  get { return _playerTarget; } }
 
-        protected EBehaviours _behaviour;
+        public EBehaviours _behaviour;
 
-        protected Vector3 _moveVector;
-        protected Vector3 _homePosition;
+        public Vector3 _moveVector;
+        public Vector3 _homePosition;
 
-        protected bool _moveClockwise;
+        public bool _moveClockwise;
 
         [Header("References")]
         [SerializeField] private SphereCollider _sightMaximum;
 
         [Header("Zones Distances")]
-        [SerializeField] protected float _safeZoneDistanceMax;
-        [SerializeField] protected float _safeZoneDistanceMin;
+        [SerializeField] public float _safeZoneDistanceMax;
+        [SerializeField] public float _safeZoneDistanceMin;
 
 
         private void Start()

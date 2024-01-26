@@ -1,0 +1,123 @@
+using System.Collections;
+using System.Collections.Generic;
+using Spellsword;
+using UnityEngine;
+
+static public class BehavioursAI
+{
+        static public void GoToHome(EnemyBehaviour _enemySelf)
+        {
+            Vector3 enemySelfPosition = _enemySelf.transform.position;
+
+            if (_enemySelf._homePosition != Vector3.zero || Vector3.Distance(_enemySelf._homePosition, enemySelfPosition) > 3.0f)
+            {
+                _enemySelf._moveVector = (_enemySelf._homePosition - enemySelfPosition).normalized;
+            }
+            else
+            {
+                _enemySelf._behaviour = EBehaviours.Idle;
+            }
+        }
+
+        static public void FoundPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._getPlayerTarget != null)
+            {
+                _enemySelf._behaviour = EBehaviours.MoveToPlayer;
+            }
+        }
+        
+        static public void MoveToPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._getPlayerTarget == null) // early return if we can't see the player
+            {
+                _enemySelf._behaviour = EBehaviours.GoToHome;
+                return;
+            }
+
+            BehaviourByDistanceChecker(_enemySelf, EBehaviours.MoveToPlayer);
+
+            Vector3 enemySelfPosition = _enemySelf.transform.position;
+            _enemySelf._moveVector = (_enemySelf._getPlayerTarget.transform.position - enemySelfPosition).normalized;
+        }
+
+        static public void CirclePlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._getPlayerTarget == null) // early return if we can't see the player
+            {
+                _enemySelf._behaviour = EBehaviours.GoToHome;
+                return;
+            }
+
+            BehaviourByDistanceChecker(_enemySelf, EBehaviours.CirclePlayer);
+
+            //References to make code readable
+            Vector3 enemySelfPosition = _enemySelf.transform.position;
+            Vector3 targetPosition = _enemySelf._getPlayerTarget.transform.position;
+
+            //Find Perpendicular angle
+            Vector3 vectorOffset = targetPosition - enemySelfPosition;
+            Vector2 perpendicular = Vector2.Perpendicular(new Vector2(vectorOffset.x, vectorOffset.z));
+            Vector3 perpendicularOffset = new Vector3(perpendicular.x, 0, perpendicular.y);
+            Vector3 AdjustedOffset;
+
+            //Determine Steering away or towards to keep in smooth circle
+            float distanceFromMinSafeZoneToEnemy = Vector3.Distance(enemySelfPosition, targetPosition) - _enemySelf._safeZoneDistanceMin;
+            float distanceFromMaxSafeZoneToEnemy = Vector3.Distance(enemySelfPosition, targetPosition) - _enemySelf._safeZoneDistanceMax;
+            float modifier = Mathf.Clamp(distanceFromMinSafeZoneToEnemy + distanceFromMaxSafeZoneToEnemy, -1.0f, 1.0f);
+
+            if (_enemySelf._moveClockwise)
+            {
+                AdjustedOffset = -perpendicularOffset + ((vectorOffset * 0.66f) * modifier);
+            }
+            else
+            {
+                AdjustedOffset = perpendicularOffset + ((vectorOffset * 0.66f) * modifier);
+            }
+
+            _enemySelf._moveVector = AdjustedOffset.normalized * 0.66f;
+
+            Debug.DrawLine(enemySelfPosition, enemySelfPosition + vectorOffset.normalized * distanceFromMinSafeZoneToEnemy, Color.green);
+            Debug.DrawLine(enemySelfPosition, enemySelfPosition + vectorOffset.normalized * distanceFromMaxSafeZoneToEnemy, Color.green);
+            Debug.DrawLine(enemySelfPosition, enemySelfPosition + AdjustedOffset.normalized * 3.0f, Color.blue);
+        }
+
+        static public void RunFromPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._getPlayerTarget == null) // early return if we can't see the player
+            {
+                _enemySelf._behaviour = EBehaviours.GoToHome;
+                return;
+            }
+            
+            Vector3 enemySelfPosition = _enemySelf.transform.position;
+
+            BehaviourByDistanceChecker(_enemySelf, EBehaviours.RunFromPlayer);
+
+            _enemySelf._moveVector = -(_enemySelf._getPlayerTarget.transform.position - enemySelfPosition).normalized;
+        }
+
+
+
+        static private void BehaviourByDistanceChecker(EnemyBehaviour _enemySelf, EBehaviours thisBehaviour)
+        {
+            Vector3 targetPosition = _enemySelf._getPlayerTarget.transform.position;
+            Vector3 enemySelfPosition = _enemySelf.transform.position;
+
+            if (Vector3.Distance(targetPosition, enemySelfPosition) > _enemySelf._safeZoneDistanceMax)
+            {
+                _enemySelf._behaviour = EBehaviours.MoveToPlayer;
+                if (thisBehaviour != EBehaviours.MoveToPlayer) return;
+            }
+            else if (Vector3.Distance(targetPosition, enemySelfPosition) < _enemySelf._safeZoneDistanceMin)
+            {
+                _enemySelf._behaviour = EBehaviours.RunFromPlayer;
+                if (thisBehaviour != EBehaviours.RunFromPlayer) return;
+            }
+            else
+            {
+                _enemySelf._behaviour = EBehaviours.CirclePlayer;
+                if (thisBehaviour != EBehaviours.CirclePlayer) return;
+            }
+        }
+}
