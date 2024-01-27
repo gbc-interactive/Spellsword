@@ -1,0 +1,11 @@
+[NAME=???]Hello!
+
+Welcome to the world of Spellsword!
+
+[NAME=Guy]My name is Guy, and this is NPC Dialogue.
+
+Thank you for playing Spellsword!
+
+This is my last line of Dialogue :(
+
+EndQueue

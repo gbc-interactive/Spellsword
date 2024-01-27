@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Spellsword
 {
@@ -8,6 +10,7 @@ namespace Spellsword
     {
         [SerializeField] private string _prompt;
         [SerializeField] private bool _isInteractable;
+        [SerializeField] public TextAsset _dialogueText;
 
         public bool isInteractable { get => _isInteractable; set => SetInteractable(true); }
 
@@ -17,7 +20,9 @@ namespace Spellsword
         {
             if (_isInteractable)
             {
-                Debug.Log("Guy speaks!");
+                
+                FindObjectOfType<DialogueManager>().ReadDialogue(_dialogueText);
+                Debug.Log("Guys Speaks!");
                 return true;
             }
             else
