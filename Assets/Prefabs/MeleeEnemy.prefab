@@ -117,7 +117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5370146722424414165
 Transform:
   m_ObjectHideFlags: 0
@@ -237,7 +237,11 @@ MonoBehaviour:
   _moveVector: {x: 0, y: 0, z: 0}
   _homePosition: {x: 0, y: 0, z: 0}
   _moveClockwise: 0
+  _attackCooldownCurrent: 0
   _sightMaximum: {fileID: 1079432405474593479}
+  _attackCooldownMax: 4
+  _abilities:
+  - {fileID: 4544042889957717183}
   _safeZoneDistanceMax: 4.5
   _safeZoneDistanceMin: 2
 --- !u!1001 &8862975058710330545
@@ -297,6 +301,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3409e8d79e9ecd4478a0cb690ae634b3, type: 3}
+--- !u!114 &4544042889957717183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5039583187441993742, guid: 3409e8d79e9ecd4478a0cb690ae634b3, type: 3}
+  m_PrefabInstance: {fileID: 8862975058710330545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86e1fc7470d0fe4886df9bf0fac018f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5791778492901610787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3071203166238714258, guid: 3409e8d79e9ecd4478a0cb690ae634b3, type: 3}

@@ -29,14 +29,14 @@ namespace Spellsword
         [HideInInspector] public Vector3 _homePosition;
         [HideInInspector] public bool _moveClockwise;
 
-        [HideInInspector] public float _cooldownCurrent = 0.0f;
+        [HideInInspector] public float _attackCooldownCurrent = 0.0f;
 
 
         [Header("References")]
         [SerializeField] private SphereCollider _sightMaximum;
 
         [Header("Stats")]
-        [SerializeField] public float _cooldownMax;
+        [SerializeField] public float _attackCooldownMax;
         [SerializeField] public List<AbilityBase> _abilities = new List<AbilityBase>();
 
         [Header("Zones Distances")]

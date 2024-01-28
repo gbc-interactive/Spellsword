@@ -6,7 +6,11 @@ namespace Spellsword
 {
     public class RangedEnemyBehaviour : EnemyBehaviour
     {
+        [HideInInspector] public float _rangedAttackChargeUpCurrent;
         
+        [Header("Ranged Charge Up Time")]
+        [SerializeField] public float _rangedAttackChargeUpMax;
+
         void Start()
         {
             _behaviour = EBehaviours.Idle;
@@ -16,6 +20,9 @@ namespace Spellsword
         void FixedUpdate()
         {
             _moveVector = Vector3.zero;
+
+            if (_rangedAttackChargeUpCurrent == 0.0f)
+                BehavioursAI.DetermineBehaviour(this);
 
             switch(_behaviour)
             {
@@ -36,6 +43,7 @@ namespace Spellsword
                     break;
 
                 case EBehaviours.AttackPlayer:
+                    BehavioursAI.RangedAttackPlayer(this);
                     break;
 
                 case EBehaviours.RunFromPlayer:
