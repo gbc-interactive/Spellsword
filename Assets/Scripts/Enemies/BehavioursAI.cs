@@ -5,6 +5,19 @@ using UnityEngine;
 
 static public class BehavioursAI
 {
+        static public void Idle(EnemyBehaviour _enemySelf)
+        {
+            ChargeAbility(_enemySelf);
+        }
+
+        static public void FoundPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._getPlayerTarget != null)
+            {
+                _enemySelf._behaviour = EBehaviours.MoveToPlayer;
+            }
+        }
+
         static public void GoToHome(EnemyBehaviour _enemySelf)
         {
             Vector3 enemySelfPosition = _enemySelf.transform.position;
@@ -19,38 +32,39 @@ static public class BehavioursAI
             }
         }
 
-        static public void FoundPlayer(EnemyBehaviour _enemySelf)
+        static public void MeleeAttackPlayer(EnemyBehaviour _enemySelf)
         {
-            if (_enemySelf._getPlayerTarget != null)
+            if (_enemySelf._cooldownCurrent < _enemySelf._cooldownMax)
             {
-                _enemySelf._behaviour = EBehaviours.MoveToPlayer;
+                ChargeAbility(_enemySelf);
+                CirclePlayer(_enemySelf);
+            }
+            else
+            {
+                if (Vector3.Distance(_enemySelf.transform.position, _enemySelf._getPlayerTarget.transform.position) > 1.0f)
+                    MoveToPlayer(_enemySelf);
+                else
+                {
+                    _enemySelf.PerformAbility(_enemySelf._abilities[0]);
+                    _enemySelf._cooldownCurrent = 0.0f;
+                }
             }
         }
-        
+
         static public void MoveToPlayer(EnemyBehaviour _enemySelf)
         {
-            if (_enemySelf._getPlayerTarget == null) // early return if we can't see the player
-            {
-                _enemySelf._behaviour = EBehaviours.GoToHome;
-                return;
-            }
-
-            BehaviourByDistanceChecker(_enemySelf, EBehaviours.MoveToPlayer);
-
             Vector3 enemySelfPosition = _enemySelf.transform.position;
             _enemySelf._moveVector = (_enemySelf._getPlayerTarget.transform.position - enemySelfPosition).normalized;
         }
 
-        static public void CirclePlayer(EnemyBehaviour _enemySelf)
+        static public void RunFromPlayer(EnemyBehaviour _enemySelf)
         {
-            if (_enemySelf._getPlayerTarget == null) // early return if we can't see the player
-            {
-                _enemySelf._behaviour = EBehaviours.GoToHome;
-                return;
-            }
+            Vector3 enemySelfPosition = _enemySelf.transform.position;
+            _enemySelf._moveVector = -(_enemySelf._getPlayerTarget.transform.position - enemySelfPosition).normalized;
+        }
 
-            BehaviourByDistanceChecker(_enemySelf, EBehaviours.CirclePlayer);
-
+        static private void CirclePlayer(EnemyBehaviour _enemySelf)
+        {
             //References to make code readable
             Vector3 enemySelfPosition = _enemySelf.transform.position;
             Vector3 targetPosition = _enemySelf._getPlayerTarget.transform.position;
@@ -82,42 +96,35 @@ static public class BehavioursAI
             Debug.DrawLine(enemySelfPosition, enemySelfPosition + AdjustedOffset.normalized * 3.0f, Color.blue);
         }
 
-        static public void RunFromPlayer(EnemyBehaviour _enemySelf)
+        static private void ChargeAbility(EnemyBehaviour _enemySelf)
         {
-            if (_enemySelf._getPlayerTarget == null) // early return if we can't see the player
+            _enemySelf._cooldownCurrent += Time.fixedDeltaTime;
+        }
+
+        static public void DetermineBehaviour(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._getPlayerTarget == null)
             {
                 _enemySelf._behaviour = EBehaviours.GoToHome;
                 return;
             }
-            
-            Vector3 enemySelfPosition = _enemySelf.transform.position;
 
-            BehaviourByDistanceChecker(_enemySelf, EBehaviours.RunFromPlayer);
+            if (_enemySelf._cooldownCurrent >= _enemySelf._cooldownMax)
+            {
+                _enemySelf._behaviour = EBehaviours.AttackPlayer;
+                return;
+            }
 
-            _enemySelf._moveVector = -(_enemySelf._getPlayerTarget.transform.position - enemySelfPosition).normalized;
-        }
-
-
-
-        static private void BehaviourByDistanceChecker(EnemyBehaviour _enemySelf, EBehaviours thisBehaviour)
-        {
             Vector3 targetPosition = _enemySelf._getPlayerTarget.transform.position;
             Vector3 enemySelfPosition = _enemySelf.transform.position;
 
             if (Vector3.Distance(targetPosition, enemySelfPosition) > _enemySelf._safeZoneDistanceMax)
-            {
                 _enemySelf._behaviour = EBehaviours.MoveToPlayer;
-                if (thisBehaviour != EBehaviours.MoveToPlayer) return;
-            }
+
             else if (Vector3.Distance(targetPosition, enemySelfPosition) < _enemySelf._safeZoneDistanceMin)
-            {
                 _enemySelf._behaviour = EBehaviours.RunFromPlayer;
-                if (thisBehaviour != EBehaviours.RunFromPlayer) return;
-            }
             else
-            {
-                _enemySelf._behaviour = EBehaviours.CirclePlayer;
-                if (thisBehaviour != EBehaviours.CirclePlayer) return;
-            }
+                _enemySelf._behaviour = EBehaviours.AttackPlayer; 
+            
         }
 }

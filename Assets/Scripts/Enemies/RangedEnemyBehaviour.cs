@@ -1,25 +1,21 @@
-using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
-
 
 namespace Spellsword
 {
-
-    public class MeleeEnemyBehaviour : EnemyBehaviour
+    public class RangedEnemyBehaviour : EnemyBehaviour
     {
-        private void Start()
+        
+        void Start()
         {
             _behaviour = EBehaviours.Idle;
         }
 
-        private void FixedUpdate()
+        
+        void FixedUpdate()
         {
             _moveVector = Vector3.zero;
-
-            BehavioursAI.DetermineBehaviour(this);
 
             switch(_behaviour)
             {
@@ -40,21 +36,15 @@ namespace Spellsword
                     break;
 
                 case EBehaviours.AttackPlayer:
-                    BehavioursAI.MeleeAttackPlayer(this);
                     break;
 
                 case EBehaviours.RunFromPlayer:
                     BehavioursAI.RunFromPlayer(this);
                     break;
-                
-                
             }
 
             _moveVector = new Vector3(_moveVector.x, 0, _moveVector.z);
             TryMove(_moveVector);
         }
-
     }
-
-
 }

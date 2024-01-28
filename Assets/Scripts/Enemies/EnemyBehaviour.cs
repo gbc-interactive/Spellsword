@@ -1,6 +1,7 @@
 using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 namespace Spellsword
@@ -9,12 +10,11 @@ namespace Spellsword
     {
         Idle,
         GoToHome,
-        Patrol,
         FoundPlayer,
         MoveToPlayer,
-        CirclePlayer,
         AttackPlayer,
         RunFromPlayer
+
     }
 
     public class EnemyBehaviour : CharacterBase, ITriggerCallbackable
@@ -23,15 +23,21 @@ namespace Spellsword
         public GameObject _getPlayerTarget
         {  get { return _playerTarget; } }
 
-        public EBehaviours _behaviour;
+        [HideInInspector] public EBehaviours _behaviour;
 
-        public Vector3 _moveVector;
-        public Vector3 _homePosition;
+        [HideInInspector] public Vector3 _moveVector;
+        [HideInInspector] public Vector3 _homePosition;
+        [HideInInspector] public bool _moveClockwise;
 
-        public bool _moveClockwise;
+        [HideInInspector] public float _cooldownCurrent = 0.0f;
+
 
         [Header("References")]
         [SerializeField] private SphereCollider _sightMaximum;
+
+        [Header("Stats")]
+        [SerializeField] public float _cooldownMax;
+        [SerializeField] public List<AbilityBase> _abilities = new List<AbilityBase>();
 
         [Header("Zones Distances")]
         [SerializeField] public float _safeZoneDistanceMax;
