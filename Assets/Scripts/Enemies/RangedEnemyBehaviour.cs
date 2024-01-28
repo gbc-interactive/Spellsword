@@ -11,11 +11,6 @@ namespace Spellsword
         [Header("Ranged Charge Up Time")]
         [SerializeField] public float _rangedAttackChargeUpMax;
 
-        void Start()
-        {
-            _behaviour = EBehaviours.Idle;
-        }
-
         
         void FixedUpdate()
         {

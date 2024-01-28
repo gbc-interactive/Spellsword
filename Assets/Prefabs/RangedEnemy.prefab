@@ -141,6 +141,7 @@ MonoBehaviour:
   _attackCooldownCurrent: 0
   _sightMaximum: {fileID: 1978007305879701818}
   _attackCooldownMax: 6
+  _circleSpeed: 0.5
   _abilities:
   - {fileID: 1291484483490246736}
   _safeZoneDistanceMax: 8.5

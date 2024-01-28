@@ -10,10 +10,6 @@ namespace Spellsword
 
     public class MeleeEnemyBehaviour : EnemyBehaviour
     {
-        private void Start()
-        {
-            _behaviour = EBehaviours.Idle;
-        }
 
         private void FixedUpdate()
         {

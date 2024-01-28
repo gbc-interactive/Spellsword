@@ -110,11 +110,11 @@ static public class BehavioursAI
 
             if (_enemySelf._moveClockwise)
             {
-                AdjustedOffset = -perpendicularOffset + ((vectorOffset * 0.66f) * modifier);
+                AdjustedOffset = -perpendicularOffset + (vectorOffset * _enemySelf._circleSpeed * modifier);
             }
             else
             {
-                AdjustedOffset = perpendicularOffset + ((vectorOffset * 0.66f) * modifier);
+                AdjustedOffset = perpendicularOffset + (vectorOffset * _enemySelf._circleSpeed * modifier);
             }
 
             _enemySelf._moveVector = AdjustedOffset.normalized * 0.66f;

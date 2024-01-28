@@ -28,6 +28,7 @@ namespace Spellsword
         [HideInInspector] public Vector3 _moveVector;
         [HideInInspector] public Vector3 _homePosition;
         [HideInInspector] public bool _moveClockwise;
+        
 
         [HideInInspector] public float _attackCooldownCurrent = 0.0f;
 
@@ -37,6 +38,7 @@ namespace Spellsword
 
         [Header("Stats")]
         [SerializeField] public float _attackCooldownMax;
+        [Range(0.01f, 1.0f)] public float _circleSpeed;
         [SerializeField] public List<AbilityBase> _abilities = new List<AbilityBase>();
 
         [Header("Zones Distances")]
@@ -47,6 +49,7 @@ namespace Spellsword
         private void Start()
         {
             _homePosition = transform.position;
+            _behaviour = EBehaviours.Idle;
         }
 
         public void TriggerEnterCallback(Collider other)
