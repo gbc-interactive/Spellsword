@@ -86,6 +86,19 @@ namespace Spellsword
         {
             ability.PerformAbility();
             return true;
+            //if (_currentMP >= ability._manaCost)
+            //{
+            //      _currentMP -= ability._manaCost;
+            //      ability.PerformAbility();
+            //      return true;
+            //    
+
+            //}
+            //else
+            //{
+            //    Debug.Log("not enough mana");
+            //    return false;
+            //}
         }
     }
 }

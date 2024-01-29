@@ -7,11 +7,11 @@ namespace Spellsword
     {
         public ParticleSystem _particleSystem;
         [SerializeField] private EAbilityType _abilityType;
-        [SerializeField] private float _manaCost;
+        [SerializeField] public float _manaCost;
+
         void Start()
         {
             _particleSystem = GetComponent<ParticleSystem>();
-
         }
         public enum EAbilityType 
         {
