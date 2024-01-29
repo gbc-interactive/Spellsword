@@ -55,6 +55,15 @@ namespace Spellsword
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""4604cbc1-8544-458b-922d-449e78662444"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -211,6 +220,45 @@ namespace Spellsword
                     ""action"": ""Melee"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2831492-85e5-4f7f-b21c-ad62cf7c501b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""New action map"",
+            ""id"": ""1cf01da8-980f-47ec-8266-6b23c74f3c54"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""d095b7f2-2877-40e9-8bcc-d36efe14a345"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""faee9764-0e6a-4a4c-a062-21abc7b139e8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +331,10 @@ namespace Spellsword
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
+            m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
+            // New action map
+            m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
+            m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -347,6 +399,7 @@ namespace Spellsword
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_Melee;
+        private readonly InputAction m_Player_Teleport;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -354,6 +407,7 @@ namespace Spellsword
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @Melee => m_Wrapper.m_Player_Melee;
+            public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -372,6 +426,9 @@ namespace Spellsword
                 @Melee.started += instance.OnMelee;
                 @Melee.performed += instance.OnMelee;
                 @Melee.canceled += instance.OnMelee;
+                @Teleport.started += instance.OnTeleport;
+                @Teleport.performed += instance.OnTeleport;
+                @Teleport.canceled += instance.OnTeleport;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -385,6 +442,9 @@ namespace Spellsword
                 @Melee.started -= instance.OnMelee;
                 @Melee.performed -= instance.OnMelee;
                 @Melee.canceled -= instance.OnMelee;
+                @Teleport.started -= instance.OnTeleport;
+                @Teleport.performed -= instance.OnTeleport;
+                @Teleport.canceled -= instance.OnTeleport;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -402,6 +462,52 @@ namespace Spellsword
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // New action map
+        private readonly InputActionMap m_Newactionmap;
+        private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
+        private readonly InputAction m_Newactionmap_Newaction;
+        public struct NewactionmapActions
+        {
+            private @InputActions m_Wrapper;
+            public NewactionmapActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
+            public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
+            public void AddCallbacks(INewactionmapActions instance)
+            {
+                if (instance == null || m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Add(instance);
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+
+            private void UnregisterCallbacks(INewactionmapActions instance)
+            {
+                @Newaction.started -= instance.OnNewaction;
+                @Newaction.performed -= instance.OnNewaction;
+                @Newaction.canceled -= instance.OnNewaction;
+            }
+
+            public void RemoveCallbacks(INewactionmapActions instance)
+            {
+                if (m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(INewactionmapActions instance)
+            {
+                foreach (var item in m_Wrapper.m_NewactionmapActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -452,6 +558,11 @@ namespace Spellsword
             void OnMove(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnMelee(InputAction.CallbackContext context);
+            void OnTeleport(InputAction.CallbackContext context);
+        }
+        public interface INewactionmapActions
+        {
+            void OnNewaction(InputAction.CallbackContext context);
         }
     }
 }

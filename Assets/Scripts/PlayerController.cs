@@ -12,14 +12,15 @@ namespace Spellsword
         private Vector3 _moveVector = Vector3.zero;
 
         [SerializeField] private List<AbilityBase> _abilities = new List<AbilityBase>();
-
+        public Vector3 mousePosition;
+        public Vector3 worldPosition;
         public void Initialize()
         {
             GameManager._inputActions.Player.Move.performed += OnInputMovePerformed;
             GameManager._inputActions.Player.Move.canceled += OnInputMoveCanceled;
             GameManager._inputActions.Player.Interact.performed += OnInputInteractPerformed;
             GameManager._inputActions.Player.Melee.performed += OnInputMeleePerformed;
-
+            GameManager._inputActions.Player.Teleport.performed += OnInputTeleportPerformed;
             _isInitialized = true;
         }
 
@@ -29,12 +30,12 @@ namespace Spellsword
             GameManager._inputActions.Player.Move.canceled -= OnInputMoveCanceled;
             GameManager._inputActions.Player.Interact.performed -= OnInputInteractPerformed;
             GameManager._inputActions.Player.Melee.performed -= OnInputMeleePerformed;
-
+            GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
             _isInitialized = false;
         }
 
         private void FixedUpdate()
-        {
+        { 
             TryMove(_moveVector);
         }
 
@@ -57,6 +58,10 @@ namespace Spellsword
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
             PerformAbility(_abilities[0]);
+        }
+        private void OnInputTeleportPerformed(InputAction.CallbackContext value)
+        {
+            PerformAbility(_abilities[1]);
         }
     }
 }
