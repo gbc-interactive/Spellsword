@@ -1,0 +1,2767 @@
+fileFormatVersion: 2
+guid: 6d9d8ffd934814a4f89aa6662b6452f3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_0
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f4bfb08a2a4064482f543c2c646c88
+      internalID: -665530939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d73e83a0904b84fa94e77137133123
+      internalID: 54448946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_2
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f928d5b45b87c44d9c2673ec460d2a3
+      internalID: 1030413361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_3
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75cd18346a1fe34ba0cc85b1a6178c5
+      internalID: 1054562305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_4
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d4b61f6d6bfc54097622c04ab6140e
+      internalID: -2087136513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_5
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c075c9c54e4debb44909dbfffc8530b8
+      internalID: 2129641255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e060b477e7ddf40b97e249f89456c8
+      internalID: 191721356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_7
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55133868b920a974f8a1f769c4af7fd4
+      internalID: 1415004336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_8
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a746cec9e096a7645a6fbd645d251bec
+      internalID: -2130507260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_9
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 344993f71d0240a4cb32a0ab44fc5343
+      internalID: 1519255636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_10
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b5af8279ea90624ca31863a965e6279
+      internalID: 1607382214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_11
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 1150
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a73489403694dd245a9ecb0a7b7569f8
+      internalID: 727903172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43d4540cf862c24dbc2c134002e02f5
+      internalID: 1840244246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_13
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cfc5ed46571ba48bfaa70122099c31
+      internalID: -659484146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f1c08f9fba9634a8ae7ca15bdd6eb4
+      internalID: 200823375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_15
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac6cd5c444168224ba1da394004653ce
+      internalID: -1773424533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adaf4ee37d771e44db0cae19afa20a80
+      internalID: -2095713589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_17
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28358b38b51e609459f16d35a821fa5f
+      internalID: 707775624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_18
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d458823ec634c428e5bf25d4d9db21
+      internalID: -1952211540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_19
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85252a85730df694f9acbdd0081e2b29
+      internalID: -888874393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627fb9c525ca5d749a50a45403be6b57
+      internalID: 449991986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_21
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 768c64fb8da1d2e48853627af0e651df
+      internalID: -1400901963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_22
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7120cddf68184a94c9ffbea3e8b5741b
+      internalID: -659132669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_23
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a010b08562392c42ad11de7c646fec6
+      internalID: 1159307649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_24
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fd0f390cb7bee24592c022d58d8be0f
+      internalID: 1089186922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_25
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daecf854df2355d42aee866ca1ff7a7c
+      internalID: -2060852861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_26
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e374a13d901f2974b97f5be2cd2a07b6
+      internalID: 1080761731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_27
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 1021
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2c0c7e9f11d6de4ba9248457a9242eb
+      internalID: -828168554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab8879adba9f37848ab9a46c3609fa3a
+      internalID: 473690503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_29
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae84f98bd6731734eb290a91027d9f61
+      internalID: -1298286072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_30
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbfac2f76bbf5f04397ea494b702776e
+      internalID: -1467635734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_31
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92fc7c9eec4b610489256a61d8ac8419
+      internalID: 1645888016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_32
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a13dc68f9a24e42b3344a77279dd3e
+      internalID: -1626596607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_33
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95746190e58017847a85c0a223e12e05
+      internalID: 942080115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c3bc3603fed36e4ea240ee8ce61ec05
+      internalID: -270255785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_35
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a096af10a19ad459da29027bc6cfb7
+      internalID: -910500207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_36
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14628b3187f8df04294001ec74c09d31
+      internalID: 1329632235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_37
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a3f5ac77c6c7b408baf90315d22f12
+      internalID: -1566810689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_38
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe56ef521cd02548972d05decaccf57
+      internalID: 1262014450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_39
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1038bc2f25659c84b954ef71bc91ccb5
+      internalID: 1387167210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_40
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad0ff83620a9754c9068cb9a1cfd1a3
+      internalID: -190937305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_41
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d113fe0090d981a4586782c146af4be3
+      internalID: -1710857113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_42
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49e1adf5b63d38448b6539265eef0f19
+      internalID: 2124644851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_43
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 892
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a7e546df3c4084c84edc624d7b72f9
+      internalID: -1708918223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c213347772f6e48be89fabe3bf5efd
+      internalID: 1819322426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_45
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ee8d78ff9aa534887098c505096003
+      internalID: -461227405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_46
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6985b166f5f30c044a066722f16fc8c9
+      internalID: 1389419204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_47
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40091493eef1f449997345e3967555d
+      internalID: -1685146061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_48
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffc27bcc41cff44e91960ce2ae1cd28
+      internalID: 706657398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_49
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a253d930eb8ecfe4fa459253628ffecb
+      internalID: 2074439381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_50
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302bd2c9f3fd9d342a462d209edd5060
+      internalID: 296115897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_51
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbf1604cf67f9f944b16f33467100292
+      internalID: 1159885091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_52
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5254f3e19a516dc4b9e68ebfb88a8f82
+      internalID: 24511251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_53
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a695ce9d026924bbed5a189100e806
+      internalID: -361012158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_54
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b933fc9c884e346b7a2e707d2df4c1
+      internalID: -1618394618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_55
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c4e3ded5ad7284fbc1f47c81dcd555
+      internalID: -178143004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_56
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 115dff35946019d42bdab1f00d69fe39
+      internalID: -1684903305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_57
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee17f831c0ea89a419942d91636d701d
+      internalID: 1960787256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_58
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 139cbfdaef8f55c48ab56a15567e6eae
+      internalID: 1311144715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_59
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 763
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda4575f56fdf4e44ae0248403e8d8c4
+      internalID: 1494321196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_60
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602a25944a8974d49b15fdd1e2793d30
+      internalID: 506162962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_61
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81927e19a635a5044b9127b3cda38ab6
+      internalID: 791477800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_62
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0a5713d892be948903f59dd010a1e1
+      internalID: 773059643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_63
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa52268db9776fa47ab5ae3b5db5a840
+      internalID: -968239222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_64
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ec47fb9cb1c8646a823ad41dcb5913
+      internalID: 1724488942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_65
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b01a023a2d374ab44960c4dcb533ccb5
+      internalID: 1128547701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_66
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384d167c478f0124986d4222411e3f38
+      internalID: 985426863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_67
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ebad9ee1214c794e843ba5c98e4e3b4
+      internalID: 881695925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_68
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d0a9235aa9d314485dbc180789e4ef
+      internalID: -829222708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_69
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79e593804d15e6b4bbba1c86ae644a82
+      internalID: -496191122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_70
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf9c3c20ceaf3644db0a53552745b0fb
+      internalID: -948007601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_71
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 634
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25148d5a773e2004b872f1b73e576e58
+      internalID: -2075730638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_72
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f395ef3f7f3ae4493a3e24e1b5b4cf
+      internalID: 1570183115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_73
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3558a1a3ce69a4f86268c45e0b12c2
+      internalID: 1211845051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_74
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04beee2335077344a99766bb4f1a2bd3
+      internalID: 63977297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_75
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f246b9c521c4f942a87c7714c97157b
+      internalID: -206281272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_76
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bcd406a371ecd4c86a4ae58ef2fd4d
+      internalID: -949398232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_77
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13573420d18b2c74fb9e8c32323013c9
+      internalID: 155095832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_78
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060fd7f7d3b01fe40805e4757af71103
+      internalID: 1424855248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_79
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d45f3d1d3e73a39498b064958ea1f599
+      internalID: -831433110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_80
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 848889f04d347ab4594e8787a310390e
+      internalID: 1668094243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_81
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e4938cd8ca7ea429cdfb209c4eed21
+      internalID: -1073915608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_82
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5e50cb013d5054e8f25588f624beae
+      internalID: 1751949462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_83
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ed4feb27800354ea031c9012c2f145
+      internalID: 1932450411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_84
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34dc2e7c1f3d8c24c84ec8b0e41598df
+      internalID: -436367255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_85
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc7d12a17008d294aac5b9bc3e20157b
+      internalID: 1565643807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_86
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341760ec82f9d2d4bb8d7626bcf0323a
+      internalID: -627977410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_87
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 505
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61300dabd4823db42923403739fefe65
+      internalID: 563690642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_88
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1527832b5478b5948aa5c8741b1079cb
+      internalID: 210847133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_89
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e780973f279c9b4cadd933215671abe
+      internalID: 1770474388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_90
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f2d7397eb58aa64398aa592ecc34888
+      internalID: 1652918097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_91
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f38ffa740df32fe40a4fe0b8cfdec315
+      internalID: -815829151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_92
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dfb4b55cf1ba4044ba06e61feac285f
+      internalID: 1359092750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_93
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76afae2d57f2c81459b895577ed2c497
+      internalID: 1884543411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_94
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c8d3fc085d51d94a93f8a26a1e06a74
+      internalID: 480533144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_95
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc9495ffd200f334b86bc65d72148f00
+      internalID: -1768035177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_96
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819d94f7abbdcd347b92221f6a8f4635
+      internalID: 718656116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_97
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0db11226d2d1141bb6845a1541f42a
+      internalID: 565682146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_98
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7620c1c40421b1b4ea77e3593751e490
+      internalID: -329009977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_99
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd3e813ce128e1d469906736b5df99cc
+      internalID: -2009728726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_100
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e8c2f83e69d694e94cd83932fac6f6
+      internalID: 689133817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_101
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 393e8bcbf1d4fc94c8ab7ff8a1f6dfe6
+      internalID: -1577131421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_102
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789f615434994cd48af5b1d053c133f6
+      internalID: 1572156892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_103
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 376
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4c5b637c6286f49b299aadadca5094
+      internalID: -1805375551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_104
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d593e2e717ac7ad4c826e38a481c75f4
+      internalID: 1962714496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_105
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45920aa09b68c354b963c71b8c5b4cc8
+      internalID: -169322503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_106
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b80c7d37b8f7f1642a8394faa7af7108
+      internalID: 1025429757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_107
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ec6f6f7eff28442a51e4f2ff61988f
+      internalID: -1746376756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_108
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b25a83fd8a311d24c885b1dcf4921a48
+      internalID: 1575094941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_109
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07e28635a6fcab4da48aea1afad92fb
+      internalID: 173579303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_110
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecaac4f12af4b1f45b0c94053343c258
+      internalID: -892957978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_111
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ceda31b73d47c44855d871b97d3e9a
+      internalID: -1101750251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_112
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e62d97b0fe48e48b24e39bbcc4d053
+      internalID: -1715160050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_113
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1b64e6328baa6c45a4816d7c529f55c
+      internalID: -2129956806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_114
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51c271f0fa62cee41b7ce5b7a0a83cba
+      internalID: -1818148618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_115
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ad0966a431fc94aa036ad8f5497bfc
+      internalID: 242101105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_116
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d674acfe406635c43aacb6d3160ee569
+      internalID: -960103732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_117
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe0b152a94e1d41488c374aa6154d0a9
+      internalID: -610754451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_118
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f207d54c42027f247995b319805fda51
+      internalID: 565070909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4 Grass + 1 Dirt_119
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 247
+        width: 128
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1483836ec9f488448364d47b4bab98a
+      internalID: -1762472899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 63489c0accdbf3a40835658a2336e25d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      4 Grass + 1 Dirt_0: -665530939
+      4 Grass + 1 Dirt_1: 54448946
+      4 Grass + 1 Dirt_10: 1607382214
+      4 Grass + 1 Dirt_100: 689133817
+      4 Grass + 1 Dirt_101: -1577131421
+      4 Grass + 1 Dirt_102: 1572156892
+      4 Grass + 1 Dirt_103: -1805375551
+      4 Grass + 1 Dirt_104: 1962714496
+      4 Grass + 1 Dirt_105: -169322503
+      4 Grass + 1 Dirt_106: 1025429757
+      4 Grass + 1 Dirt_107: -1746376756
+      4 Grass + 1 Dirt_108: 1575094941
+      4 Grass + 1 Dirt_109: 173579303
+      4 Grass + 1 Dirt_11: 727903172
+      4 Grass + 1 Dirt_110: -892957978
+      4 Grass + 1 Dirt_111: -1101750251
+      4 Grass + 1 Dirt_112: -1715160050
+      4 Grass + 1 Dirt_113: -2129956806
+      4 Grass + 1 Dirt_114: -1818148618
+      4 Grass + 1 Dirt_115: 242101105
+      4 Grass + 1 Dirt_116: -960103732
+      4 Grass + 1 Dirt_117: -610754451
+      4 Grass + 1 Dirt_118: 565070909
+      4 Grass + 1 Dirt_119: -1762472899
+      4 Grass + 1 Dirt_12: 1840244246
+      4 Grass + 1 Dirt_13: -659484146
+      4 Grass + 1 Dirt_14: 200823375
+      4 Grass + 1 Dirt_15: -1773424533
+      4 Grass + 1 Dirt_16: -2095713589
+      4 Grass + 1 Dirt_17: 707775624
+      4 Grass + 1 Dirt_18: -1952211540
+      4 Grass + 1 Dirt_19: -888874393
+      4 Grass + 1 Dirt_2: 1030413361
+      4 Grass + 1 Dirt_20: 449991986
+      4 Grass + 1 Dirt_21: -1400901963
+      4 Grass + 1 Dirt_22: -659132669
+      4 Grass + 1 Dirt_23: 1159307649
+      4 Grass + 1 Dirt_24: 1089186922
+      4 Grass + 1 Dirt_25: -2060852861
+      4 Grass + 1 Dirt_26: 1080761731
+      4 Grass + 1 Dirt_27: -828168554
+      4 Grass + 1 Dirt_28: 473690503
+      4 Grass + 1 Dirt_29: -1298286072
+      4 Grass + 1 Dirt_3: 1054562305
+      4 Grass + 1 Dirt_30: -1467635734
+      4 Grass + 1 Dirt_31: 1645888016
+      4 Grass + 1 Dirt_32: -1626596607
+      4 Grass + 1 Dirt_33: 942080115
+      4 Grass + 1 Dirt_34: -270255785
+      4 Grass + 1 Dirt_35: -910500207
+      4 Grass + 1 Dirt_36: 1329632235
+      4 Grass + 1 Dirt_37: -1566810689
+      4 Grass + 1 Dirt_38: 1262014450
+      4 Grass + 1 Dirt_39: 1387167210
+      4 Grass + 1 Dirt_4: -2087136513
+      4 Grass + 1 Dirt_40: -190937305
+      4 Grass + 1 Dirt_41: -1710857113
+      4 Grass + 1 Dirt_42: 2124644851
+      4 Grass + 1 Dirt_43: -1708918223
+      4 Grass + 1 Dirt_44: 1819322426
+      4 Grass + 1 Dirt_45: -461227405
+      4 Grass + 1 Dirt_46: 1389419204
+      4 Grass + 1 Dirt_47: -1685146061
+      4 Grass + 1 Dirt_48: 706657398
+      4 Grass + 1 Dirt_49: 2074439381
+      4 Grass + 1 Dirt_5: 2129641255
+      4 Grass + 1 Dirt_50: 296115897
+      4 Grass + 1 Dirt_51: 1159885091
+      4 Grass + 1 Dirt_52: 24511251
+      4 Grass + 1 Dirt_53: -361012158
+      4 Grass + 1 Dirt_54: -1618394618
+      4 Grass + 1 Dirt_55: -178143004
+      4 Grass + 1 Dirt_56: -1684903305
+      4 Grass + 1 Dirt_57: 1960787256
+      4 Grass + 1 Dirt_58: 1311144715
+      4 Grass + 1 Dirt_59: 1494321196
+      4 Grass + 1 Dirt_6: 191721356
+      4 Grass + 1 Dirt_60: 506162962
+      4 Grass + 1 Dirt_61: 791477800
+      4 Grass + 1 Dirt_62: 773059643
+      4 Grass + 1 Dirt_63: -968239222
+      4 Grass + 1 Dirt_64: 1724488942
+      4 Grass + 1 Dirt_65: 1128547701
+      4 Grass + 1 Dirt_66: 985426863
+      4 Grass + 1 Dirt_67: 881695925
+      4 Grass + 1 Dirt_68: -829222708
+      4 Grass + 1 Dirt_69: -496191122
+      4 Grass + 1 Dirt_7: 1415004336
+      4 Grass + 1 Dirt_70: -948007601
+      4 Grass + 1 Dirt_71: -2075730638
+      4 Grass + 1 Dirt_72: 1570183115
+      4 Grass + 1 Dirt_73: 1211845051
+      4 Grass + 1 Dirt_74: 63977297
+      4 Grass + 1 Dirt_75: -206281272
+      4 Grass + 1 Dirt_76: -949398232
+      4 Grass + 1 Dirt_77: 155095832
+      4 Grass + 1 Dirt_78: 1424855248
+      4 Grass + 1 Dirt_79: -831433110
+      4 Grass + 1 Dirt_8: -2130507260
+      4 Grass + 1 Dirt_80: 1668094243
+      4 Grass + 1 Dirt_81: -1073915608
+      4 Grass + 1 Dirt_82: 1751949462
+      4 Grass + 1 Dirt_83: 1932450411
+      4 Grass + 1 Dirt_84: -436367255
+      4 Grass + 1 Dirt_85: 1565643807
+      4 Grass + 1 Dirt_86: -627977410
+      4 Grass + 1 Dirt_87: 563690642
+      4 Grass + 1 Dirt_88: 210847133
+      4 Grass + 1 Dirt_89: 1770474388
+      4 Grass + 1 Dirt_9: 1519255636
+      4 Grass + 1 Dirt_90: 1652918097
+      4 Grass + 1 Dirt_91: -815829151
+      4 Grass + 1 Dirt_92: 1359092750
+      4 Grass + 1 Dirt_93: 1884543411
+      4 Grass + 1 Dirt_94: 480533144
+      4 Grass + 1 Dirt_95: -1768035177
+      4 Grass + 1 Dirt_96: 718656116
+      4 Grass + 1 Dirt_97: 565682146
+      4 Grass + 1 Dirt_98: -329009977
+      4 Grass + 1 Dirt_99: -2009728726
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
