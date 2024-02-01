@@ -12,7 +12,7 @@ namespace Spellsword
 
         public HUDSystem _headsOverDisplay = null;
 
-        private void Awake()
+        private void OnEnable()
         {
             _instance = this;
         }

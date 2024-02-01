@@ -59,6 +59,13 @@ namespace Spellsword
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
             PerformAbility(_abilities[0]);
+            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
+        }
+
+        public override void RegenMP()
+        {
+            base.RegenMP();
+            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
