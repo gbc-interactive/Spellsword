@@ -7,7 +7,7 @@ namespace Spellsword
     {
         public ParticleSystem _particleSystem;
         [SerializeField] private EAbilityType _abilityType;
-        [SerializeField] public float _manaCost;
+        [SerializeField] public float _MPCost;
 
         void Start()
         {

@@ -59,13 +59,6 @@ namespace Spellsword
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
             PerformAbility(_abilities[0]);
-            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
-        }
-
-        public override void RegenMP()
-        {
-            base.RegenMP();
-            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
@@ -76,6 +69,19 @@ namespace Spellsword
         {
             PerformAbility(_abilities[1]);
             Time.timeScale = 1f;
+        }
+
+        public override bool PerformAbility(AbilityBase ability)
+        {
+            base.PerformAbility(ability);
+            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
+            return true;
+        }
+
+        public override void RegenMP()
+        {
+            base.RegenMP();
+            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
         }
     }
 }

@@ -9820,7 +9820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 1379504315796101638}
   _abilityType: 0
-  _manaCost: 0
+  _MPCost: 25
 --- !u!1 &7549210112660318882
 GameObject:
   m_ObjectHideFlags: 0

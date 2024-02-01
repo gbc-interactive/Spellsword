@@ -101,31 +101,17 @@ namespace Spellsword
 
         public virtual bool PerformAbility(AbilityBase ability)
         {
-            ability.PerformAbility();
-            return true;
-            //if (_currentMP >= ability._manaCost)
-            //{
-            //      _currentMP -= ability._manaCost;
-            //      ability.PerformAbility();
-            //      return true;
-            //    
-
-            //}
-            //else
-            //{
-            //    Debug.Log("not enough mana");
-            //    return false;
-            //}
-        }
-            if(_currentMP >= ability.MPCost)
+            if (_currentMP >= ability._MPCost)
             {
                 _timeSinceLastAbility = 0;
-                _currentMP -= ability.MPCost;
+                _currentMP -= ability._MPCost;
                 ability.PerformAbility();
                 return true;
+
             }
             else
             {
+                Debug.Log("not enough mana");
                 return false;
             }
         }
