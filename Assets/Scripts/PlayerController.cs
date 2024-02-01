@@ -12,14 +12,16 @@ namespace Spellsword
         private Vector3 _moveVector = Vector3.zero;
 
         [SerializeField] private List<AbilityBase> _abilities = new List<AbilityBase>();
-
+        public Vector3 mousePosition;
+        public Vector3 worldPosition;
         public void Initialize()
         {
             GameManager._inputActions.Player.Move.performed += OnInputMovePerformed;
             GameManager._inputActions.Player.Move.canceled += OnInputMoveCanceled;
             GameManager._inputActions.Player.Interact.performed += OnInputInteractPerformed;
             GameManager._inputActions.Player.Melee.performed += OnInputMeleePerformed;
-
+            GameManager._inputActions.Player.Teleport.performed += OnInputTeleportPerformed;
+            GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
             _isInitialized = true;
         }
 
@@ -29,12 +31,12 @@ namespace Spellsword
             GameManager._inputActions.Player.Move.canceled -= OnInputMoveCanceled;
             GameManager._inputActions.Player.Interact.performed -= OnInputInteractPerformed;
             GameManager._inputActions.Player.Melee.performed -= OnInputMeleePerformed;
-
+            GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
             _isInitialized = false;
         }
 
         private void FixedUpdate()
-        {
+        { 
             TryMove(_moveVector);
         }
 
@@ -57,6 +59,29 @@ namespace Spellsword
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
             PerformAbility(_abilities[0]);
+        }
+
+        private void OnInputTeleportPerformed(InputAction.CallbackContext value)
+        {
+            Time.timeScale = 0.5f;
+        }
+        private void OnInputTeleportCanceled(InputAction.CallbackContext value)
+        {
+            PerformAbility(_abilities[1]);
+            Time.timeScale = 1f;
+        }
+
+        public override bool PerformAbility(AbilityBase ability)
+        {
+            base.PerformAbility(ability);
+            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
+            return true;
+        }
+
+        public override void RegenMP()
+        {
+            base.RegenMP();
+            UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
         }
     }
 }
