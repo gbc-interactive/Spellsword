@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4400959096933164709}
   _spriteRenderer: {fileID: 7394477385303020644}
-  _moveSpeed: 5
+  _moveSpeed: 4.5
   _maxHP: 100
   _maxMP: 100
   _currentHP: 0

@@ -7,6 +7,7 @@ static public class BehavioursAI
 {
         static public void Idle(EnemyBehaviour _enemySelf)
         {
+            _enemySelf._moveVector = Vector3.zero;
             ChargeAbility(_enemySelf);
         }
 
@@ -32,69 +33,6 @@ static public class BehavioursAI
             }
         }
 
-        static public void MeleeAttackPlayer(EnemyBehaviour _enemySelf)
-        {
-            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
-            {
-                ChargeAbility(_enemySelf);
-                CirclePlayer(_enemySelf);
-            }
-            else
-            {
-                if (Vector3.Distance(_enemySelf.transform.position, _enemySelf._getPlayerTarget.transform.position) > 1.0f)
-                    MoveToPlayer(_enemySelf);
-                else
-                {
-                    _enemySelf.PerformAbility(_enemySelf._abilities[0]);
-                    _enemySelf._attackCooldownCurrent = 0.0f;
-                }
-            }
-        }
-
-        static public void RangedAttackPlayer(EnemyBehaviour _enemySelf)
-        {
-            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
-            {
-                ChargeAbility(_enemySelf);
-                CirclePlayer(_enemySelf);
-            }
-            else
-            {
-                RangedEnemyBehaviour rangedEnemy = _enemySelf as RangedEnemyBehaviour;
-
-                if (rangedEnemy._rangedAttackChargeUpCurrent < rangedEnemy._rangedAttackChargeUpMax)
-                   rangedEnemy._rangedAttackChargeUpCurrent += Time.fixedDeltaTime;
-                else
-                {
-                    rangedEnemy.PerformAbility(rangedEnemy._abilities[0]);
-                    rangedEnemy._rangedAttackChargeUpCurrent = 0.0f;
-                    rangedEnemy._attackCooldownCurrent = 0.0f;
-                }
-            }
-        }
-
-        static public void MagicAttackPlayer(EnemyBehaviour _enemySelf)
-        {
-            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
-            {
-                ChargeAbility(_enemySelf);
-                CirclePlayer(_enemySelf);
-            }
-            else
-            {
-                _enemySelf.PerformAbility(_enemySelf._abilities[0]);
-                _enemySelf._attackCooldownCurrent = 0.0f;
-            }
-        }
-
-        static public void MagicBlinkAbility(EnemyBehaviour _enemySelf)
-        {
-            _enemySelf.PerformAbility(_enemySelf._abilities[1]);
-            
-            MagicEnemyBehaviour magicEnemy = _enemySelf as MagicEnemyBehaviour;
-            magicEnemy._magicBlinkCoolDownCurrent = 0.0f;
-        }
-
         static public void MoveToPlayer(EnemyBehaviour _enemySelf)
         {
             Vector3 enemySelfPosition = _enemySelf.transform.position;
@@ -109,6 +47,8 @@ static public class BehavioursAI
 
         static private void CirclePlayer(EnemyBehaviour _enemySelf)
         {
+            //DetermineCircleDirection(_enemySelf);
+
             //References to make code readable
             Vector3 enemySelfPosition = _enemySelf.transform.position;
             Vector3 targetPosition = _enemySelf._getPlayerTarget.transform.position;
@@ -144,6 +84,100 @@ static public class BehavioursAI
         {
             _enemySelf._attackCooldownCurrent += Time.fixedDeltaTime;
         }
+
+        static private void DetermineCircleDirection(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._moveVector.x <= 0.0f)
+            {
+                if (_enemySelf._moveVector.y < 0.0f)
+                {
+                    _enemySelf._moveClockwise = false;
+                }
+                else
+                {
+                    _enemySelf._moveClockwise = true;
+                }
+            }
+            else
+            {
+                if (_enemySelf._moveVector.y < 0.0f)
+                {
+                    _enemySelf._moveClockwise = true;
+                }
+                else
+                {
+                    _enemySelf._moveClockwise = false;
+                }
+            }
+        }
+
+#region Melee Specific Enemy AI
+        static public void MeleeAttackPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
+            {
+                ChargeAbility(_enemySelf);
+                CirclePlayer(_enemySelf);
+            }
+            else
+            {
+                if (Vector3.Distance(_enemySelf.transform.position, _enemySelf._getPlayerTarget.transform.position) > 1.0f)
+                    MoveToPlayer(_enemySelf);
+                else
+                {
+                    _enemySelf.PerformAbility(_enemySelf._abilities[0]);
+                    _enemySelf._attackCooldownCurrent = 0.0f;
+                }
+            }
+        }
+#endregion
+#region Ranged Specific Enemy AI
+        static public void RangedAttackPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
+            {
+                ChargeAbility(_enemySelf);
+                CirclePlayer(_enemySelf);
+            }
+            else
+            {
+                _enemySelf._moveVector = Vector3.zero;
+                RangedEnemyBehaviour rangedEnemy = _enemySelf as RangedEnemyBehaviour;
+
+                if (rangedEnemy._rangedAttackChargeUpCurrent < rangedEnemy._rangedAttackChargeUpMax)
+                   rangedEnemy._rangedAttackChargeUpCurrent += Time.fixedDeltaTime;
+                else
+                {
+                    rangedEnemy.PerformAbility(rangedEnemy._abilities[0]);
+                    rangedEnemy._rangedAttackChargeUpCurrent = 0.0f;
+                    rangedEnemy._attackCooldownCurrent = 0.0f;
+                }
+            }
+        }
+#endregion
+#region Magic Specific Enemy AI
+        static public void MagicAttackPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
+            {
+                ChargeAbility(_enemySelf);
+                CirclePlayer(_enemySelf);
+            }
+            else
+            {
+                _enemySelf.PerformAbility(_enemySelf._abilities[0]);
+                _enemySelf._attackCooldownCurrent = 0.0f;
+            }
+        }
+
+        static public void MagicBlinkAbility(EnemyBehaviour _enemySelf)
+        {
+            _enemySelf.PerformAbility(_enemySelf._abilities[1]);
+            
+            MagicEnemyBehaviour magicEnemy = _enemySelf as MagicEnemyBehaviour;
+            magicEnemy._magicBlinkCoolDownCurrent = 0.0f;
+        }
+#endregion
 
         static public void DetermineBehaviour(EnemyBehaviour _enemySelf)
         {

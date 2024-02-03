@@ -11,11 +11,8 @@ namespace Spellsword
         [Header("Ranged Charge Up Time")]
         [SerializeField] public float _rangedAttackChargeUpMax;
 
-        
         void FixedUpdate()
         {
-            _moveVector = Vector3.zero;
-
             if (_rangedAttackChargeUpCurrent == 0.0f)
                 BehavioursAI.DetermineBehaviour(this);
 
