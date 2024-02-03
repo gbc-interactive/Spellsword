@@ -71,12 +71,28 @@ static public class BehavioursAI
                     rangedEnemy._attackCooldownCurrent = 0.0f;
                 }
             }
+        }
 
-            // else
-            // {
-            //     _enemySelf.PerformAbility(_enemySelf._abilities[0]);
-            //     _enemySelf._attackCooldownCurrent = 0.0f;
-            // }
+        static public void MagicAttackPlayer(EnemyBehaviour _enemySelf)
+        {
+            if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
+            {
+                ChargeAbility(_enemySelf);
+                CirclePlayer(_enemySelf);
+            }
+            else
+            {
+                _enemySelf.PerformAbility(_enemySelf._abilities[0]);
+                _enemySelf._attackCooldownCurrent = 0.0f;
+            }
+        }
+
+        static public void MagicBlinkAbility(EnemyBehaviour _enemySelf)
+        {
+            _enemySelf.PerformAbility(_enemySelf._abilities[1]);
+            
+            MagicEnemyBehaviour magicEnemy = _enemySelf as MagicEnemyBehaviour;
+            magicEnemy._magicBlinkCoolDownCurrent = 0.0f;
         }
 
         static public void MoveToPlayer(EnemyBehaviour _enemySelf)

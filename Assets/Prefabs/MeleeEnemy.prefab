@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300070, guid: 09e4c6a7d75923945afe43953ef58ad2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5eeb1408b4bef524992a9afa3bedf731, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -229,10 +229,14 @@ MonoBehaviour:
   _rigidbody: {fileID: 4496855160584688286}
   _spriteRenderer: {fileID: 4592803363291088758}
   _moveSpeed: 5
+  _maxHP: 100
   _maxMP: 100
+  _currentHP: 0
   _currentMP: 0
   _castpoint: {fileID: 398485337320518451}
   _timeBetweenCast: 0.25
+  _regenIntervalMP: 5
+  _regenRateMP: 10
   _behaviour: 0
   _moveVector: {x: 0, y: 0, z: 0}
   _homePosition: {x: 0, y: 0, z: 0}
