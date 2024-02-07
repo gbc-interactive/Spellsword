@@ -21,7 +21,7 @@ namespace Spellsword
             if (_isInteractable)
             {
                 
-                FindObjectOfType<DialogueManager>().ReadDialogue(_dialogueText);
+               DialogueManager.Instance.ReadDialogue(_dialogueText);
                 Debug.Log("Guys Speaks!");
                 return true;
             }

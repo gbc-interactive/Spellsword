@@ -9,7 +9,7 @@ public class HUDSystem : MonoBehaviour
     public Slider HPBar;
     public Slider MPBar;
 
-    private void Awake()
+    public void Initialize()
     {
         SetMaxHP(GameManager.Instance._playerController._maxHP);
         SetMaxMP(GameManager.Instance._playerController._maxMP);
