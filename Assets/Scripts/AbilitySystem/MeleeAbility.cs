@@ -7,7 +7,7 @@ namespace Spellsword
     public class MeleeAbility : AbilityBase
     {
         private Vector3 originalScale;
-        private float dashDistance = 25.0f;
+        private float dashDistance = 0.0f;
         private float dashCDTime = 0.5f;
         private float lastCastTime;
         void Start()

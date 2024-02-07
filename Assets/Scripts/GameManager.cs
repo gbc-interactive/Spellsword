@@ -25,6 +25,14 @@ namespace Spellsword
             _playerController.Initialize();
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Escape)) 
+            {
+                Application.Quit();
+            }
+        }
+
         private void OnEnable()
         {
             _inputActions.Enable();
