@@ -59,7 +59,7 @@ namespace Spellsword
 
         public bool TryMove(Vector3 vector)
         {
-            vector = new Vector3(vector.x, vector.y, vector.z * 2.0f); //vertical speed compensation
+            vector = new Vector3(vector.x, vector.y, vector.z);
 
             if (vector != Vector3.zero)
             {
