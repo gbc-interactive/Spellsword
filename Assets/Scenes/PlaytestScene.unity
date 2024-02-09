@@ -4404,9 +4404,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 196859c7fea657d418772eeb5fb9c608, type: 3}
   - {fileID: 21300000, guid: 74efc23adb2d15748a7116a96edeaa31, type: 3}
   - {fileID: 21300000, guid: 41f61cb5e15a19d4e8a24fe422959fa0, type: 3}
-  - {fileID: 21300000, guid: 15442e566fca2144fbcb39eada4ac4c5, type: 3}
-  - {fileID: 21300000, guid: fb81107d09c9bd64896e41eee55cd25b, type: 3}
-  - {fileID: 21300000, guid: fb62884da9c05fa45b72ee5212213be1, type: 3}
   - {fileID: 21300000, guid: ea2064df0088e164ab04af771db4e0fd, type: 3}
   - {fileID: 21300000, guid: 13d42b4665526d14d8f30aa192dbe548, type: 3}
 --- !u!4 &333356717 stripped
