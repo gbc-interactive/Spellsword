@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Spellsword
 {
@@ -45,11 +46,39 @@ namespace Spellsword
         [SerializeField] public float _safeZoneDistanceMax;
         [SerializeField] public float _safeZoneDistanceMin;
 
+        [SerializeField] public Slider HPBar;
+
 
         private void Start()
         {
             _homePosition = transform.position;
             _behaviour = EBehaviours.Idle;
+
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            SetMaxHP(_maxHP);
+        }
+
+        public void SetMaxHP(float hp)
+        {
+            _currentHP = hp;
+            HPBar.maxValue = hp;
+            HPBar.value = HPBar.maxValue;
+        }
+        
+        public override bool TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            HPBar.value = _currentHP;
+            return true;
+        }
+
+        private void FixedUpdate()
+        {
+            HPBar.transform.rotation = Camera.main.transform.rotation;
         }
 
         public void TriggerEnterCallback(Collider other)
