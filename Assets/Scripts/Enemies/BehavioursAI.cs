@@ -75,6 +75,7 @@ static public class BehavioursAI
 
             _enemySelf._moveVector = AdjustedOffset.normalized * 0.66f;
 
+            //TODO Remove Debug Drawings
             Debug.DrawLine(enemySelfPosition, enemySelfPosition + vectorOffset.normalized * distanceFromMinSafeZoneToEnemy, Color.green);
             Debug.DrawLine(enemySelfPosition, enemySelfPosition + vectorOffset.normalized * distanceFromMaxSafeZoneToEnemy, Color.green);
             Debug.DrawLine(enemySelfPosition, enemySelfPosition + AdjustedOffset.normalized * 3.0f, Color.blue);
@@ -156,7 +157,7 @@ static public class BehavioursAI
         }
 #endregion
 #region Magic Specific Enemy AI
-        static public void MagicAttackPlayer(EnemyBehaviour _enemySelf)
+        static public void MagicFireballAbility(EnemyBehaviour _enemySelf)
         {
             if (_enemySelf._attackCooldownCurrent < _enemySelf._attackCooldownMax)
             {
@@ -165,17 +166,51 @@ static public class BehavioursAI
             }
             else
             {
-                _enemySelf.PerformAbility(_enemySelf._abilities[0]);
-                _enemySelf._attackCooldownCurrent = 0.0f;
+                _enemySelf._moveVector = Vector3.zero;
+                MagicEnemyBehaviour magicEnemy = _enemySelf as MagicEnemyBehaviour;
+
+                if (magicEnemy._magicFireballChargeUpCurrent < magicEnemy._magicFireballChargeUpMax)
+                {
+                    magicEnemy._magicFireballChargeUpCurrent += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    magicEnemy.PerformAbility(_enemySelf._abilities[0]);
+                    magicEnemy._magicFireballChargeUpCurrent = 0.0f;
+                    magicEnemy._attackCooldownCurrent = 0.0f;
+                }
             }
         }
 
-        static public void MagicBlinkAbility(EnemyBehaviour _enemySelf)
+        static public void MagicRunFromPlayer(EnemyBehaviour _enemySelf)
         {
-            _enemySelf.PerformAbility(_enemySelf._abilities[1]);
-            
             MagicEnemyBehaviour magicEnemy = _enemySelf as MagicEnemyBehaviour;
-            magicEnemy._magicBlinkCoolDownCurrent = 0.0f;
+
+            if (magicEnemy._magicBlinkCoolDownCurrent < magicEnemy._magicBlinkCoolDownMax)
+            {
+                RunFromPlayer(_enemySelf);
+                return;
+            }
+
+            //FIXME: Unspaghettify this
+            RaycastHit hit;
+
+            Vector3 playerDirection = (_enemySelf.transform.position - _enemySelf._getPlayerTarget.transform.position).normalized;
+            Vector3 blinkDirectionSpot = new Vector3(playerDirection.x, -0.125f, playerDirection.z);
+
+            if (Physics.Raycast(_enemySelf.transform.position, blinkDirectionSpot, out hit, 7.0f))
+            {
+                if (hit.collider.gameObject.name != "Ground")
+                {
+                    RunFromPlayer(_enemySelf);
+                }
+                else
+                {
+                    magicEnemy.PerformAbility(_enemySelf._abilities[1]);
+                    magicEnemy.transform.position = new Vector3(hit.point.x, magicEnemy.transform.position.y, hit.point.z);
+                    magicEnemy._magicBlinkCoolDownCurrent = 0.0f;
+                }
+            }
         }
 #endregion
 

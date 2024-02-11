@@ -13,8 +13,6 @@ namespace Spellsword
 
         private void FixedUpdate()
         {
-            _moveVector = Vector3.zero;
-
             BehavioursAI.DetermineBehaviour(this);
 
             switch(_behaviour)

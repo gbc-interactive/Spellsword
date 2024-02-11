@@ -6,21 +6,49 @@ namespace Spellsword
 {
     public class MagicEnemyBehaviour : EnemyBehaviour
     {
-        [HideInInspector] public float _magicBlinkCoolDownCurrent;
-        
-        [Header("Blink Cool Down Time")]
+
+        [Header("Fireball Spell")]
+        [SerializeField] public float _magicFireballChargeUpMax;
+        [HideInInspector] public float _magicFireballChargeUpCurrent;
+
+        [Header("Blink Spell")]
         [SerializeField] public float _magicBlinkCoolDownMax;
+        [HideInInspector] public float _magicBlinkCoolDownCurrent;
+
+        void Update()
+        {
+            if (_getPlayerTarget == null)
+                return;
+
+            RaycastHit hit;
+
+            Vector3 playerDirection = (transform.position - _getPlayerTarget.transform.position).normalized;
+
+            playerDirection = new Vector3(playerDirection.x, -0.125f, playerDirection.z);
+
+            //TODO: Remove Debug Drawings
+            Debug.DrawRay(transform.position, playerDirection * 7.0f, Color.black);
+
+            if (Physics.Raycast(transform.position, playerDirection, out hit, 7.0f))
+            {
+                if (hit.collider.gameObject.name != "Ground")
+                    Debug.DrawRay(transform.position, playerDirection * hit.distance, Color.red);
+                else
+                    Debug.DrawRay(transform.position, playerDirection * hit.distance, Color.yellow);
+            }
+
+            
+        }
 
         void FixedUpdate()
         {
-            _moveVector = Vector3.zero;
-
             if (_magicBlinkCoolDownCurrent < _magicBlinkCoolDownMax)
             {
                 _magicBlinkCoolDownCurrent += Time.fixedDeltaTime;
             }
-            
-            BehavioursAI.DetermineBehaviour(this);
+
+            if (_magicFireballChargeUpCurrent == 0.0f)
+                BehavioursAI.DetermineBehaviour(this);
 
             switch(_behaviour)
             {
@@ -50,17 +78,12 @@ namespace Spellsword
 
                 case EBehaviours.AttackPlayer:
 
-                    BehavioursAI.MagicAttackPlayer(this);
+                    BehavioursAI.MagicFireballAbility(this);
 
                     break;
 
                 case EBehaviours.RunFromPlayer:
-
-                    if (_magicBlinkCoolDownCurrent >= _magicBlinkCoolDownMax)
-                        BehavioursAI.MagicBlinkAbility(this);
-
-                    else
-                        BehavioursAI.RunFromPlayer(this);
+                    BehavioursAI.MagicRunFromPlayer(this);
 
                     break;
             }
