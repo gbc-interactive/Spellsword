@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Spellsword
 {
@@ -58,7 +59,7 @@ namespace Spellsword
 
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
-            PerformAbility(_abilities[0]);
+            PerformAbility(_abilities[0], true);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
@@ -67,21 +68,40 @@ namespace Spellsword
         }
         private void OnInputTeleportCanceled(InputAction.CallbackContext value)
         {
-            PerformAbility(_abilities[1]);
+            PerformAbility(_abilities[1], true);
             Time.timeScale = 1f;
         }
 
-        public override bool PerformAbility(AbilityBase ability)
+        public override bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
-            base.PerformAbility(ability);
+            base.PerformAbility(ability, isPlayer);
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
             return true;
+        }
+
+        public override bool TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            UIManager.Instance._headsOverDisplay.SetCurrentHP(_currentHP);
+            return true;
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public override void RegenMP()
         {
             base.RegenMP();
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
+        }
+
+        public override void RegenHP()
+        {
+            base.RegenHP();
+            UIManager.Instance._headsOverDisplay.SetCurrentHP(_currentHP);
         }
     }
 }

@@ -45,7 +45,7 @@ static public class BehavioursAI
                     MoveToPlayer(_enemySelf);
                 else
                 {
-                    _enemySelf.PerformAbility(_enemySelf._abilities[0]);
+                    _enemySelf.PerformAbility(_enemySelf._abilities[0], false);
                     _enemySelf._attackCooldownCurrent = 0.0f;
                 }
             }
@@ -66,7 +66,7 @@ static public class BehavioursAI
                    rangedEnemy._rangedAttackChargeUpCurrent += Time.fixedDeltaTime;
                 else
                 {
-                    rangedEnemy.PerformAbility(rangedEnemy._abilities[0]);
+                    rangedEnemy.PerformAbility(rangedEnemy._abilities[0], false);
                     rangedEnemy._rangedAttackChargeUpCurrent = 0.0f;
                     rangedEnemy._attackCooldownCurrent = 0.0f;
                 }
