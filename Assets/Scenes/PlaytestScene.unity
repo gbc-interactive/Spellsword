@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf822788288eca14e9f48ecb87921c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: TALK
+  _prompt: TALK (F)
   _isInteractable: 1
   _dialogueText: {fileID: 4900000, guid: 78a74190542447c4f8601ac1f6b98835, type: 3}
 --- !u!65 &283939152
