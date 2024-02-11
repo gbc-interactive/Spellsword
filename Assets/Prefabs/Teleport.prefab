@@ -9821,6 +9821,7 @@ MonoBehaviour:
   _particleSystem: {fileID: 1379504315796101638}
   _abilityType: 0
   _MPCost: 25
+  _cooldownTime: 1
 --- !u!1 &7549210112660318882
 GameObject:
   m_ObjectHideFlags: 0

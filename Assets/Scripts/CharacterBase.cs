@@ -101,7 +101,7 @@ namespace Spellsword
 
         public virtual bool PerformAbility(AbilityBase ability)
         {
-            if (_currentMP >= ability._MPCost)
+            if (_currentMP >= ability._MPCost && !ability.isOnCooldown)
             {
                 _timeSinceLastAbility = 0;
                 _currentMP -= ability._MPCost;

@@ -9799,7 +9799,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 1379504315796101638}
   _abilityType: 0
-  _manaCost: 0
+  _MPCost: 0
+  _cooldownTime: 0.5
 --- !u!65 &7075134872410090680
 BoxCollider:
   m_ObjectHideFlags: 0

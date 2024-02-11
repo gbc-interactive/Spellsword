@@ -47,5 +47,8 @@ MonoBehaviour:
   _particleSystem: {fileID: 0}
   _abilityType: 0
   _MPCost: 0
+  _cooldownTime: 2.5
+  lastCastTime: 0
   gustRange: 5
   gustForce: 10
+  isActive: 0
