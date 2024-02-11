@@ -10,7 +10,7 @@ namespace Spellsword
         [SerializeField] protected float _cooldownTime;
         [SerializeField] protected float _lastCastTime;
         [SerializeField] public float _MPCost;        
-        [SerializeField] public bool isOnCooldown = false;
+        [SerializeField] public bool _isOnCooldown = false;
         void Start()
         {
             _particleSystem = GetComponent<ParticleSystem>();
@@ -28,7 +28,7 @@ namespace Spellsword
         }
         void Update()
         {
-            if (isOnCooldown)
+            if (_isOnCooldown)
             {
                 CooldownManagement();
             }
@@ -37,14 +37,14 @@ namespace Spellsword
         {
             if (Time.time - _lastCastTime >= _cooldownTime)
             {
-                isOnCooldown = false;//ready to use again
+                _isOnCooldown = false;//ready to use again
             }
         }
         public void Cast()
         {
             if (Time.time - _lastCastTime >= _cooldownTime)
             {
-                isOnCooldown = true;
+                _isOnCooldown = true;
                 _lastCastTime = Time.time;
             }
         }

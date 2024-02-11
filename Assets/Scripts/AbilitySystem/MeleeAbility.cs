@@ -8,14 +8,19 @@ namespace Spellsword
     {
         private Vector3 originalScale;
         private float dashDistance = 0.0f;
+
         void Start()
         {
             originalScale = _particleSystem.gameObject.transform.localScale;
         }
-
         public override void PerformAbility()
         {
             Cast();
+            Dash();
+            base.PerformAbility();
+        }
+        void Dash()
+        {
             //change direction based on player direction
             EDirection playerDirection = GameManager.Instance._playerController.GetFacingDirection();
             Vector3 dashDirection;
@@ -31,8 +36,7 @@ namespace Spellsword
                 GameManager.Instance._playerController.TryMove(dashDirection * dashDistance);
                 _particleSystem.gameObject.transform.localScale = originalScale;
             }
-           
-            base.PerformAbility();
         }
+        
     }
 }

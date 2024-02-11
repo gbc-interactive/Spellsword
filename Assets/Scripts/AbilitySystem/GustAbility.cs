@@ -10,7 +10,13 @@ namespace Spellsword
         public float gustRange = 5f;
         public float gustForce = 10f;
         public bool isActive = false;
+        public override void PerformAbility()
+        {
 
+            isActive = true;
+            Cast();
+            base.PerformAbility();
+        }
         void Update()
         {
             if (isActive)
@@ -18,6 +24,7 @@ namespace Spellsword
                 StartCoroutine(CastGust());
             }
         }
+
         IEnumerator CastGust()
         {
             int playerLayer = LayerMask.NameToLayer("Player");
@@ -41,17 +48,12 @@ namespace Spellsword
             Debug.Log("Done");
             yield return null;
         }
+
         //void OnDrawGizmos()//displays range of attack
         //{
         //    Gizmos.color = Color.red;
         //    Gizmos.DrawWireSphere(GameManager.Instance._playerController.transform.position, gustRange);
         //}
-        public override void PerformAbility()
-        {
-           
-            isActive = true;
-            Cast();
-            base.PerformAbility();
-        }
+        
     }
 }
