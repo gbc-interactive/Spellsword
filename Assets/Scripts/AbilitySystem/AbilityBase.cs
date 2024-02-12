@@ -28,11 +28,6 @@ namespace Spellsword
         //ability collision
         private void OnTriggerEnter(Collider other)
         {
-            HandleCollision(other);
-        }
-
-        public virtual void HandleCollision(Collider other)
-        {
             if (other.CompareTag("Player"))
             {
                 //ApplyDamage(ref HP, 10);
@@ -45,7 +40,7 @@ namespace Spellsword
             }
         }
 
-        public virtual void PerformAbility(CharacterBase character, bool isPlayer)
+        public virtual void PerformAbility()
         {
             _particleSystem.Play();
         }

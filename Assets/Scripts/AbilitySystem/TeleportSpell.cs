@@ -14,17 +14,15 @@ namespace Spellsword
             //_manaCost = 10f;
             lastCastTime = -teleportCDTime;
         }
-        public override void PerformAbility(CharacterBase character, bool isPlayer)
+        public override void PerformAbility()
         {
             if (Time.time - lastCastTime < teleportCDTime)
             {
                 return; // Ability is on cooldown
             }
-            character._timeSinceLastAbility = 0;
-            character._currentMP -= _MPCost;
             lastCastTime = Time.time;
             Teleport();
-            base.PerformAbility(character, isPlayer);
+            base.PerformAbility();
         }
 
         private void Teleport()
