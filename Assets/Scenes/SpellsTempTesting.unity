@@ -341,6 +341,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &165078640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9005553011472536813, guid: 72021b820ce1338418391242ecd1417a, type: 3}
+  m_PrefabInstance: {fileID: 1219569681969242014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &283939150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1451,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2517803912153440570, guid: 72021b820ce1338418391242ecd1417a, type: 3}
   m_PrefabInstance: {fileID: 1219569681969242014}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 165078640}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6f13d531c347e4892d3ac08ea682f4, type: 3}
@@ -4652,9 +4657,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 449265857}
     m_Modifications:
     - target: {fileID: 2517803912153440570, guid: 72021b820ce1338418391242ecd1417a, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 165078640}
+    - target: {fileID: 2517803912153440570, guid: 72021b820ce1338418391242ecd1417a, type: 3}
       propertyPath: frostTrapPrefab
       value: 
       objectReference: {fileID: 5900784794945302488, guid: e77586452bfb614459295f89bcb8771a, type: 3}
+    - target: {fileID: 2517803912153440570, guid: 72021b820ce1338418391242ecd1417a, type: 3}
+      propertyPath: playerFrostTrap
+      value: 
+      objectReference: {fileID: 165078640}
     - target: {fileID: 4394401140348822501, guid: 72021b820ce1338418391242ecd1417a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.08

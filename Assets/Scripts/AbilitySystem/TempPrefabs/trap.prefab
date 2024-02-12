@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6681752686838784840}
   - component: {fileID: 5870932270549431076}
   - component: {fileID: 7536943625282156531}
+  - component: {fileID: 7810396260245348763}
   m_Layer: 0
   m_Name: trap
   m_TagString: Untagged
@@ -133,3 +134,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &7810396260245348763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900784794945302488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6f13d531c347e4892d3ac08ea682f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 0}
+  _abilityType: 0
+  _cooldownTime: 0
+  _lastCastTime: 0
+  _MPCost: 0
+  _isOnCooldown: 0
+  frostTrapPrefab: {fileID: 0}
+  currentTrap: {fileID: 0}

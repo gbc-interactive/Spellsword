@@ -50,4 +50,8 @@ MonoBehaviour:
   _lastCastTime: 0
   _MPCost: 25
   _isOnCooldown: 0
+  playerFrostTrap: {fileID: 9005553011472536813}
   frostTrapPrefab: {fileID: 5900784794945302488, guid: e77586452bfb614459295f89bcb8771a, type: 3}
+  ft: {fileID: 0}
+  isArmed: 0
+  isSpringed: 0
