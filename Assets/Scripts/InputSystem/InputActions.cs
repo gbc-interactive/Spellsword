@@ -64,6 +64,15 @@ namespace Spellsword
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gust"",
+                    ""type"": ""Button"",
+                    ""id"": ""01749733-98a4-4ef1-879f-94c227f28fb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -231,6 +240,17 @@ namespace Spellsword
                     ""action"": ""Teleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5524f6c-5f66-423e-9887-1f2aadb1d0d2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Gust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -332,6 +352,7 @@ namespace Spellsword
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
             m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
+            m_Player_Gust = m_Player.FindAction("Gust", throwIfNotFound: true);
             // New action map
             m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
             m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
@@ -400,6 +421,7 @@ namespace Spellsword
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_Melee;
         private readonly InputAction m_Player_Teleport;
+        private readonly InputAction m_Player_Gust;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -408,6 +430,7 @@ namespace Spellsword
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @Melee => m_Wrapper.m_Player_Melee;
             public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
+            public InputAction @Gust => m_Wrapper.m_Player_Gust;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -429,6 +452,9 @@ namespace Spellsword
                 @Teleport.started += instance.OnTeleport;
                 @Teleport.performed += instance.OnTeleport;
                 @Teleport.canceled += instance.OnTeleport;
+                @Gust.started += instance.OnGust;
+                @Gust.performed += instance.OnGust;
+                @Gust.canceled += instance.OnGust;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -445,6 +471,9 @@ namespace Spellsword
                 @Teleport.started -= instance.OnTeleport;
                 @Teleport.performed -= instance.OnTeleport;
                 @Teleport.canceled -= instance.OnTeleport;
+                @Gust.started -= instance.OnGust;
+                @Gust.performed -= instance.OnGust;
+                @Gust.canceled -= instance.OnGust;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -559,6 +588,7 @@ namespace Spellsword
             void OnInteract(InputAction.CallbackContext context);
             void OnMelee(InputAction.CallbackContext context);
             void OnTeleport(InputAction.CallbackContext context);
+            void OnGust(InputAction.CallbackContext context);
         }
         public interface INewactionmapActions
         {

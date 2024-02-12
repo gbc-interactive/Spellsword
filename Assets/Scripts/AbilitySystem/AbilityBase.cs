@@ -19,10 +19,9 @@ namespace Spellsword
             Attack2,
             Default = Attack1
         }
-
-        public void ApplyDamage(ref float hp,float howmuch)
+        public enum Status
         {
-            hp -= howmuch;
+            Gust
         }
 
         //ability collision
@@ -47,6 +46,7 @@ namespace Spellsword
 
         public virtual void PerformAbility(CharacterBase character, bool isPlayer)
         {
+            if(_particleSystem != null)
             _particleSystem.Play();
         }
         //https://docs.unity3d.com/Manual/PartSysTriggersModule.html

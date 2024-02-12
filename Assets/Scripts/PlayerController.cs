@@ -23,6 +23,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Melee.performed += OnInputMeleePerformed;
             GameManager._inputActions.Player.Teleport.performed += OnInputTeleportPerformed;
             GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
+            GameManager._inputActions.Player.Gust.performed += OnInputGustPerformed;
             _isInitialized = true;
         }
 
@@ -33,6 +34,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Interact.performed -= OnInputInteractPerformed;
             GameManager._inputActions.Player.Melee.performed -= OnInputMeleePerformed;
             GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
+            GameManager._inputActions.Player.Gust.performed -= OnInputGustPerformed;
             _isInitialized = false;
         }
 
@@ -71,8 +73,11 @@ namespace Spellsword
             PerformAbility(_abilities[1], true);
             Time.timeScale = 1f;
         }
-
-        public override bool PerformAbility(AbilityBase ability, bool isPlayer)
+        private void OnInputGustPerformed(InputAction.CallbackContext value)
+        {
+            PerformAbility(_abilities[2]);
+        }
+        public override bool PerformAbility(AbilityBase ability)
         {
             base.PerformAbility(ability, isPlayer);
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);

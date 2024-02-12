@@ -11,7 +11,6 @@ namespace Spellsword
         // Start is called before the first frame update
         void Start()
         {
-            //_manaCost = 10f;
             lastCastTime = -teleportCDTime;
         }
         public override void PerformAbility(CharacterBase character, bool isPlayer)
