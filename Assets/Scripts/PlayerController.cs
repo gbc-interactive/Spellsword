@@ -75,9 +75,10 @@ namespace Spellsword
         }
         private void OnInputGustPerformed(InputAction.CallbackContext value)
         {
-            PerformAbility(_abilities[2]);
+            PerformAbility(_abilities[2], true);
         }
-        public override bool PerformAbility(AbilityBase ability)
+
+        public override bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
             base.PerformAbility(ability, isPlayer);
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);

@@ -75,11 +75,13 @@ namespace Spellsword
 
         public bool TryMove(Vector3 vector)
         {
-            vector = new Vector3(vector.x, vector.y, vector.z);
-
             if (vector != Vector3.zero)
             {
-                _rigidbody.MovePosition(_rigidbody.position + vector * _moveSpeed * Time.fixedDeltaTime);
+                // Multiply the movement vector by Time.deltaTime
+                vector *= Time.deltaTime;
+
+                _rigidbody.MovePosition(_rigidbody.position + vector * _moveSpeed);
+
                 if (vector.x > 0)
                 {
                     SetFacingDirection(EDirection.Right);
@@ -88,6 +90,7 @@ namespace Spellsword
                 {
                     SetFacingDirection(EDirection.Left);
                 }
+
                 return true;
             }
             else

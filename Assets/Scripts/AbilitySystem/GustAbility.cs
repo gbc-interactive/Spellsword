@@ -1,3 +1,4 @@
+using CartoonFX;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,9 +13,13 @@ namespace Spellsword
         public float gustRange = 5f;
         public float gustForce = 10f;
         public bool isActive = false;
+
+        public ParticleScreenShake screenShakeScript;
+
         void Start()
         {
             lastCastTime = -gustCDTime;
+            screenShakeScript = GetComponent<ParticleScreenShake>();
         }
 
         void Update()
@@ -22,6 +27,7 @@ namespace Spellsword
             if (isActive)
             {
                 StartCoroutine(CastGust());
+                //screenShakeScript.StartScreenShake();
             }
         }
         IEnumerator CastGust()
@@ -43,6 +49,7 @@ namespace Spellsword
                     //float damage = collision.relativeVelocity.magnitude;
                 }
             }
+
             isActive = false;
             yield return null;
         }
@@ -51,7 +58,7 @@ namespace Spellsword
         //    Gizmos.color = Color.red;
         //    Gizmos.DrawWireSphere(transform.position, gustRange);
         //}
-        public override void PerformAbility()
+        public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
             if (Time.time - lastCastTime < gustCDTime)
             {
@@ -59,7 +66,7 @@ namespace Spellsword
             }
             isActive = true;
             lastCastTime = Time.time;
-            base.PerformAbility();
+            base.PerformAbility(character, isPlayer);
             
         }
     }

@@ -10,6 +10,7 @@ namespace Spellsword
         private float dashDistance = 10.0f;
         private float dashCDTime = 0.5f;
         private float lastCastTime;
+        private float knockBackForce = 5.0f;
 
         public int _damageValue = 25;
 
@@ -77,6 +78,13 @@ namespace Spellsword
                 other.GetComponent<CharacterBase>().TakeDamage(_damageValue);
                 Vector3 spawnPos = new Vector3(other.transform.position.x, 0, other.transform.position.z);
                 Instantiate(hitFX, spawnPos, other.transform.rotation);
+
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Vector3 direction = other.transform.position - transform.position;
+                    rb.AddForce(direction.normalized * knockBackForce, ForceMode.Impulse);
+                }
             }
         }
     }
