@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Spellsword
 {
@@ -11,6 +12,7 @@ namespace Spellsword
         public static MenuManager Instance { get; private set; }
         public MenuBase _currentMenu;
         public GameObject _menuPanel;
+        public Button _quitButton;
         private bool _bIsOpen = false;
 
         private void Start()
@@ -61,6 +63,11 @@ namespace Spellsword
             _currentMenu.Disable();
             _currentMenu = menu;
             _currentMenu.Enable();
+        }
+        public void QuitGame()
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 }
