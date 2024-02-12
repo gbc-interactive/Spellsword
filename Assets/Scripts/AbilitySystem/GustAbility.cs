@@ -64,6 +64,8 @@ namespace Spellsword
             {
                 return; // Ability is on cooldown
             }
+            character._timeSinceLastAbility = 0;
+            character._currentMP -= _MPCost;
             isActive = true;
             lastCastTime = Time.time;
             base.PerformAbility(character, isPlayer);
