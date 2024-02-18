@@ -24,6 +24,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
             GameManager._inputActions.Player.Gust.performed += OnInputGustPerformed;
             GameManager._inputActions.Player.FrostTrap.performed += OnInputFrostTrapPerformed;
+            GameManager._inputActions.Player.FireBall.performed += OnInputFireBallPerformed;
             _isInitialized = true;
         }
 
@@ -36,6 +37,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
             GameManager._inputActions.Player.Gust.performed -= OnInputGustPerformed;
             GameManager._inputActions.Player.FrostTrap.performed -= OnInputFrostTrapPerformed;
+            GameManager._inputActions.Player.FireBall.performed += OnInputFireBallPerformed;
             _isInitialized = false;
         }
 
@@ -81,6 +83,10 @@ namespace Spellsword
         private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
         {
             PerformAbility(_abilities[3]);
+        }
+        private void OnInputFireBallPerformed(InputAction.CallbackContext value)
+        {
+            PerformAbility(_abilities[4]);
         }
         public override bool PerformAbility(AbilityBase ability)
         {

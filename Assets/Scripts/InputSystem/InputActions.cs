@@ -82,6 +82,15 @@ namespace Spellsword
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireBall"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5459945-a487-47f8-9979-3ec58c5170c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(pressPoint=0.1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ namespace Spellsword
                     ""action"": ""FrostTrap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbc4c5e7-20a9-463a-943d-eccc6440126e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""FireBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -374,6 +394,7 @@ namespace Spellsword
             m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
             m_Player_Gust = m_Player.FindAction("Gust", throwIfNotFound: true);
             m_Player_FrostTrap = m_Player.FindAction("FrostTrap", throwIfNotFound: true);
+            m_Player_FireBall = m_Player.FindAction("FireBall", throwIfNotFound: true);
             // New action map
             m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
             m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
@@ -444,6 +465,7 @@ namespace Spellsword
         private readonly InputAction m_Player_Teleport;
         private readonly InputAction m_Player_Gust;
         private readonly InputAction m_Player_FrostTrap;
+        private readonly InputAction m_Player_FireBall;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -454,6 +476,7 @@ namespace Spellsword
             public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
             public InputAction @Gust => m_Wrapper.m_Player_Gust;
             public InputAction @FrostTrap => m_Wrapper.m_Player_FrostTrap;
+            public InputAction @FireBall => m_Wrapper.m_Player_FireBall;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -481,6 +504,9 @@ namespace Spellsword
                 @FrostTrap.started += instance.OnFrostTrap;
                 @FrostTrap.performed += instance.OnFrostTrap;
                 @FrostTrap.canceled += instance.OnFrostTrap;
+                @FireBall.started += instance.OnFireBall;
+                @FireBall.performed += instance.OnFireBall;
+                @FireBall.canceled += instance.OnFireBall;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -503,6 +529,9 @@ namespace Spellsword
                 @FrostTrap.started -= instance.OnFrostTrap;
                 @FrostTrap.performed -= instance.OnFrostTrap;
                 @FrostTrap.canceled -= instance.OnFrostTrap;
+                @FireBall.started -= instance.OnFireBall;
+                @FireBall.performed -= instance.OnFireBall;
+                @FireBall.canceled -= instance.OnFireBall;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -619,6 +648,7 @@ namespace Spellsword
             void OnTeleport(InputAction.CallbackContext context);
             void OnGust(InputAction.CallbackContext context);
             void OnFrostTrap(InputAction.CallbackContext context);
+            void OnFireBall(InputAction.CallbackContext context);
         }
         public interface INewactionmapActions
         {
