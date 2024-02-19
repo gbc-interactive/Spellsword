@@ -3,20 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SampleQuest : QuestBase
+public class SampleQuest :  QuestBase
 {
     // Start is called before the first frame update
     public SampleQuest()
     {
         TaskBase TaskOne = new SampleTask();
-        TaskBase TaskTwo = new KillEnemyTask(20);
-        TaskBase TaskThree = new SampleTask();
-        TaskBase TaskFour = new KillEnemyTask(15);
+        TaskBase TaskTwo = new SampleTask();
+        TaskBase TaskThree = new GetItemTask(typeof(QuestItemExample));
 
-        _tasks.Enqueue(TaskOne);
-        _tasks.Enqueue(TaskTwo);
-        _tasks.Enqueue(TaskThree);
-        _tasks.Enqueue(TaskFour);
+        _tasks.Add(TaskOne);
+        _tasks.Add(TaskTwo);
+        _tasks.Add(TaskThree);
 
         _questDescription = "Sample Quest Description";
         _questName = "Sample Quest Name";

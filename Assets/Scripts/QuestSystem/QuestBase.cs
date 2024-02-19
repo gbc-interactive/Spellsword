@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class QuestBase
 {
-    [HideInInspector] public Queue<TaskBase> _tasks = new Queue<TaskBase>();
+    [HideInInspector] public List<TaskBase> _tasks = new List<TaskBase>();
     [HideInInspector] public string _questName;
     [HideInInspector] public string _questDescription;
-
-    void TaskComplete()
-    {
-        _tasks.Dequeue();
-    }
 }

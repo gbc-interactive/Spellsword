@@ -5,22 +5,22 @@ using UnityEngine;
 
 namespace Spellsword
 {
-    public class OptionsMenu : MenuBase
+    public class OptionsMenu : MonoBehaviour,IMenu
     {
         public GameObject _optionsMenu;
-
-        public override void Enable()
+        void Start(){
+            Disable();
+        }
+        public void Enable()
         {
             _optionsMenu.SetActive(true);
-            bIsActive = true;
         }
 
-        public override void Disable()
+        public void Disable()
         {
             _optionsMenu.SetActive(false);
-            bIsActive = false;
         }
-        public override void HandleInput()
+        public void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
