@@ -10,9 +10,10 @@ namespace Spellsword
     public class MenuManager : MonoBehaviour
     {
         public static MenuManager Instance { get; private set; }
-        public MenuBase _currentMenu;
-        public GameObject _menuPanel;
-        public Button _quitButton;
+        private IMenu _currentMenu;
+
+        [SerializeField] private GameObject _menuPanel;
+        [SerializeField] private Button _quitButton;
         private bool _bIsOpen = false;
 
         private void Start()
@@ -29,12 +30,13 @@ namespace Spellsword
             else 
             { 
                 Instance = this; 
-            } 
+            }
+            _currentMenu = FindObjectOfType<JournalMenu>();
         }
 
         void Update()
         {
-            _currentMenu.HandleInput();
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _bIsOpen = !_bIsOpen;
@@ -42,6 +44,9 @@ namespace Spellsword
                     Enable();
                 else
                     Disable();
+            }
+            if(_bIsOpen){
+                _currentMenu.HandleInput();
             }
         }
         void Enable()
@@ -58,7 +63,7 @@ namespace Spellsword
             Time.timeScale = 1;
         }
 
-        public void ChangeMenu(MenuBase menu)
+        public void ChangeMenu(IMenu menu)
         {
             _currentMenu.Disable();
             _currentMenu = menu;

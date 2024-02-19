@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace Spellsword
 {
-    public class InventoryMenu : MenuBase
+    public class InventoryMenu : MonoBehaviour, IMenu
     {
         public GameObject _inventoryMenu;
         
@@ -14,29 +14,33 @@ namespace Spellsword
         public GameObject _inventoryGrid;
 
         public GameObject _prefab;
-
-        public override void Enable()
+        
+        void Start(){
+            Disable();
+            QuestActions.AddIntentoryItem+=AddItem;
+        }
+        public void Enable()
         {
             _inventoryMenu.SetActive(true);
+            
         }
 
-        public override void Disable()
+        public void Disable()
         {
             _inventoryMenu.SetActive(false);
         }
 
         // Update is called once per frame
-        public override void HandleInput()
+        public void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 MenuManager.Instance.ChangeMenu(FindObjectOfType<JournalMenu>());
             }
         }
-        public void AddItem(GameObject item){
-            _inventoryItems.Add(item);
+        public void AddItem(IQuestItem item){
             var newIcon = Instantiate(_prefab, _inventoryGrid.transform);
-            newIcon.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+            newIcon.GetComponent<Image>().sprite = item.inventoryIcon; 
             
             //add icon and shit
         }

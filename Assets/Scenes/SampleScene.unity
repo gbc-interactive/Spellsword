@@ -1061,8 +1061,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598378c2beff41a4f97f9e40960065b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInteractable: 1
-  _prompt: QuestItem
+  _isInteractable: 0
+  _prompt: Quest Item
+  _inventoryIcon: {fileID: 21300040, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
 --- !u!1 &262226601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,7 +2053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7396ae34e59af4280e0aa22a6b353e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bIsActive: 0
   _optionsMenu: {fileID: 853360976}
 --- !u!1 &523530204
 GameObject:
@@ -2098,7 +2098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3173dedf3248b4b36ee2a08955907e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bIsActive: 0
   _inventoryMenu: {fileID: 1733138676}
   _inventoryItems: []
   _inventoryGrid: {fileID: 1548097718}
@@ -2479,7 +2478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d173362bb41757941bd7ff53dd351ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentMenu: {fileID: 975931888}
   _menuPanel: {fileID: 282220670}
   _quitButton: {fileID: 1226387487}
 --- !u!1 &786725156
@@ -3177,7 +3175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15386271, y: 0, z: 0, w: 0.98809224}
+  m_LocalRotation: {x: 0.15386271, y: -1e-45, z: 0, w: 0.98809224}
   m_LocalPosition: {x: 0, y: 15.7, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3321,7 +3319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68027084266f7434da67723026bab23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bIsActive: 0
   _journalMenu: {fileID: 1000314037}
   _questDescription: {fileID: 1873437870}
   _questName: {fileID: 1102959063}
@@ -5652,7 +5649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009794910}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -3e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

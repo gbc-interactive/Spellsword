@@ -5,15 +5,14 @@ using Unity.VisualScripting;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
-public class QuestItemExample : MonoBehaviour,IQuestItem
+public class QuestItemExample :MonoBehaviour, IQuestItem
 {   
     [SerializeField] private QuestBase _quest;
     [SerializeField] private bool _isInteractable;
 
     [SerializeField] private string _prompt;
-    private InventoryMenu _inventoryMenu;
 
-    private Sprite _inventoryIcon;
+    [SerializeField] private Sprite _inventoryIcon;
 
     public QuestBase quest { get => _quest; set => SetQuest(_quest); }
     public bool isInteractable { get => _isInteractable; set => SetInteractable(true); }
@@ -22,13 +21,15 @@ public class QuestItemExample : MonoBehaviour,IQuestItem
 
     public Sprite inventoryIcon { get => _inventoryIcon; set => SetIcon(_inventoryIcon); }
 
+    void Start(){
+        SetInteractable(true);
+    }
     public bool Interact(InteractionSystem interactor)
     {
         if(_isInteractable){
 
             //delete this item and add it to the inventory
-            _inventoryMenu.AddItem(gameObject);
-            SetInteractable(false);
+            QuestActions.AddIntentoryItem(this);
             Destroy(gameObject);
             return true;
         }
@@ -52,9 +53,5 @@ public class QuestItemExample : MonoBehaviour,IQuestItem
         _quest = quest;
     }
 
-    // Start is called before the first frame update
-    void Awake(){
-        _inventoryMenu = FindAnyObjectByType<InventoryMenu>();
-        _inventoryIcon = gameObject.GetComponent<SpriteRenderer>().sprite;
-    }
+    
 }

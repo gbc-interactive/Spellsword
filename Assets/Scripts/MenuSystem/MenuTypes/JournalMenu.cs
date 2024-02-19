@@ -6,13 +6,17 @@ using UnityEngine;
 
 namespace Spellsword
 {
-    public class JournalMenu : MenuBase
+    public class JournalMenu : MonoBehaviour, IMenu
     {
         public GameObject _journalMenu;
         public QuestBase _currentQuest = new SampleQuest();
         public TMP_Text _questDescription;
         public TMP_Text _questName;
         public TMP_Text _taskDescription;
+
+        void Start(){
+            Disable();
+        }
         void UpdateText()
         {
             _questDescription.text = _currentQuest._questDescription;
@@ -23,17 +27,17 @@ namespace Spellsword
                 _taskDescription.text += task._taskDescription + ". Remaining: " + task._remaining + "\n";
             }
         }
-        public override void Enable()
+        public void Enable()
         {
             _journalMenu.SetActive(true);
             UpdateText();
         }
 
-        public override void Disable()
+        public void Disable()
         {
             _journalMenu.SetActive(false);
         }
-        public override void HandleInput()
+        public void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
