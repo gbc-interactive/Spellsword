@@ -89,7 +89,7 @@ namespace Spellsword
                     ""id"": ""a5459945-a487-47f8-9979-3ec58c5170c3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(pressPoint=0.1)"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -285,7 +285,7 @@ namespace Spellsword
                     ""name"": """",
                     ""id"": ""bbc4c5e7-20a9-463a-943d-eccc6440126e"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""FireBall"",

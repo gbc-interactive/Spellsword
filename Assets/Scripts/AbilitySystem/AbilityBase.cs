@@ -11,6 +11,8 @@ namespace Spellsword
         [SerializeField] protected float _lastCastTime;
         [SerializeField] public float _MPCost;        
         [SerializeField] public bool _isOnCooldown = false;
+        [SerializeField] public float chargeTime = 0.0f;
+        [SerializeField] public bool isCharging = false;
         void Start()
         {
             _particleSystem = GetComponent<ParticleSystem>();
@@ -46,6 +48,7 @@ namespace Spellsword
             {
                 _isOnCooldown = true;
                 _lastCastTime = Time.time;
+                chargeTime = 0f;                
             }
         }
         public void ApplyDamage(ref float hp,float howMuch)
