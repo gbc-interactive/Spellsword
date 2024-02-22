@@ -30,7 +30,7 @@ namespace Spellsword
         [SerializeField] private SpriteRenderer _spriteRenderer = null;
 
         [Header("Movement")]
-        [SerializeField] private float _moveSpeed = 5.0f;
+        [SerializeField] public float _moveSpeed = 5.0f;
 
         public float _maxHP = 100f;
         public float _maxMP = 100f;
@@ -101,7 +101,7 @@ namespace Spellsword
 
         public virtual bool PerformAbility(AbilityBase ability)
         {
-            if (_currentMP >= ability._MPCost)
+            if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
                 _timeSinceLastAbility = 0;
                 _currentMP -= ability._MPCost;

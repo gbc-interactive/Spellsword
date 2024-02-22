@@ -14,6 +14,7 @@ namespace Spellsword
         [SerializeField] private List<AbilityBase> _abilities = new List<AbilityBase>();
         public Vector3 mousePosition;
         public Vector3 worldPosition;
+
         public void Initialize()
         {
             GameManager._inputActions.Player.Move.performed += OnInputMovePerformed;
@@ -23,6 +24,9 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.performed += OnInputTeleportPerformed;
             GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
             GameManager._inputActions.Player.Gust.performed += OnInputGustPerformed;
+            GameManager._inputActions.Player.FrostTrap.performed += OnInputFrostTrapPerformed;
+            GameManager._inputActions.Player.FireBall.performed += OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.canceled += OnInputFireBallCanceled;
             _isInitialized = true;
         }
 
@@ -34,6 +38,8 @@ namespace Spellsword
             GameManager._inputActions.Player.Melee.performed -= OnInputMeleePerformed;
             GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
             GameManager._inputActions.Player.Gust.performed -= OnInputGustPerformed;
+            GameManager._inputActions.Player.FrostTrap.performed -= OnInputFrostTrapPerformed;
+            GameManager._inputActions.Player.FireBall.performed -= OnInputFireBallPerformed;
             _isInitialized = false;
         }
 
@@ -75,6 +81,21 @@ namespace Spellsword
         private void OnInputGustPerformed(InputAction.CallbackContext value)
         {
             PerformAbility(_abilities[2]);
+        }
+        private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
+        {
+            PerformAbility(_abilities[3]);
+        }
+        private void OnInputFireBallPerformed(InputAction.CallbackContext value)
+        {
+            _abilities[4].isCharging = true;
+            GameManager.Instance._playerController._moveSpeed /= 2;         
+        }
+        private void OnInputFireBallCanceled(InputAction.CallbackContext value)
+        {
+            _abilities[4].isCharging = false;
+            GameManager.Instance._playerController._moveSpeed *= 2;
+            PerformAbility(_abilities[4]);
         }
         public override bool PerformAbility(AbilityBase ability)
         {
