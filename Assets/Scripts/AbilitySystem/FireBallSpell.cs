@@ -44,6 +44,13 @@ public class FireBallSpell : AbilityBase
     {
         if (isCharging)
         {
+            if (fireballInstance == null)//spawn the fireball only once 
+            {   
+                fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+                Rigidbody rb = fireballInstance.GetComponent<Rigidbody>();
+                rb.useGravity = false;
+            }            
+            
             FireBall();
         }
         if (fireballInstance != null)
@@ -54,7 +61,7 @@ public class FireBallSpell : AbilityBase
                 InstantiateFireCircle();
                 Destroy(fireballInstance);
                 fireballInstance = null;
-                sphereCollider.radius = 0.05f;
+                sphereCollider.radius = 0.1f;
                 
             }
         }
@@ -63,21 +70,27 @@ public class FireBallSpell : AbilityBase
     void InstantiateFireCircle()
     {
         GameObject circle = Instantiate(fireCirclePrefab, fireballInstance.transform.position, Quaternion.identity);
+        float radius = sphereCollider.radius;
+        circle.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);//make the ball bigger
         StartCoroutine(DestroyAfterTime(circle, 5f));
+        
     }
     public override void PerformAbility()
     {
         Cast();
-        fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        
         ThrowFireball(fireballInstance);
         base.PerformAbility();
     }
     void FireBall()
     {
+
         if (chargeTime < maxChargeTime)
         {
             chargeTime += Time.deltaTime;
             sphereCollider.radius += rate * chargeTime;
+            float radius = sphereCollider.radius;
+            fireballInstance.transform.localScale = new Vector3(radius, radius, radius);//make the ball bigger
         }
 
     }
@@ -110,6 +123,7 @@ public class FireBallSpell : AbilityBase
         }
 
         Rigidbody rb = fireball.GetComponent<Rigidbody>();
+        rb.useGravity = true;
         Vector3 direction = (targetPosition - fireball.transform.position);
         float distance = direction.magnitude - fireball.transform.localScale.x - 0.35f;
         float angle = 45f; // Angle for maximum distance
