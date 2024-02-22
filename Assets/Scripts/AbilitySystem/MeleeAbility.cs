@@ -7,13 +7,21 @@ namespace Spellsword
     public class MeleeAbility : AbilityBase
     {
         private Vector3 originalScale;
-        private float dashDistance = 0.0f;
+        private float dashForce = 15.0f;
+        private float dashCDTime = 0.5f;
+        private float lastCastTime;
+        private float knockBackForce = 5.0f;
+
+        public int _damageValue = 25;
+
+        [SerializeField] private ParticleSystem hitFX;
 
         void Start()
         {
             originalScale = _particleSystem.gameObject.transform.localScale;
         }
-        public override void PerformAbility()
+
+        public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
             Cast();
             Dash();
@@ -25,18 +33,69 @@ namespace Spellsword
             EDirection playerDirection = GameManager.Instance._playerController.GetFacingDirection();
             Vector3 dashDirection;
             if (playerDirection == EDirection.Left)
+            if (Time.time - lastCastTime < dashCDTime)
             {
-                dashDirection = Vector3.left;
-                GameManager.Instance._playerController.TryMove(dashDirection * dashDistance);
-                _particleSystem.gameObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+                return; // Ability is on cooldown
+            }
+
+            lastCastTime = Time.time;
+            if (isPlayer)
+            {
+                //get target direction based on mouse position
+                Vector3 mousePosition = Input.mousePosition;
+                Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+                Plane plane = new Plane(Vector3.up, new Vector3(0, 0.7f, 0)); // Plane at the player's position y
+
+                if (plane.Raycast(ray, out float enter))
+                {
+                    Vector3 worldPosition = ray.GetPoint(enter);
+                    Vector3 direction = worldPosition - GameManager.Instance._playerController.transform.position;
+                    direction.Normalize();
+
+                    //GameManager.Instance._playerController.TryMove(direction * dashDistance);
+                    GameManager.Instance._playerController.GetComponent<Rigidbody>().AddForce(direction * dashForce, ForceMode.Impulse);
+
+                    // Calculate the rotation to align the y-axis with the direction vector
+                    Quaternion rotation = Quaternion.LookRotation(direction);
+
+                    // Apply the rotation to the _particleSystem's transform
+                    _particleSystem.gameObject.transform.rotation = rotation;
+                }
             }
             else
             {
-                dashDirection = Vector3.right;
-                GameManager.Instance._playerController.TryMove(dashDirection * dashDistance);
-                _particleSystem.gameObject.transform.localScale = originalScale;
+                //get target direction based on player position
+                Vector3 directionToPlayer = GameManager.Instance._playerController.transform.position - transform.position;
+                directionToPlayer.Normalize();
+
+                _particleSystem.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, directionToPlayer.y, directionToPlayer.z));
+            }
+            StartCoroutine(CastMeleeAura());
+            base.PerformAbility(character, isPlayer);
+        }
+
+        IEnumerator CastMeleeAura()
+        {
+            GetComponent<SphereCollider>().enabled = true;
+            yield return new WaitForSeconds(0.25f);
+            GetComponent<SphereCollider>().enabled = false;
+        }
+
+        public override void HandleCollision(Collider other)
+        {
+            if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+            {
+                other.GetComponent<CharacterBase>().TakeDamage(_damageValue);
+                Vector3 spawnPos = new Vector3(other.transform.position.x, 0, other.transform.position.z);
+                Instantiate(hitFX, spawnPos, other.transform.rotation);
+
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Vector3 direction = other.transform.position - transform.position;
+                    rb.AddForce(direction.normalized * knockBackForce, ForceMode.Impulse);
+                }
             }
         }
-        
     }
 }

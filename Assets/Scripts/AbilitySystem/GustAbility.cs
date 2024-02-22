@@ -1,3 +1,4 @@
+using CartoonFX;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -22,6 +23,7 @@ namespace Spellsword
             if (isActive)
             {
                 StartCoroutine(CastGust());
+                //screenShakeScript.StartScreenShake();
             }
         }
 
@@ -44,6 +46,7 @@ namespace Spellsword
                     //float damage = collision.relativeVelocity.magnitude;
                 }
             }
+
             isActive = false;
             Debug.Log("Done");
             yield return null;
@@ -54,6 +57,18 @@ namespace Spellsword
         //    Gizmos.color = Color.red;
         //    Gizmos.DrawWireSphere(GameManager.Instance._playerController.transform.position, gustRange);
         //}
-        
+        public override void PerformAbility(CharacterBase character, bool isPlayer)
+        {
+            if (Time.time - lastCastTime < gustCDTime)
+            {
+                return; // Ability is on cooldown
+            }
+            character._timeSinceLastAbility = 0;
+            character._currentMP -= _MPCost;
+            isActive = true;
+            lastCastTime = Time.time;
+            base.PerformAbility(character, isPlayer);
+            
+        }
     }
 }

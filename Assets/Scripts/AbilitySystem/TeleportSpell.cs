@@ -10,7 +10,7 @@ namespace Spellsword
         {
             Cast();
             Teleport();
-            base.PerformAbility();
+            base.PerformAbility(character, isPlayer);
         }
 
         private void Teleport()

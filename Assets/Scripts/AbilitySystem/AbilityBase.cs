@@ -28,6 +28,25 @@ namespace Spellsword
         {
             Gust
         }
+
+        //ability collision
+        private void OnTriggerEnter(Collider other)
+        {
+            HandleCollision(other);
+        }
+
+        public virtual void HandleCollision(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                //ApplyDamage(ref HP, 10);
+                Debug.Log("Collsion");
+            }
+            else if (other.CompareTag("Enemy"))
+            {
+                //ApplyDamage(ref HP, 10);
+                Debug.Log("CollsionEnemy");
+            }
         void Update()
         {
             if (_isOnCooldown)
@@ -56,7 +75,7 @@ namespace Spellsword
             hp -= howMuch;
         }
 
-        public virtual void PerformAbility()
+        public virtual void PerformAbility(CharacterBase character, bool isPlayer)
         {
             if(_particleSystem != null)
             _particleSystem.Play();

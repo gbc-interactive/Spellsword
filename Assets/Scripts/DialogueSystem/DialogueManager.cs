@@ -39,6 +39,7 @@ namespace Spellsword
 
         void StartDialogue(TextAsset dialogueText)
         {
+            Time.timeScale = 0f;
             SetEnabled(true);
             ReadFile(dialogueText);
             DisplayDialogue();
@@ -105,6 +106,7 @@ namespace Spellsword
 
         void EndDialogue()
         {
+            Time.timeScale = 1.0f;
             _text.text = "";
             _text.text = "";
             _dialogue.Clear();
