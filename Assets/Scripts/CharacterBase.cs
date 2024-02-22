@@ -123,7 +123,7 @@ namespace Spellsword
             if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
                 //_timeSinceLastAbility = 0;
-                //_currentMP -= ability._MPCost;
+                _currentMP -= ability._MPCost;
                 ability.PerformAbility(this, isPlayer);
                 return true;
 
