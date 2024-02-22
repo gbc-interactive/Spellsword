@@ -56,6 +56,7 @@ namespace Spellsword
                 CooldownManagement();
             }
         }
+
         public void CooldownManagement()
         {
             if (Time.time - _lastCastTime >= _cooldownTime)

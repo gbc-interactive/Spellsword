@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2013693673559586608}
   - component: {fileID: 8762835922629414970}
   m_Layer: 7
-  m_Name: Gust 1
+  m_Name: Gust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4697,13 +4697,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 6218142211205402289}
   _abilityType: 0
+  _cooldownTime: 2.5
+  _lastCastTime: 0
   _MPCost: 20
-  gustCDTime: 2.5
-  lastCastTime: 0
+  _isOnCooldown: 0
+  chargeTime: 0
+  isCharging: 0
   gustRange: 15
   gustForce: 50
   isActive: 0
-  screenShakeScript: {fileID: 0}
 --- !u!199 &8762835922629414970
 ParticleSystemRenderer:
   serializedVersion: 6

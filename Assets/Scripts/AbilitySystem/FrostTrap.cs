@@ -16,7 +16,7 @@ public class FrostTrap : AbilityBase
     public override void PerformAbility(CharacterBase character, bool isPlayer)
     {
         Vector3 playerPosition = GameManager.Instance._playerController.transform.position;
-        Vector3 spawnPosition = new Vector3(playerPosition.x, playerPosition.y - 0.7f, playerPosition.z);
+        Vector3 spawnPosition = new Vector3(playerPosition.x, 0f, playerPosition.z);
 
         if (currentTrap != null && !isSpringed)//if trap spawned and not springed move trap 
         {

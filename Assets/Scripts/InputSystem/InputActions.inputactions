@@ -42,9 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gust",
+                    "name": "FireBall",
                     "type": "Button",
-                    "id": "01749733-98a4-4ef1-879f-94c227f28fb7",
+                    "id": "a5459945-a487-47f8-9979-3ec58c5170c3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -60,9 +60,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FireBall",
+                    "name": "Gust",
                     "type": "Button",
-                    "id": "a5459945-a487-47f8-9979-3ec58c5170c3",
+                    "id": "01749733-98a4-4ef1-879f-94c227f28fb7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -249,7 +249,7 @@
                 {
                     "name": "",
                     "id": "614fe501-d671-4ac5-9a17-e41bb9b9b3a7",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/#(E)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

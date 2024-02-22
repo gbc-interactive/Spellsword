@@ -52,7 +52,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3047899126724014107
 MonoBehaviour:
@@ -66,3 +66,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbbee15ec0e99740989ea76c8228fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 0}
+  _abilityType: 0
+  _cooldownTime: 1.5
+  _lastCastTime: 6.468829
+  _MPCost: 15
+  _isOnCooldown: 0
+  chargeTime: 0
+  isCharging: 0
+  maxChargeTime: 5
+  fireballPrefab: {fileID: 6511835088315114863, guid: ac18735e175ccfb499871c1c13c8e787, type: 3}
+  fireCirclePrefab: {fileID: 171774534151884195, guid: 631287beee50f214aa40664e000b5f79, type: 3}

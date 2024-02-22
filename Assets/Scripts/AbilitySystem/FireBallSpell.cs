@@ -9,7 +9,8 @@ public class FireBallSpell : AbilityBase
 {
     private SphereCollider sphereCollider;
     public float maxChargeTime = 5f;
-    private float rate = 0.0001f;
+    [SerializeField] float initialRadius = 0.25f;
+    [SerializeField] float rate = 0.001f;
     public GameObject fireballPrefab;
     public GameObject fireCirclePrefab;
     private GameObject fireballInstance;
@@ -38,7 +39,9 @@ public class FireBallSpell : AbilityBase
     private void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = initialRadius;
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +50,7 @@ public class FireBallSpell : AbilityBase
             if (fireballInstance == null)//spawn the fireball only once 
             {   
                 fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+                //fireballInstance.transform.parent = GameManager.Instance._playerController.transform;
                 Rigidbody rb = fireballInstance.GetComponent<Rigidbody>();
                 rb.useGravity = false;
             }            
@@ -61,7 +65,7 @@ public class FireBallSpell : AbilityBase
                 InstantiateFireCircle();
                 Destroy(fireballInstance);
                 fireballInstance = null;
-                sphereCollider.radius = 0.1f;
+                sphereCollider.radius = initialRadius;
                 
             }
         }
@@ -84,7 +88,7 @@ public class FireBallSpell : AbilityBase
     }
     void FireBall()
     {
-
+        fireballInstance.transform.position = transform.position;
         if (chargeTime < maxChargeTime)
         {
             chargeTime += Time.deltaTime;
@@ -96,6 +100,7 @@ public class FireBallSpell : AbilityBase
     }
     public void ThrowFireball(GameObject fireball)
     {
+        //fireball.transform.parent = null;
         Damage damageScale = DamageScale();
         switch (damageScale)
         {
