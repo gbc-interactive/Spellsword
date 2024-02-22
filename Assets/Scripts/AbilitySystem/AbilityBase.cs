@@ -47,6 +47,8 @@ namespace Spellsword
                 //ApplyDamage(ref HP, 10);
                 Debug.Log("CollsionEnemy");
             }
+        }
+
         void Update()
         {
             if (_isOnCooldown)
@@ -61,6 +63,7 @@ namespace Spellsword
                 _isOnCooldown = false;//ready to use again
             }
         }
+
         public void Cast()
         {
             if (Time.time - _lastCastTime >= _cooldownTime)
@@ -70,6 +73,7 @@ namespace Spellsword
                 chargeTime = 0f;                
             }
         }
+
         public void ApplyDamage(ref float hp,float howMuch)
         {
             hp -= howMuch;

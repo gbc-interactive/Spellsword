@@ -75,12 +75,12 @@ public class FireBallSpell : AbilityBase
         StartCoroutine(DestroyAfterTime(circle, 5f));
         
     }
-    public override void PerformAbility()
+    public override void PerformAbility(CharacterBase character, bool isPlayer)
     {
         Cast();
         
         ThrowFireball(fireballInstance);
-        base.PerformAbility();
+        base.PerformAbility(character, isPlayer);
     }
     void FireBall()
     {

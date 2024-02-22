@@ -13,7 +13,7 @@ public class FrostTrap : AbilityBase
     private static bool isArmed = false;
     private static bool isSpringed = false;
 
-    public override void PerformAbility()
+    public override void PerformAbility(CharacterBase character, bool isPlayer)
     {
         Vector3 playerPosition = GameManager.Instance._playerController.transform.position;
         Vector3 spawnPosition = new Vector3(playerPosition.x, playerPosition.y - 0.7f, playerPosition.z);
@@ -31,8 +31,8 @@ public class FrostTrap : AbilityBase
             Debug.Log("waiting...");
         }
         Cast();
-        base.PerformAbility();
-    } 
+        base.PerformAbility(character, isPlayer);
+    }
     void ResetTrap()
     {
         StopAllCoroutines();

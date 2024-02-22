@@ -6,7 +6,7 @@ namespace Spellsword
 {
     public class TeleportSpell : AbilityBase
     {
-        public override void PerformAbility()
+        public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
             Cast();
             Teleport();

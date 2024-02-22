@@ -11,12 +11,12 @@ namespace Spellsword
         public float gustRange = 5f;
         public float gustForce = 10f;
         public bool isActive = false;
-        public override void PerformAbility()
+        public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
 
             isActive = true;
             Cast();
-            base.PerformAbility();
+            base.PerformAbility(character, isPlayer);
         }
         void Update()
         {
@@ -57,18 +57,5 @@ namespace Spellsword
         //    Gizmos.color = Color.red;
         //    Gizmos.DrawWireSphere(GameManager.Instance._playerController.transform.position, gustRange);
         //}
-        public override void PerformAbility(CharacterBase character, bool isPlayer)
-        {
-            if (Time.time - lastCastTime < gustCDTime)
-            {
-                return; // Ability is on cooldown
-            }
-            character._timeSinceLastAbility = 0;
-            character._currentMP -= _MPCost;
-            isActive = true;
-            lastCastTime = Time.time;
-            base.PerformAbility(character, isPlayer);
-            
-        }
     }
 }

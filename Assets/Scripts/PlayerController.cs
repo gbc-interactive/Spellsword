@@ -85,7 +85,7 @@ namespace Spellsword
         }
         private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
         {
-            PerformAbility(_abilities[3]);
+            PerformAbility(_abilities[3], true);
         }
         private void OnInputFireBallPerformed(InputAction.CallbackContext value)
         {
@@ -96,9 +96,9 @@ namespace Spellsword
         {
             _abilities[4].isCharging = false;
             GameManager.Instance._playerController._moveSpeed *= 2;
-            PerformAbility(_abilities[4]);
+            PerformAbility(_abilities[4], true);
         }
-        public override bool PerformAbility(AbilityBase ability)
+        public override bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
             base.PerformAbility(ability, isPlayer);
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);

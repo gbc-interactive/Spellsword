@@ -8,8 +8,6 @@ namespace Spellsword
     {
         private Vector3 originalScale;
         private float dashForce = 15.0f;
-        private float dashCDTime = 0.5f;
-        private float lastCastTime;
         private float knockBackForce = 5.0f;
 
         public int _damageValue = 25;
@@ -24,21 +22,11 @@ namespace Spellsword
         public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
             Cast();
-            Dash();
-            base.PerformAbility();
+            Dash(isPlayer);
+            base.PerformAbility(character, isPlayer);
         }
-        void Dash()
+        void Dash(bool isPlayer)
         {
-            //change direction based on player direction
-            EDirection playerDirection = GameManager.Instance._playerController.GetFacingDirection();
-            Vector3 dashDirection;
-            if (playerDirection == EDirection.Left)
-            if (Time.time - lastCastTime < dashCDTime)
-            {
-                return; // Ability is on cooldown
-            }
-
-            lastCastTime = Time.time;
             if (isPlayer)
             {
                 //get target direction based on mouse position
@@ -71,7 +59,6 @@ namespace Spellsword
                 _particleSystem.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, directionToPlayer.y, directionToPlayer.z));
             }
             StartCoroutine(CastMeleeAura());
-            base.PerformAbility(character, isPlayer);
         }
 
         IEnumerator CastMeleeAura()
