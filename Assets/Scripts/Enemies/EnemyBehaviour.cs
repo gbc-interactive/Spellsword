@@ -95,6 +95,12 @@ namespace Spellsword
             if (other.tag == "Player")
                 _playerTarget = null;
         }
+
+        public override void RegenHP()
+        {
+            base.RegenHP();
+            HPBar.value = _currentHP;
+        }
     }
 
 }

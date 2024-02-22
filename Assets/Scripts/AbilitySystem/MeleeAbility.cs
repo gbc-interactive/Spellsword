@@ -7,7 +7,7 @@ namespace Spellsword
     public class MeleeAbility : AbilityBase
     {
         private Vector3 originalScale;
-        private float dashDistance = 10.0f;
+        private float dashForce = 15.0f;
         private float dashCDTime = 0.5f;
         private float lastCastTime;
         private float knockBackForce = 5.0f;
@@ -43,7 +43,8 @@ namespace Spellsword
                     Vector3 direction = worldPosition - GameManager.Instance._playerController.transform.position;
                     direction.Normalize();
 
-                    GameManager.Instance._playerController.TryMove(direction * dashDistance);
+                    //GameManager.Instance._playerController.TryMove(direction * dashDistance);
+                    GameManager.Instance._playerController.GetComponent<Rigidbody>().AddForce(direction * dashForce, ForceMode.Impulse);
 
                     // Calculate the rotation to align the y-axis with the direction vector
                     Quaternion rotation = Quaternion.LookRotation(direction);

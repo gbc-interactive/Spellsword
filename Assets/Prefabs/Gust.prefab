@@ -4700,7 +4700,7 @@ MonoBehaviour:
   _MPCost: 20
   gustCDTime: 2.5
   lastCastTime: 0
-  gustRange: 10
+  gustRange: 15
   gustForce: 50
   isActive: 0
   screenShakeScript: {fileID: 0}
