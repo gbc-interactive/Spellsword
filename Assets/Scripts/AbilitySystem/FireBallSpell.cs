@@ -69,7 +69,7 @@ public class FireBallSpell : AbilityBase
                 
             }
         }
-        CooldownManagement();//have to include this here to check cooldown status for the ability but not for the other abilities. why? am i dumb 
+        CooldownManagement();//have to include this here to check cooldown status for the ability.
     }
     void InstantiateFireCircle()
     {

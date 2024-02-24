@@ -25,6 +25,7 @@ namespace Spellsword
                 StartCoroutine(CastGust());
                 //screenShakeScript.StartScreenShake();
             }
+            CooldownManagement();
         }
 
         IEnumerator CastGust()
