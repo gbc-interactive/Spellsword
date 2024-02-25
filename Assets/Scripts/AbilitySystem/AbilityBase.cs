@@ -7,12 +7,16 @@ namespace Spellsword
     {
         public ParticleSystem _particleSystem;
         [SerializeField] private EAbilityType _abilityType;
+        [Header("Ability Stats")]
         [SerializeField] protected float _cooldownTime;
+        [SerializeField] protected int _damageValue;
+        [SerializeField] public float _MPCost;
+        [Header("Ability Management")]
         [SerializeField] protected float _lastCastTime;
-        [SerializeField] public float _MPCost;        
-        [SerializeField] public bool _isOnCooldown = false;
-        [SerializeField] public float chargeTime = 0.0f;
+        [SerializeField] public bool _isOnCooldown = false;        
         [SerializeField] public bool isCharging = false;
+        [SerializeField] public float chargeTime = 0.0f;
+        
         void Start()
         {
             _particleSystem = GetComponent<ParticleSystem>();
@@ -20,9 +24,9 @@ namespace Spellsword
         }
         public enum EAbilityType 
         {
-            Attack1,
-            Attack2,
-            Default = Attack1
+            OneHit,
+            TwoHit,
+            Default = OneHit
         }
         public enum Status
         {
@@ -85,7 +89,6 @@ namespace Spellsword
             if(_particleSystem != null)
             _particleSystem.Play();
         }
-        //https://docs.unity3d.com/Manual/PartSysTriggersModule.html
     }
 
 }

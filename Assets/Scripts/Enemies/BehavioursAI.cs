@@ -49,6 +49,7 @@ static public class BehavioursAI
                     _enemySelf._attackCooldownCurrent = 0.0f;
                 }
             }
+
         }
 
         static public void RangedAttackPlayer(EnemyBehaviour _enemySelf)

@@ -13,7 +13,6 @@ namespace Spellsword
         public bool isActive = false;
         public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
-
             isActive = true;
             Cast();
             base.PerformAbility(character, isPlayer);

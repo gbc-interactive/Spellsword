@@ -10,8 +10,6 @@ namespace Spellsword
         private float dashForce = 15.0f;
         private float knockBackForce = 5.0f;
 
-        public int _damageValue = 25;
-
         [SerializeField] private ParticleSystem hitFX;
 
         void Start()
