@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Spellsword
 {
@@ -20,16 +21,15 @@ namespace Spellsword
     public class EnemyBehaviour : CharacterBase, ITriggerCallbackable
     {
         private GameObject _playerTarget;
-        public GameObject _getPlayerTarget
-        {  get { return _playerTarget; } }
+        public GameObject _getPlayerTarget {  get { return _playerTarget; } }
 
         [HideInInspector] public EBehaviours _behaviour;
+        [HideInInspector] public NavMeshAgent _navAgent;
 
         [HideInInspector] public Vector3 _moveVector;
         [HideInInspector] public Vector3 _homePosition;
         [HideInInspector] public bool _moveClockwise;
         
-
         [HideInInspector] public float _attackCooldownCurrent = 0.0f;
 
 
@@ -38,14 +38,18 @@ namespace Spellsword
 
         [Header("Stats")]
         [SerializeField] public float _attackCooldownMax;
-        [Range(0.01f, 1.0f)] public float _circleSpeed;
+        [Range(0.01f, 1.0f)] public float _circleSpeedScale;
         [SerializeField] public List<AbilityBase> _abilities = new List<AbilityBase>();
 
         [Header("Zones Distances")]
         [SerializeField] public float _safeZoneDistanceMax;
         [SerializeField] public float _safeZoneDistanceMin;
 
-
+        private void Awake()
+        {
+            _navAgent = GetComponent<NavMeshAgent>();
+        }
+ 
         private void Start()
         {
             _homePosition = transform.position;

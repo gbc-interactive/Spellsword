@@ -17,27 +17,22 @@ namespace Spellsword
 
         void Update()
         {
-            if (_getPlayerTarget == null)
-                return;
+            // if (_getPlayerTarget == null)
+            //     return;
 
-            RaycastHit hit;
+            //RaycastHit hit;
 
-            Vector3 playerDirection = (transform.position - _getPlayerTarget.transform.position).normalized;
+            //Vector3 playerDirection = (transform.position - _getPlayerTarget.transform.position).normalized;
 
-            playerDirection = new Vector3(playerDirection.x, -0.125f, playerDirection.z);
+            //playerDirection = new Vector3(playerDirection.x, -0.125f, playerDirection.z);
 
-            //TODO: Remove Debug Drawings
-            Debug.DrawRay(transform.position, playerDirection * 7.0f, Color.black);
+            //DEBUG: Teleport Ray Checker lines
+            // if (Physics.Raycast(transform.position, playerDirection, out hit, 10.0f))
+            // {
+            //     Debug.DrawRay(transform.position, playerDirection * 10.0f, Color.yellow);
+            //     Debug.DrawRay(transform.position, playerDirection * hit.distance, Color.red);
+            // }
 
-            if (Physics.Raycast(transform.position, playerDirection, out hit, 7.0f))
-            {
-                if (hit.collider.gameObject.name != "Ground")
-                    Debug.DrawRay(transform.position, playerDirection * hit.distance, Color.red);
-                else
-                    Debug.DrawRay(transform.position, playerDirection * hit.distance, Color.yellow);
-            }
-
-            
         }
 
         void FixedUpdate()
@@ -50,7 +45,7 @@ namespace Spellsword
             if (_magicFireballChargeUpCurrent == 0.0f)
                 BehavioursAI.DetermineBehaviour(this);
 
-            switch(_behaviour)
+            switch (_behaviour)
             {
                 case EBehaviours.Idle:
 
@@ -88,8 +83,8 @@ namespace Spellsword
                     break;
             }
 
-            _moveVector = new Vector3(_moveVector.x, 0, _moveVector.z);
-            TryMove(_moveVector);
+            // _moveVector = new Vector3(_moveVector.x, 0, _moveVector.z);
+            // TryMove(_moveVector);
         }
     }
 }
