@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Spellsword;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,10 @@ public class CirclePlayerBehaviour : BaseAIBehaviour
 {
     public override void EnterBehaviour(EnemyBehaviour _enemySelf)
     {
-        //Determine Circle Direction
+        if (Random.Range(1, 3) % 2 == 0)
+            _enemySelf._moveClockwise = true;
+        else
+            _enemySelf._moveClockwise = false;
     }
 
     public override void UpdateBehaviour(EnemyBehaviour _enemySelf)
@@ -40,6 +44,8 @@ public class CirclePlayerBehaviour : BaseAIBehaviour
         NavMeshHit hit;
         if (_enemySelf._navAgent.Raycast(desiredDestination, out hit))
             _enemySelf._moveClockwise = !_enemySelf._moveClockwise;
+
+        
     }
 
 }

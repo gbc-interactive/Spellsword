@@ -139,21 +139,24 @@ MonoBehaviour:
   _timeBetweenCast: 0.25
   _regenIntervalMP: 5
   _regenRateMP: 10
-  _behaviour: 0
   _navAgent: {fileID: 0}
-  _moveVector: {x: 0, y: 0, z: 0}
   _homePosition: {x: 0, y: 0, z: 0}
   _moveClockwise: 0
-  _attackCooldownCurrent: 0
-  _sightMaximum: {fileID: 1978007305879701818}
-  _attackCooldownMax: 6
   _circleSpeedScale: 0
   _abilities:
-  - {fileID: 1291484483490246736}
+  - ability: {fileID: 1291484483490246736}
+    cooldownCurrentCount: 0
+    cooldownMaxCount: 5
+    chargeUpCurrentCount: 0
+    chargeUpMaxCount: 2.5
   _safeZoneDistanceMax: 8.5
   _safeZoneDistanceMin: 6
-  _rangedAttackChargeUpCurrent: 0
-  _rangedAttackChargeUpMax: 2
+  rangedAttack:
+    ability: {fileID: 0}
+    cooldownCurrentCount: 0
+    cooldownMaxCount: 0
+    chargeUpCurrentCount: 0
+    chargeUpMaxCount: 0
 --- !u!195 &7944581849575467405
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -167,7 +170,7 @@ NavMeshAgent:
   m_Speed: 5
   m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 150
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -260,7 +263,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 12
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3838532513630216185
 MonoBehaviour:

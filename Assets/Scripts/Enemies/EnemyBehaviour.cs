@@ -20,31 +20,19 @@ public class AbilityForAI
 
 namespace Spellsword
 {
-    // public enum EBehaviours
-    // {
-    //     Idle,
-    //     GoToHome,
-    //     MoveToPlayer,
-    //     AttackPlayer,
-    //     RunFromPlayer
-    // }
-
     public class EnemyBehaviour : CharacterBase, ITriggerCallbackable
     {
         private GameObject _playerTarget;
         public GameObject _getPlayerTarget {  get { return _playerTarget; } }
 
         private BaseAIBehaviour _behaviour;
-
         [HideInInspector] public NavMeshAgent _navAgent;
+
         [HideInInspector] public Vector3 _homePosition;
         [HideInInspector] public bool _moveClockwise;
 
-        [Header("References")]
-        [SerializeField] private SphereCollider _sightMaximum;
-
         [Header("Stats")]
-        [Range(0.01f, 1.0f)] public float _circleSpeedScale;
+        [Range(0.1f, 1.0f)] public float _circleSpeedScale; //FIXME circleSpeedScale doesn't work right now
         [SerializeField] public List<AbilityForAI> _abilities = new List<AbilityForAI>();
 
         [Header("Zones Distances")]

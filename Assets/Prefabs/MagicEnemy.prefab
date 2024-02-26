@@ -5098,24 +5098,35 @@ MonoBehaviour:
   _timeBetweenCast: 0.25
   _regenIntervalMP: 5
   _regenRateMP: 10
-  _behaviour: 0
   _navAgent: {fileID: 0}
-  _moveVector: {x: 0, y: 0, z: 0}
   _homePosition: {x: 0, y: 0, z: 0}
   _moveClockwise: 0
-  _attackCooldownCurrent: 0
-  _sightMaximum: {fileID: 1119525321897753409}
-  _attackCooldownMax: 9
   _circleSpeedScale: 0.25
   _abilities:
-  - {fileID: 401164369668204187}
-  - {fileID: 3503489074171087394}
+  - ability: {fileID: 401164369668204187}
+    cooldownCurrentCount: 0
+    cooldownMaxCount: 12
+    chargeUpCurrentCount: 0
+    chargeUpMaxCount: 4.5
+  - ability: {fileID: 3503489074171087394}
+    cooldownCurrentCount: 0
+    cooldownMaxCount: 6
+    chargeUpCurrentCount: 0
+    chargeUpMaxCount: 0
   _safeZoneDistanceMax: 6.5
   _safeZoneDistanceMin: 5
-  _magicFireballChargeUpMax: 4
-  _magicFireballChargeUpCurrent: 0
-  _magicBlinkCoolDownMax: 6
-  _magicBlinkCoolDownCurrent: 0
+  fireballAttack:
+    ability: {fileID: 0}
+    cooldownCurrentCount: 0
+    cooldownMaxCount: 0
+    chargeUpCurrentCount: 0
+    chargeUpMaxCount: 0
+  teleportAbility:
+    ability: {fileID: 0}
+    cooldownCurrentCount: 0
+    cooldownMaxCount: 0
+    chargeUpCurrentCount: 0
+    chargeUpMaxCount: 0
 --- !u!195 &4897503317343455513
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5129,7 +5140,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 150
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
