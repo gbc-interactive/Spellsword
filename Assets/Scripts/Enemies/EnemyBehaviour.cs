@@ -50,6 +50,17 @@ namespace Spellsword
             _behaviour = BehavioursAI.idle;
         }
 
+        private void Update()
+        {
+            if (_navAgent.velocity.x > 0.05f)
+                SetFacingDirection(EDirection.Right);
+
+            else if (_navAgent.velocity.x < -0.05f)
+                SetFacingDirection(EDirection.Left);
+
+            
+        }
+
         protected virtual void FixedUpdate()
         {
             ChargeCooldowns();
