@@ -6,85 +6,48 @@ namespace Spellsword
 {
     public class MagicEnemyBehaviour : EnemyBehaviour
     {
+        [HideInInspector] public AbilityForAI fireballAttack;
+        [HideInInspector] public AbilityForAI teleportAbility;
 
-        [Header("Fireball Spell")]
-        [SerializeField] public float _magicFireballChargeUpMax;
-        [HideInInspector] public float _magicFireballChargeUpCurrent;
-
-        [Header("Blink Spell")]
-        [SerializeField] public float _magicBlinkCoolDownMax;
-        [HideInInspector] public float _magicBlinkCoolDownCurrent;
-
-        void Update()
+        protected override void Start()
         {
-            // if (_getPlayerTarget == null)
-            //     return;
-
-            //RaycastHit hit;
-
-            //Vector3 playerDirection = (transform.position - _getPlayerTarget.transform.position).normalized;
-
-            //playerDirection = new Vector3(playerDirection.x, -0.125f, playerDirection.z);
-
-            //DEBUG: Teleport Ray Checker lines
-            // if (Physics.Raycast(transform.position, playerDirection, out hit, 10.0f))
-            // {
-            //     Debug.DrawRay(transform.position, playerDirection * 10.0f, Color.yellow);
-            //     Debug.DrawRay(transform.position, playerDirection * hit.distance, Color.red);
-            // }
-
+            base.Start();
+            fireballAttack = _abilities[0];
+            teleportAbility = _abilities[1];
         }
 
-        void FixedUpdate()
+        protected override void DetermineBehaviour()
         {
-            if (_magicBlinkCoolDownCurrent < _magicBlinkCoolDownMax)
+            if (_getPlayerTarget == null)
             {
-                _magicBlinkCoolDownCurrent += Time.fixedDeltaTime;
+                SwitchBehaviour(BehavioursAI.moveToHome);
+                return;
             }
 
-            if (_magicFireballChargeUpCurrent == 0.0f)
-                BehavioursAI.DetermineBehaviour(this);
-
-            switch (_behaviour)
+            if (fireballAttack.cooldownCurrentCount >= fireballAttack.cooldownMaxCount)
             {
-                case EBehaviours.Idle:
-
-                    BehavioursAI.Idle(this);
-
-                    break;
-
-                case EBehaviours.GoToHome:
-
-                    BehavioursAI.GoToHome(this);
-
-                    break;
-
-                case EBehaviours.FoundPlayer:
-
-                    BehavioursAI.FoundPlayer(this);
-
-                    break;
-
-                case EBehaviours.MoveToPlayer:
-
-                    BehavioursAI.MoveToPlayer(this);
-
-                    break;
-
-                case EBehaviours.AttackPlayer:
-
-                    BehavioursAI.MagicFireballAbility(this);
-
-                    break;
-
-                case EBehaviours.RunFromPlayer:
-                    BehavioursAI.MagicRunFromPlayer(this);
-
-                    break;
+                SwitchBehaviour(BehavioursAI.fireballAttack);
+                return;
             }
 
-            // _moveVector = new Vector3(_moveVector.x, 0, _moveVector.z);
-            // TryMove(_moveVector);
+            Vector3 targetPosition = _getPlayerTarget.transform.position;
+            Vector3 enemySelfPosition = transform.position;
+
+            bool isEnemyTooFarFromPlayer = Vector3.Distance(targetPosition, enemySelfPosition) > _safeZoneDistanceMax;
+            bool isEnemyTooCloseToPlayer = Vector3.Distance(targetPosition, enemySelfPosition) < _safeZoneDistanceMin;
+
+            if (isEnemyTooFarFromPlayer)
+                SwitchBehaviour(BehavioursAI.moveToPlayer);
+
+            else if (isEnemyTooCloseToPlayer)
+            {
+                if (teleportAbility.cooldownCurrentCount >= teleportAbility.cooldownMaxCount)
+                    SwitchBehaviour(BehavioursAI.teleport);
+                else
+                    SwitchBehaviour(BehavioursAI.moveAwayFromPlayer);
+            }
+            else
+                SwitchBehaviour(BehavioursAI.circlePlayer);
         }
     }
 }
