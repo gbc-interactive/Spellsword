@@ -25,16 +25,10 @@ namespace Spellsword
 
     public abstract class CharacterBase : MonoBehaviour
     {
-        const string IDLE = "Idle";
-        const string RUN = "Run";
-
-        bool isMoving = false;
-
         [Header("References")]
         //[SerializeField] protected Animator m_animator = null;
         [SerializeField] private Rigidbody _rigidbody = null;
         [SerializeField] private SpriteRenderer _spriteRenderer = null;
-        [SerializeField] private Animator _animator = null;
 
         [Header("Movement")]
         [SerializeField] public float _moveSpeed = 5.0f;
@@ -90,20 +84,18 @@ namespace Spellsword
 
                 if (vector.x > 0)
                 {
-                    SetFacingDirection(EDirection.Left);
+                    SetFacingDirection(EDirection.Right);
                 }
                 else if (vector.x < 0)
                 {
-                    SetFacingDirection(EDirection.Right);
+                    SetFacingDirection(EDirection.Left);
                 }
 
-                isMoving = true;
                 return true;
             }
             else
             {
                 // Can't move if there's no direction to move in
-                isMoving = false;
                 return false;
             }
         }
@@ -168,18 +160,6 @@ namespace Spellsword
         public virtual void RegenHP()
         {
             _currentHP = Mathf.Clamp(_currentHP + (_regenRateHP * Time.deltaTime), 0f, _maxHP);
-        }
-
-        public void SetAnimation()
-        {
-            if (isMoving)
-            {
-                _animator.Play(RUN);
-            }
-            else
-            {
-                _animator.Play(IDLE);
-            }
         }
     }
 }

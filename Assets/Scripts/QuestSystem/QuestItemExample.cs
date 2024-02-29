@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Spellsword;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class QuestItemExample :MonoBehaviour, IQuestItem
