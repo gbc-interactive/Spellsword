@@ -1,10 +1,8 @@
 using Spellsword;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class AbilityForAI
@@ -39,6 +37,8 @@ namespace Spellsword
         [SerializeField] public float _safeZoneDistanceMax;
         [SerializeField] public float _safeZoneDistanceMin;
 
+        [SerializeField] public Slider HPBar;
+
         private void Awake()
         {
             _navAgent = GetComponent<NavMeshAgent>();
@@ -48,6 +48,26 @@ namespace Spellsword
         {
             _homePosition = transform.position;
             _behaviour = BehavioursAI.idle;
+            SetMaxHP(_maxHP);
+        }
+
+        public void Initialize()
+        {
+            SetMaxHP(_maxHP);
+        }
+
+        public void SetMaxHP(float hp)
+        {
+            _currentHP = hp;
+            HPBar.maxValue = hp;
+            HPBar.value = HPBar.maxValue;
+        }
+
+        public override bool TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            HPBar.value = _currentHP;
+            return true;
         }
 
         private void Update()
@@ -66,6 +86,11 @@ namespace Spellsword
             ChargeCooldowns();
             DetermineBehaviour();
             RunBehaviour();
+        }
+
+        private void LateUpdate()
+        {
+            HPBar.transform.rotation = Camera.main.transform.rotation;
         }
 
         private void ChargeCooldowns()
@@ -113,6 +138,12 @@ namespace Spellsword
         {
             if (other.tag == "Player")
                 _playerTarget = null;
+        }
+
+        public override void RegenHP()
+        {
+            base.RegenHP();
+            HPBar.value = _currentHP;
         }
 
     }
