@@ -2,91 +2,110 @@ using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.AI;
+
+[System.Serializable]
+public class AbilityForAI
+{
+    public AbilityBase ability;
+
+    [HideInInspector] public float cooldownCurrentCount;
+    public float cooldownMaxCount;
+
+    [HideInInspector] public float chargeUpCurrentCount;
+    public float chargeUpMaxCount;
+}
 
 namespace Spellsword
 {
-    public enum EBehaviours
-    {
-        Idle,
-        GoToHome,
-        FoundPlayer,
-        MoveToPlayer,
-        AttackPlayer,
-        RunFromPlayer
-
-    }
-
     public class EnemyBehaviour : CharacterBase, ITriggerCallbackable
     {
         private GameObject _playerTarget;
-        public GameObject _getPlayerTarget
-        {  get { return _playerTarget; } }
+        public GameObject _getPlayerTarget {  get { return _playerTarget; } }
 
-        [HideInInspector] public EBehaviours _behaviour;
+        private BaseAIBehaviour _behaviour;
+        [HideInInspector] public NavMeshAgent _navAgent;
 
-        [HideInInspector] public Vector3 _moveVector;
         [HideInInspector] public Vector3 _homePosition;
         [HideInInspector] public bool _moveClockwise;
-        
-
-        [HideInInspector] public float _attackCooldownCurrent = 0.0f;
-
-
-        [Header("References")]
-        [SerializeField] private SphereCollider _sightMaximum;
 
         [Header("Stats")]
-        [SerializeField] public float _attackCooldownMax;
-        [Range(0.01f, 1.0f)] public float _circleSpeed;
-        [SerializeField] public List<AbilityBase> _abilities = new List<AbilityBase>();
+        [Range(0.1f, 1.0f)] public float _circleSpeedScale; //FIXME circleSpeedScale doesn't work right now
+        [SerializeField] public List<AbilityForAI> _abilities = new List<AbilityForAI>();
 
         [Header("Zones Distances")]
         [SerializeField] public float _safeZoneDistanceMax;
         [SerializeField] public float _safeZoneDistanceMin;
 
-        [SerializeField] public Slider HPBar;
-
-
-        private void Start()
+        private void Awake()
+        {
+            _navAgent = GetComponent<NavMeshAgent>();
+        }
+ 
+        protected virtual void Start()
         {
             _homePosition = transform.position;
-            _behaviour = EBehaviours.Idle;
-
-            Initialize();
+            _behaviour = BehavioursAI.idle;
         }
 
-        public void Initialize()
+        private void Update()
         {
-            SetMaxHP(_maxHP);
+            if (_navAgent.velocity.x > 0.05f)
+                SetFacingDirection(EDirection.Right);
+
+            else if (_navAgent.velocity.x < -0.05f)
+                SetFacingDirection(EDirection.Left);
+
+            
         }
 
-        public void SetMaxHP(float hp)
+        protected virtual void FixedUpdate()
         {
-            _currentHP = hp;
-            HPBar.maxValue = hp;
-            HPBar.value = HPBar.maxValue;
-        }
-        
-        public override bool TakeDamage(int damage)
-        {
-            base.TakeDamage(damage);
-            HPBar.value = _currentHP;
-            return true;
+            ChargeCooldowns();
+            DetermineBehaviour();
+            RunBehaviour();
         }
 
-        private void FixedUpdate()
+        private void ChargeCooldowns()
         {
-            HPBar.transform.rotation = Camera.main.transform.rotation;
+            foreach (AbilityForAI ability in _abilities)
+            {
+                if (ability.cooldownCurrentCount > ability.cooldownMaxCount)
+                    return;
+
+                ability.cooldownCurrentCount += Time.fixedDeltaTime;
+            }
+        }
+
+        protected void RunBehaviour()
+        {
+            _behaviour.UpdateBehaviour(this);
+            
+        }
+
+        protected void SwitchBehaviour(BaseAIBehaviour newBehaviour)
+        {
+            if (_behaviour == newBehaviour)
+                return;
+
+            if (_behaviour != null)
+                _behaviour.ExitBehaviour(this);
+            
+            _behaviour = newBehaviour;
+            _behaviour.EnterBehaviour(this);
+        }
+
+        protected virtual void DetermineBehaviour()
+        {
+
         }
 
         public void TriggerEnterCallback(Collider other)
         {
             if (other.tag != "Player") return;
-
             _playerTarget = other.gameObject;
-            _behaviour = EBehaviours.FoundPlayer;
         }
 
 
@@ -96,11 +115,6 @@ namespace Spellsword
                 _playerTarget = null;
         }
 
-        public override void RegenHP()
-        {
-            base.RegenHP();
-            HPBar.value = _currentHP;
-        }
     }
 
 }
