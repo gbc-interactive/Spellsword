@@ -48,6 +48,7 @@ namespace Spellsword
         private void FixedUpdate()
         { 
             TryMove(_moveVector);
+            SetAnimation();
         }
 
         private void OnInputMovePerformed(InputAction.CallbackContext value)
