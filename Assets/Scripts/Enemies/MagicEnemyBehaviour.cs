@@ -4,14 +4,16 @@ using UnityEngine;
 
 namespace Spellsword
 {
-    public class RangedEnemyBehaviour : EnemyBehaviour
+    public class MagicEnemyBehaviour : EnemyBehaviour
     {
-        [HideInInspector] public AbilityForAI rangedAttack;
+        [HideInInspector] public AbilityForAI fireballAttack;
+        [HideInInspector] public AbilityForAI teleportAbility;
 
         protected override void Start()
         {
             base.Start();
-            rangedAttack = _abilities[0];
+            fireballAttack = _abilities[0];
+            teleportAbility = _abilities[1];
         }
 
         protected override void DetermineBehaviour()
@@ -22,9 +24,9 @@ namespace Spellsword
                 return;
             }
 
-            if (rangedAttack.cooldownCurrentCount >= rangedAttack.cooldownMaxCount)
+            if (fireballAttack.cooldownCurrentCount >= fireballAttack.cooldownMaxCount)
             {
-                SwitchBehaviour(BehavioursAI.rangedAttack);
+                SwitchBehaviour(BehavioursAI.fireballAttack);
                 return;
             }
 
@@ -36,11 +38,16 @@ namespace Spellsword
 
             if (isEnemyTooFarFromPlayer)
                 SwitchBehaviour(BehavioursAI.moveToPlayer);
+
             else if (isEnemyTooCloseToPlayer)
-                SwitchBehaviour(BehavioursAI.moveAwayFromPlayer);
+            {
+                if (teleportAbility.cooldownCurrentCount >= teleportAbility.cooldownMaxCount)
+                    SwitchBehaviour(BehavioursAI.teleport);
+                else
+                    SwitchBehaviour(BehavioursAI.moveAwayFromPlayer);
+            }
             else
                 SwitchBehaviour(BehavioursAI.circlePlayer);
-
         }
     }
 }

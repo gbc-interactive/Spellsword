@@ -1,7 +1,8 @@
 using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
+using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,47 +11,41 @@ namespace Spellsword
 
     public class MeleeEnemyBehaviour : EnemyBehaviour
     {
+        [HideInInspector] public AbilityForAI meleeAttack;
 
-        private void FixedUpdate()
+        protected override void Start()
         {
-            _moveVector = Vector3.zero;
+            base.Start();
+            meleeAttack = _abilities[0];
+        }
 
-            BehavioursAI.DetermineBehaviour(this);
-
-            switch(_behaviour)
+        protected override void DetermineBehaviour()
+        {
+            if (_getPlayerTarget == null)
             {
-                case EBehaviours.Idle:
-                    BehavioursAI.Idle(this);
-                    break;
-
-                case EBehaviours.GoToHome:
-                    BehavioursAI.GoToHome(this);
-                    break;
-
-                case EBehaviours.FoundPlayer:
-                    BehavioursAI.FoundPlayer(this);
-                    break;
-
-                case EBehaviours.MoveToPlayer:
-                    BehavioursAI.MoveToPlayer(this);
-                    break;
-
-                case EBehaviours.AttackPlayer:
-                    BehavioursAI.MeleeAttackPlayer(this);
-                    break;
-
-                case EBehaviours.RunFromPlayer:
-                    BehavioursAI.RunFromPlayer(this);
-                    break;
-                
-                
+                SwitchBehaviour(BehavioursAI.moveToHome);
+                return;
             }
 
-            _moveVector = new Vector3(_moveVector.x, 0, _moveVector.z);
-            TryMove(_moveVector);
+            if (meleeAttack.cooldownCurrentCount >= meleeAttack.cooldownMaxCount)
+            {
+                SwitchBehaviour(BehavioursAI.meleeAttack);
+                return;
+            }
+
+            Vector3 targetPosition = _getPlayerTarget.transform.position;
+            Vector3 enemySelfPosition = transform.position;
+
+            bool isEnemyTooFarFromPlayer = Vector3.Distance(targetPosition, enemySelfPosition) > _safeZoneDistanceMax;
+            bool isEnemyTooCloseToPlayer = Vector3.Distance(targetPosition, enemySelfPosition) < _safeZoneDistanceMin;
+
+            if (isEnemyTooFarFromPlayer)
+                SwitchBehaviour(BehavioursAI.moveToPlayer);
+            else if (isEnemyTooCloseToPlayer)
+                SwitchBehaviour(BehavioursAI.moveAwayFromPlayer);
+            else
+                SwitchBehaviour(BehavioursAI.circlePlayer);
         }
 
     }
-
-
 }
