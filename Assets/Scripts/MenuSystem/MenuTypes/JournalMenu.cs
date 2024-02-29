@@ -14,7 +14,8 @@ namespace Spellsword
         public TMP_Text _questName;
         public TMP_Text _taskDescription;
 
-        void Start(){
+        void Start()
+        {
             Disable();
         }
         void UpdateText()
