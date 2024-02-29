@@ -6,23 +6,11 @@ namespace Spellsword
 {
     public class TeleportSpell : AbilityBase
     {
-        private float teleportCDTime = 1f;
-        private float lastCastTime;
-        // Start is called before the first frame update
-        void Start()
+        public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
-            //_manaCost = 10f;
-            lastCastTime = -teleportCDTime;
-        }
-        public override void PerformAbility()
-        {
-            if (Time.time - lastCastTime < teleportCDTime)
-            {
-                return; // Ability is on cooldown
-            }
-            lastCastTime = Time.time;
+            Cast();
             Teleport();
-            base.PerformAbility();
+            base.PerformAbility(character, isPlayer);
         }
 
         private void Teleport()

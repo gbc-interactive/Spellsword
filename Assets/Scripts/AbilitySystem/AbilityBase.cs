@@ -7,11 +7,16 @@ namespace Spellsword
     {
         public ParticleSystem _particleSystem;
         [SerializeField] private EAbilityType _abilityType;
-        [SerializeField] public float _MPCost;
-
+        [SerializeField] protected float _cooldownTime;
+        [SerializeField] protected float _lastCastTime;
+        [SerializeField] public float _MPCost;        
+        [SerializeField] public bool _isOnCooldown = false;
+        [SerializeField] public float chargeTime = 0.0f;
+        [SerializeField] public bool isCharging = false;
         void Start()
         {
             _particleSystem = GetComponent<ParticleSystem>();
+            _lastCastTime = -_cooldownTime;
         }
         public enum EAbilityType 
         {
@@ -19,14 +24,18 @@ namespace Spellsword
             Attack2,
             Default = Attack1
         }
-
-        public void ApplyDamage(ref float hp,float howmuch)
+        public enum Status
         {
-            hp -= howmuch;
+            Gust
         }
 
         //ability collision
         private void OnTriggerEnter(Collider other)
+        {
+            HandleCollision(other);
+        }
+
+        public virtual void HandleCollision(Collider other)
         {
             if (other.CompareTag("Player"))
             {
@@ -40,8 +49,40 @@ namespace Spellsword
             }
         }
 
-        public virtual void PerformAbility()
+        void Update()
         {
+            if (_isOnCooldown)
+            {
+                CooldownManagement();
+            }
+        }
+
+        public void CooldownManagement()
+        {
+            if (Time.time - _lastCastTime >= _cooldownTime)
+            {
+                _isOnCooldown = false;//ready to use again
+            }
+        }
+
+        public void Cast()
+        {
+            if (Time.time - _lastCastTime >= _cooldownTime)
+            {
+                _isOnCooldown = true;
+                _lastCastTime = Time.time;
+                chargeTime = 0f;                
+            }
+        }
+
+        public void ApplyDamage(ref float hp,float howMuch)
+        {
+            hp -= howMuch;
+        }
+
+        public virtual void PerformAbility(CharacterBase character, bool isPlayer)
+        {
+            if(_particleSystem != null)
             _particleSystem.Play();
         }
         //https://docs.unity3d.com/Manual/PartSysTriggersModule.html

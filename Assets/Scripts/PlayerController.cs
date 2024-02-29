@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Spellsword
 {
@@ -14,6 +15,7 @@ namespace Spellsword
         [SerializeField] private List<AbilityBase> _abilities = new List<AbilityBase>();
         public Vector3 mousePosition;
         public Vector3 worldPosition;
+
         public void Initialize()
         {
             GameManager._inputActions.Player.Move.performed += OnInputMovePerformed;
@@ -22,6 +24,10 @@ namespace Spellsword
             GameManager._inputActions.Player.Melee.performed += OnInputMeleePerformed;
             GameManager._inputActions.Player.Teleport.performed += OnInputTeleportPerformed;
             GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
+            GameManager._inputActions.Player.Gust.performed += OnInputGustPerformed;
+            GameManager._inputActions.Player.FrostTrap.performed += OnInputFrostTrapPerformed;
+            GameManager._inputActions.Player.FireBall.started += OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.canceled += OnInputFireBallCanceled;
             _isInitialized = true;
         }
 
@@ -32,6 +38,10 @@ namespace Spellsword
             GameManager._inputActions.Player.Interact.performed -= OnInputInteractPerformed;
             GameManager._inputActions.Player.Melee.performed -= OnInputMeleePerformed;
             GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
+            GameManager._inputActions.Player.Gust.performed -= OnInputGustPerformed;
+            GameManager._inputActions.Player.FrostTrap.performed -= OnInputFrostTrapPerformed;
+            GameManager._inputActions.Player.FireBall.started -= OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.canceled -= OnInputFireBallCanceled;
             _isInitialized = false;
         }
 
@@ -58,7 +68,7 @@ namespace Spellsword
 
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
-            PerformAbility(_abilities[0]);
+            PerformAbility(_abilities[0], true);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
@@ -67,21 +77,58 @@ namespace Spellsword
         }
         private void OnInputTeleportCanceled(InputAction.CallbackContext value)
         {
-            PerformAbility(_abilities[1]);
+            PerformAbility(_abilities[1], true);
             Time.timeScale = 1f;
         }
-
-        public override bool PerformAbility(AbilityBase ability)
+        private void OnInputGustPerformed(InputAction.CallbackContext value)
         {
-            base.PerformAbility(ability);
+            PerformAbility(_abilities[2], true);
+        }
+        private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
+        {
+            PerformAbility(_abilities[3], true);
+        }
+        private void OnInputFireBallPerformed(InputAction.CallbackContext value)
+        {
+            _abilities[4].isCharging = true;
+            GameManager.Instance._playerController._moveSpeed /= 2;         
+        }
+        private void OnInputFireBallCanceled(InputAction.CallbackContext value)
+        {
+            _abilities[4].isCharging = false;
+            GameManager.Instance._playerController._moveSpeed *= 2;
+            PerformAbility(_abilities[4], true);
+        }
+        public override bool PerformAbility(AbilityBase ability, bool isPlayer)
+        {
+            base.PerformAbility(ability, isPlayer);
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
             return true;
+        }
+
+        public override bool TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            UIManager.Instance._headsOverDisplay.SetCurrentHP(_currentHP);
+            return true;
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public override void RegenMP()
         {
             base.RegenMP();
             UIManager.Instance._headsOverDisplay.SetCurrentMP(_currentMP);
+        }
+
+        public override void RegenHP()
+        {
+            base.RegenHP();
+            UIManager.Instance._headsOverDisplay.SetCurrentHP(_currentHP);
         }
     }
 }

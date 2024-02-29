@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,11 +9,12 @@ namespace Spellsword
 {
     public class DialogueManager : MonoBehaviour
     {
+        public static DialogueManager Instance { get; private set; }
         public GameObject _canvas;
         public TMP_Text _text;
         public TMP_Text _speaker;
-        public Queue<string> _dialogue = new Queue<string>();
-        private bool started = false;
+        private Queue<string> _dialogue = new Queue<string>();
+        private bool _started = false;
         
     
         // Start is called before the first frame update
@@ -22,17 +24,31 @@ namespace Spellsword
             SetEnabled(false);
             
         }
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this) 
+            { 
+                Destroy(this); 
+            } 
+            else 
+            { 
+                Instance = this; 
+            } 
+        }
+
         void StartDialogue(TextAsset dialogueText)
         {
+            Time.timeScale = 0f;
             SetEnabled(true);
             ReadFile(dialogueText);
             DisplayDialogue();
-            started = true;
+            _started = true;
         }
 
         public void ReadDialogue(TextAsset dialogueText)
         {
-            if (!started)
+            if (!_started)
             {
                 StartDialogue(dialogueText);
             }
@@ -90,11 +106,12 @@ namespace Spellsword
 
         void EndDialogue()
         {
+            Time.timeScale = 1.0f;
             _text.text = "";
             _text.text = "";
             _dialogue.Clear();
             SetEnabled(false);
-            started = false;
+            _started = false;
         }
 
         void SetEnabled(bool value)

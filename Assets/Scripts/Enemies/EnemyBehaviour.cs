@@ -102,6 +102,25 @@ namespace Spellsword
 
         }
 
+        public void SetMaxHP(float hp)
+        {
+            _currentHP = hp;
+            HPBar.maxValue = hp;
+            HPBar.value = HPBar.maxValue;
+        }
+        
+        public override bool TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            HPBar.value = _currentHP;
+            return true;
+        }
+
+        private void FixedUpdate()
+        {
+            HPBar.transform.rotation = Camera.main.transform.rotation;
+        }
+
         public void TriggerEnterCallback(Collider other)
         {
             if (other.tag != "Player") return;

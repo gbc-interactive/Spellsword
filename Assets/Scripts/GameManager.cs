@@ -15,13 +15,14 @@ namespace Spellsword
 
         public PlayerController _playerController = null;
         public InteractionSystem _interactionSystem = null;
+        public HUDSystem _hudSystem = null;
 
         private void Awake()
         {
             _instance = this;
 
             _inputActions = new InputActions();
-
+            _hudSystem.Initialize();
             _playerController.Initialize();
         }
 

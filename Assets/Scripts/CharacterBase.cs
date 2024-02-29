@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Spellsword
 {
@@ -30,7 +31,7 @@ namespace Spellsword
         [SerializeField] private SpriteRenderer _spriteRenderer = null;
 
         [Header("Movement")]
-        [SerializeField] private float _moveSpeed = 5.0f;
+        [SerializeField] public float _moveSpeed = 5.0f;
 
         public float _maxHP = 100f;
         public float _maxMP = 100f;
@@ -42,28 +43,45 @@ namespace Spellsword
         [SerializeField] private float _timeBetweenCast = 0.25f;
         [SerializeField] private float _regenIntervalMP = 5.0f;
         [SerializeField] private float _regenRateMP = 10.0f;
-        private float _timeSinceLastAbility = 0.0f;
+        public float _timeSinceLastAbility = 0.0f;
+
+        [SerializeField] private float _regenIntervalHP = 5.0f;
+        [SerializeField] private float _regenRateHP = 10.0f;
+        private float _timeSinceLastHit = 0.0f;
 
         private bool isUsingAbility = false;
 
         private void Update()
         {
-            //Regen MP
-            _timeSinceLastAbility += Time.deltaTime;
-
-            if (_timeSinceLastAbility >= _regenIntervalMP)
+            if (_currentHP > 0)
             {
-                RegenMP();
+                //Regen HP
+                _timeSinceLastHit += Time.deltaTime;
+
+                if (_timeSinceLastHit >= _regenIntervalHP)
+                {
+                    RegenHP();
+                }
+
+                //Regen MP
+                _timeSinceLastAbility += Time.deltaTime;
+
+                if (_timeSinceLastAbility >= _regenIntervalMP)
+                {
+                    RegenMP();
+                }
             }
         }
 
         public bool TryMove(Vector3 vector)
         {
-            vector = new Vector3(vector.x, vector.y, vector.z * 2.0f); //vertical speed compensation
-
             if (vector != Vector3.zero)
             {
-                _rigidbody.MovePosition(_rigidbody.position + vector * _moveSpeed * Time.fixedDeltaTime);
+                // Multiply the movement vector by Time.deltaTime
+                vector *= Time.deltaTime;
+
+                _rigidbody.MovePosition(_rigidbody.position + vector * _moveSpeed);
+
                 if (vector.x > 0)
                 {
                     SetFacingDirection(EDirection.Right);
@@ -72,6 +90,7 @@ namespace Spellsword
                 {
                     SetFacingDirection(EDirection.Left);
                 }
+
                 return true;
             }
             else
@@ -99,13 +118,13 @@ namespace Spellsword
             return EDirection.Default;
         }
 
-        public virtual bool PerformAbility(AbilityBase ability)
+        public virtual bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
-            if (_currentMP >= ability._MPCost)
+            if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
-                _timeSinceLastAbility = 0;
+                //_timeSinceLastAbility = 0;
                 _currentMP -= ability._MPCost;
-                ability.PerformAbility();
+                ability.PerformAbility(this, isPlayer);
                 return true;
 
             }
@@ -116,14 +135,31 @@ namespace Spellsword
             }
         }
 
+        public virtual bool TakeDamage(int damage)
+        {
+            Debug.Log("taking damage" + damage);
+            _timeSinceLastHit = 0;
+            _currentHP -= damage;
+            if(_currentHP <= 0)
+            {
+                Die();
+            }
+            return true;
+        }
+
+        public virtual void Die()
+        {
+            gameObject.SetActive(false);
+        }
+
         public virtual void RegenMP()
         {
             _currentMP = Mathf.Clamp(_currentMP + (_regenRateMP * Time.deltaTime), 0f, _maxMP);
         }
 
-        public void RegenHP()
+        public virtual void RegenHP()
         {
-
+            _currentHP = Mathf.Clamp(_currentHP + (_regenRateHP * Time.deltaTime), 0f, _maxHP);
         }
     }
 }
