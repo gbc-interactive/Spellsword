@@ -16,7 +16,7 @@ public class FireballAttackBehaviour : BaseAIBehaviour
         }
         else
         {
-            magicEnemy.PerformAbility(magicEnemy.fireballAttack.ability);
+            magicEnemy.PerformAbility(magicEnemy.fireballAttack.ability, false);
             magicEnemy.fireballAttack.cooldownCurrentCount = 0.0f;
             magicEnemy.fireballAttack.chargeUpCurrentCount = 0.0f;
         }

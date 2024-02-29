@@ -5,6 +5,7 @@ using System.Data;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class AbilityForAI
@@ -39,6 +40,8 @@ namespace Spellsword
         [SerializeField] public float _safeZoneDistanceMax;
         [SerializeField] public float _safeZoneDistanceMin;
 
+        [SerializeField] Slider HPBar;
+
         private void Awake()
         {
             _navAgent = GetComponent<NavMeshAgent>();
@@ -56,13 +59,12 @@ namespace Spellsword
                 SetFacingDirection(EDirection.Right);
 
             else if (_navAgent.velocity.x < -0.05f)
-                SetFacingDirection(EDirection.Left);
-
-            
+                SetFacingDirection(EDirection.Left);            
         }
 
         protected virtual void FixedUpdate()
         {
+            HPBar.transform.rotation = Camera.main.transform.rotation;
             ChargeCooldowns();
             DetermineBehaviour();
             RunBehaviour();
@@ -114,11 +116,6 @@ namespace Spellsword
             base.TakeDamage(damage);
             HPBar.value = _currentHP;
             return true;
-        }
-
-        private void FixedUpdate()
-        {
-            HPBar.transform.rotation = Camera.main.transform.rotation;
         }
 
         public void TriggerEnterCallback(Collider other)

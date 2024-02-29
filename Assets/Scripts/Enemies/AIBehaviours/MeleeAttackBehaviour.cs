@@ -15,7 +15,7 @@ public class MeleeAttackBehaviour : BaseAIBehaviour
             BehavioursAI.moveToPlayer.UpdateBehaviour(meleeEnemy);
         else
         {
-            meleeEnemy.PerformAbility(meleeEnemy.meleeAttack.ability);
+            meleeEnemy.PerformAbility(meleeEnemy.meleeAttack.ability, false);
             meleeEnemy.meleeAttack.cooldownCurrentCount = 0.0f;
         }
     }
