@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - temptestgust
+  - Flame
   layers:
   - Default
   - TransparentFX

@@ -24,10 +24,6 @@ namespace Spellsword
             Attack2,
             Default = Attack1
         }
-        public enum Status
-        {
-            Gust
-        }
 
         //ability collision
         private void OnTriggerEnter(Collider other)
@@ -39,13 +35,11 @@ namespace Spellsword
         {
             if (other.CompareTag("Player"))
             {
-                //ApplyDamage(ref HP, 10);
-                Debug.Log("Collsion");
+
             }
             else if (other.CompareTag("Enemy"))
             {
-                //ApplyDamage(ref HP, 10);
-                Debug.Log("CollsionEnemy");
+
             }
         }
 
@@ -75,17 +69,11 @@ namespace Spellsword
             }
         }
 
-        public void ApplyDamage(ref float hp,float howMuch)
-        {
-            hp -= howMuch;
-        }
-
         public virtual void PerformAbility(CharacterBase character, bool isPlayer)
         {
             if(_particleSystem != null)
             _particleSystem.Play();
         }
-        //https://docs.unity3d.com/Manual/PartSysTriggersModule.html
     }
 
 }
