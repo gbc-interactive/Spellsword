@@ -1,8 +1,6 @@
 using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -51,10 +49,14 @@ namespace Spellsword
         {
             _homePosition = transform.position;
             _behaviour = BehavioursAI.idle;
+            
+            SetMaxHP(30.0f);
         }
 
         private void Update()
         {
+            UpdateStatusEffects();
+
             if (_navAgent.velocity.x > 0.05f)
                 SetFacingDirection(EDirection.Right);
 
@@ -114,6 +116,7 @@ namespace Spellsword
         public override bool TakeDamage(int damage)
         {
             base.TakeDamage(damage);
+        
             HPBar.value = _currentHP;
             return true;
         }

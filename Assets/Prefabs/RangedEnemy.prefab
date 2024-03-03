@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4400959096933164709}
   - component: {fileID: 3315478003683989117}
   - component: {fileID: 7944581849575467405}
+  - component: {fileID: 7355397154400307480}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -139,6 +140,9 @@ MonoBehaviour:
   _timeBetweenCast: 0.25
   _regenIntervalMP: 5
   _regenRateMP: 10
+  _timeSinceLastAbility: 0
+  _regenIntervalHP: 5
+  _regenRateHP: 10
   _navAgent: {fileID: 0}
   _homePosition: {x: 0, y: 0, z: 0}
   _moveClockwise: 0
@@ -151,6 +155,7 @@ MonoBehaviour:
     chargeUpMaxCount: 2.5
   _safeZoneDistanceMax: 8.5
   _safeZoneDistanceMin: 6
+  HPBar: {fileID: 0}
   rangedAttack:
     ability: {fileID: 0}
     cooldownCurrentCount: 0
@@ -179,6 +184,29 @@ NavMeshAgent:
   m_BaseOffset: 0.848
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &7355397154400307480
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512549930525364703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.816
+  m_Height: 1.696
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4163527004429075667
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +291,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 12
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3838532513630216185
 MonoBehaviour:

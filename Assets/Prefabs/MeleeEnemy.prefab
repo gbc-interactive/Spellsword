@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4496855160584688286}
   - component: {fileID: 3260254417878791736}
   - component: {fileID: 1839070952056686227}
+  - component: {fileID: 4783777408979040043}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -238,10 +239,12 @@ MonoBehaviour:
   _timeBetweenCast: 0.25
   _regenIntervalMP: 5
   _regenRateMP: 10
+  _timeSinceLastAbility: 0
+  _regenIntervalHP: 5
+  _regenRateHP: 10
   _navAgent: {fileID: 0}
   _homePosition: {x: 0, y: 0, z: 0}
   _moveClockwise: 0
-  _sightMaximum: {fileID: 1079432405474593479}
   _circleSpeedScale: 0
   _abilities:
   - ability: {fileID: 4544042889957717183}
@@ -251,6 +254,7 @@ MonoBehaviour:
     chargeUpMaxCount: 0
   _safeZoneDistanceMax: 6
   _safeZoneDistanceMin: 3
+  HPBar: {fileID: 0}
   meleeAttack:
     ability: {fileID: 0}
     cooldownCurrentCount: 0
@@ -279,6 +283,29 @@ NavMeshAgent:
   m_BaseOffset: 0.848
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &4783777408979040043
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063319815895967380}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.816
+  m_Height: 1.696
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8862975058710330545
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,12 +17,13 @@ public class TeleportBehaviour : BaseAIBehaviour
         Vector3 teleportVector = new Vector3(playerDirection.x, -0.125f, playerDirection.z);
 
         RaycastHit hit;
-        if (Physics.Raycast(_enemySelf.transform.position, teleportVector, out hit, 10.0f))
+        if (Physics.Raycast(enemyPosition, teleportVector, out hit, 10.0f))
         {
             if (hit.collider.gameObject.name == "GroundMesh")
             {
+
                 magicEnemy.PerformAbility(magicEnemy.teleportAbility.ability, false);
-                magicEnemy.transform.position = new Vector3(hit.point.x, magicEnemy.transform.position.y, hit.point.z);
+                magicEnemy.transform.position = new Vector3(hit.point.x, enemyPosition.y, hit.point.z);
                 magicEnemy.teleportAbility.cooldownCurrentCount = 0.0f;
             }
             else
