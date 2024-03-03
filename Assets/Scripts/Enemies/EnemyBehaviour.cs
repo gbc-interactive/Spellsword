@@ -38,7 +38,7 @@ namespace Spellsword
         [SerializeField] public float _safeZoneDistanceMax;
         [SerializeField] public float _safeZoneDistanceMin;
 
-        [SerializeField] Slider HPBar;
+        //[SerializeField] Slider HPBar;
 
         private void Awake()
         {
@@ -66,7 +66,7 @@ namespace Spellsword
 
         protected virtual void FixedUpdate()
         {
-            HPBar.transform.rotation = Camera.main.transform.rotation;
+            //HPBar.transform.rotation = Camera.main.transform.rotation;
             ChargeCooldowns();
             DetermineBehaviour();
             RunBehaviour();
@@ -109,15 +109,15 @@ namespace Spellsword
         public void SetMaxHP(float hp)
         {
             _currentHP = hp;
-            HPBar.maxValue = hp;
-            HPBar.value = HPBar.maxValue;
+            //HPBar.maxValue = hp;
+            //HPBar.value = HPBar.maxValue;
         }
         
         public override bool TakeDamage(int damage)
         {
             base.TakeDamage(damage);
         
-            HPBar.value = _currentHP;
+            //HPBar.value = _currentHP;
             return true;
         }
 

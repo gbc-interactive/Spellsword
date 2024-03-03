@@ -15,6 +15,9 @@ namespace Spellsword
         {
             base.Start();
             meleeAttack = _abilities[0];
+
+            StunStatusEffect stunStatusEffect = new StunStatusEffect();
+            stunStatusEffect.ApplyEffect(this, 5.0f, 5.0f);
         }
 
         protected override void DetermineBehaviour()
