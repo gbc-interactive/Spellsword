@@ -1,6 +1,7 @@
 using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,13 +9,16 @@ using UnityEngine;
 public class FireBallSpell : AbilityBase
 {
     private SphereCollider sphereCollider;
-    public float maxChargeTime = 5f;
-    [SerializeField] float initialRadius = 0.25f;
-    [SerializeField] float rate = 0.001f;
-    public GameObject fireballPrefab;
-    public GameObject fireCirclePrefab;
+    [SerializeField] private float maxChargeTime = 5f;
+    [SerializeField] private float initialRadius = 0.25f;
+    [SerializeField] private float rate = 0.001f;
+    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private GameObject fireCirclePrefab;
     private GameObject fireballInstance;
+    private GameObject fireCircleInstance;
+    [SerializeField] public static bool isGrounded = false;
     private Vector3 targetPosition;
+    private float lifeTime = 2f;
     public enum Damage
     {
         Small,
@@ -36,7 +40,7 @@ public class FireBallSpell : AbilityBase
             return Damage.Large;
         }
     }    
-    private void Start()
+    public void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = initialRadius;
@@ -48,9 +52,8 @@ public class FireBallSpell : AbilityBase
         if (isCharging)
         {
             if (fireballInstance == null)//spawn the fireball only once 
-            {   
+            {
                 fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-                //fireballInstance.transform.parent = GameManager.Instance._playerController.transform;
                 Rigidbody rb = fireballInstance.GetComponent<Rigidbody>();
                 rb.useGravity = false;
             }            
@@ -59,30 +62,45 @@ public class FireBallSpell : AbilityBase
         }
         if (fireballInstance != null)
         {
-            float groundThreshold = 0.01f;
-            if (fireballInstance.transform.position.y <= groundThreshold)
+            if(isGrounded)
             {
                 InstantiateFireCircle();
                 Destroy(fireballInstance);
                 fireballInstance = null;
-                sphereCollider.radius = initialRadius;
+                sphereCollider.radius = 0.1f;
+                isGrounded = false;
+            }
+            else if (!isCharging)
+            {
+                lifeTime -= Time.deltaTime;
+                Debug.Log(lifeTime);
+                if(lifeTime < 0)
+                {
+                    StartCoroutine(DestroyAfterTime(fireballInstance,0.1f));
+                    fireballInstance = null;
+                    sphereCollider.radius = 0.1f;
+                    isGrounded = false;
+                    lifeTime = 2f;
+                }
                 
             }
+            
         }
-        CooldownManagement();//have to include this here to check cooldown status for the ability but not for the other abilities. why? am i dumb 
+
+        CooldownManagement();
     }
-    void InstantiateFireCircle()
+    
+    public void InstantiateFireCircle()
     {
-        GameObject circle = Instantiate(fireCirclePrefab, fireballInstance.transform.position, Quaternion.identity);
+        fireCircleInstance = Instantiate(fireCirclePrefab, fireballInstance.transform.position, Quaternion.Euler(-90f, 0f, 0f));
         float radius = sphereCollider.radius;
-        circle.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);//make the ball bigger
-        StartCoroutine(DestroyAfterTime(circle, 5f));
-        
+        fireCircleInstance.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);//make the ball bigger
+        StartCoroutine(DestroyAfterTime(fireCircleInstance, 5f));        
     }
     public override void PerformAbility(CharacterBase character, bool isPlayer)
     {
         Cast();
-        
+
         ThrowFireball(fireballInstance);
         base.PerformAbility(character, isPlayer);
     }
@@ -116,6 +134,7 @@ public class FireBallSpell : AbilityBase
         }
         SphereCollider sc;
         sc = fireball.AddComponent<SphereCollider>();
+        fireball.AddComponent<FireBallSpell>();
         sc.radius = sphereCollider.radius;
         sc.isTrigger = true;
         Vector3 mousePosition = Input.mousePosition;

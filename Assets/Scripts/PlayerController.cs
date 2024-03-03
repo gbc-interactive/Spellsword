@@ -26,7 +26,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
             GameManager._inputActions.Player.Gust.performed += OnInputGustPerformed;
             GameManager._inputActions.Player.FrostTrap.performed += OnInputFrostTrapPerformed;
-            GameManager._inputActions.Player.FireBall.started += OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.performed += OnInputFireBallPerformed;
             GameManager._inputActions.Player.FireBall.canceled += OnInputFireBallCanceled;
             _isInitialized = true;
         }
@@ -40,7 +40,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
             GameManager._inputActions.Player.Gust.performed -= OnInputGustPerformed;
             GameManager._inputActions.Player.FrostTrap.performed -= OnInputFrostTrapPerformed;
-            GameManager._inputActions.Player.FireBall.started -= OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.performed -= OnInputFireBallPerformed;
             GameManager._inputActions.Player.FireBall.canceled -= OnInputFireBallCanceled;
             _isInitialized = false;
         }
