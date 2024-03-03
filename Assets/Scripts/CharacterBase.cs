@@ -123,6 +123,9 @@ namespace Spellsword
 
         public virtual bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
+            if (!ability.gameObject.activeInHierarchy)
+                return false;
+
             if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
                 //_timeSinceLastAbility = 0;

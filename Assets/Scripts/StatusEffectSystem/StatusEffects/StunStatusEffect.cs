@@ -26,6 +26,9 @@ public class StunStatusEffect : StatusEffect
             eb._navAgent.speed = 0;
         }
 
+        //NOTE Find a better way to get the correct child.
+        target.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+
         return true;
     }
 
@@ -42,6 +45,9 @@ public class StunStatusEffect : StatusEffect
         {
             eb._navAgent.speed = originalMoveSpeed;
         }
+
+        //NOTE Find a better way to get the correct child.
+        affectedCharacter.gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
         base.EndEffect();
     }

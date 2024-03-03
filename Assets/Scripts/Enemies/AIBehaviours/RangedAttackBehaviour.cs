@@ -13,7 +13,9 @@ public class RangedAttackBehaviour : BaseAIBehaviour
             rangedEnemy.rangedAttack.chargeUpCurrentCount += Time.fixedDeltaTime;
         else
         {
-            rangedEnemy.PerformAbility(rangedEnemy.rangedAttack.ability, false);
+            if (!rangedEnemy.PerformAbility(rangedEnemy.rangedAttack.ability, false))
+                return;
+
             rangedEnemy.rangedAttack.chargeUpCurrentCount = 0.0f;
             rangedEnemy.rangedAttack.cooldownCurrentCount = 0.0f;
         }
