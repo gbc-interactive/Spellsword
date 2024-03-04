@@ -14,7 +14,7 @@ namespace Spellsword
         public TMP_Text _text;
         public TMP_Text _speaker;
         private Queue<string> _dialogue = new Queue<string>();
-        private bool _started = false;
+        public bool _started = false;
         
     
         // Start is called before the first frame update
