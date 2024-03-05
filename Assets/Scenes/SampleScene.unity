@@ -6674,8 +6674,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -51.3, y: -32.7}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -50, y: -25}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459055383
 MonoBehaviour:
@@ -16858,7 +16858,7 @@ MonoBehaviour:
   _coinText: {fileID: 886360236}
   _inventoryMenu: {fileID: 0}
   _itemGrid: {fileID: 459055381}
-  _shopEntryPrefab: {fileID: 5699789830379191952, guid: 0ae1f937143562743800ced832976b42, type: 3}
+  _shopEntryPrefab: {fileID: 5709393949072036495, guid: 0ae1f937143562743800ced832976b42, type: 3}
 --- !u!114 &1748128233
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Spellsword;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopMenu : MonoBehaviour, IMenu
 {
@@ -22,13 +23,17 @@ public class ShopMenu : MonoBehaviour, IMenu
     void Start()
     {
         _inventoryMenu = FindObjectOfType<InventoryMenu>();
+
         _shopItems.Add(new QuestItemExample());
+        _shopItems.Add(new QuestItemExample());
+
         _shopMenu.SetActive(false);
         foreach (IQuestItem shopitem in _shopItems)
         {
             Debug.Log("Creatiing Shop Grid");
             var newItem = Instantiate(_shopEntryPrefab, _itemGrid.transform);
-            newItem.GetComponent<TMP_Text>().text = "Item Name: \n \n Item Description: \n \nItem Cost: ";
+            newItem.GetComponentInChildren<TMP_Text>().text = shopitem.itemName + "\n" + shopitem.description + "\n" + shopitem.shopPrice;
+            newItem.GetComponentInChildren<Image>().sprite = shopitem.inventoryIcon;
         }
     }
     public void Enable()
