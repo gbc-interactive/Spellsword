@@ -11,7 +11,7 @@ public class BoundManager : MonoBehaviour
             MeshRenderer meshRenderer = child.GetComponent<MeshRenderer>();
             if (meshRenderer != null)
             {
-                meshRenderer.enabled = false;
+                //meshRenderer.enabled = false;
             }
         }
     }
