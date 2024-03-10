@@ -10,7 +10,7 @@ namespace Spellsword
     public class MenuManager : MonoBehaviour
     {
         public static MenuManager Instance { get; private set; }
-        private IMenu _currentMenu;
+        public IMenu _currentMenu;
 
         [SerializeField] private GameObject _menuPanel;
         [SerializeField] private Button _quitButton;
@@ -54,6 +54,7 @@ namespace Spellsword
             _menuPanel.SetActive(true);
             _currentMenu.Enable();
             Time.timeScale = 0;
+            _bIsOpen = true;
         }
 
         void Disable()
@@ -61,13 +62,14 @@ namespace Spellsword
             _menuPanel.SetActive(false);
             _currentMenu.Disable();
             Time.timeScale = 1;
+            _bIsOpen = false;
         }
 
         public void ChangeMenu(IMenu menu)
         {
             _currentMenu.Disable();
             _currentMenu = menu;
-            _currentMenu.Enable();
+            Enable();
         }
         public void QuitGame()
         {
