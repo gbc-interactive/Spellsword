@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5039583187441993742}
   - component: {fileID: 4934806905503556139}
   m_Layer: 7
-  m_Name: Melee 1
+  m_Name: Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4902,7 +4902,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 1379504315796101638}
   _abilityType: 0
+  _cooldownTime: 1
+  _lastCastTime: 0
   _MPCost: 0
+  _isOnCooldown: 0
+  chargeTime: 0
+  isCharging: 0
   _damageValue: 20
   hitFX: {fileID: 8084865765801438712, guid: 1754b52799ff4964e877a940ef7fe9c7, type: 3}
 --- !u!135 &4934806905503556139
