@@ -8,6 +8,8 @@ TagManager:
   - temptestgust
   - Flame
   - Ground
+  - PlayerFireBall
+  - EnemyFireBall
   layers:
   - Default
   - TransparentFX

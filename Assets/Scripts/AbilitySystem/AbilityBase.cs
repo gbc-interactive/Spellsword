@@ -30,7 +30,7 @@ namespace Spellsword
         {
             HandleCollision(other);
         }
-
+        
         public virtual void HandleCollision(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -43,6 +43,7 @@ namespace Spellsword
             }
         }
 
+        
         void Update()
         {
             if (_isOnCooldown)

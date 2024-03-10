@@ -1,10 +1,12 @@
 using Spellsword;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class FireBallSpell : AbilityBase
 {
@@ -19,27 +21,7 @@ public class FireBallSpell : AbilityBase
     [SerializeField] public static bool isGrounded = false;
     private Vector3 targetPosition;
     private float lifeTime = 2f;
-    public enum Damage
-    {
-        Small,
-        Medium,
-        Large
-    }
-    public Damage DamageScale()
-    {
-        if (chargeTime <= maxChargeTime / 3)
-        {
-            return Damage.Small;
-        }
-        else if (chargeTime <= (2 * maxChargeTime) / 3)
-        {
-            return Damage.Medium;
-        }
-        else
-        {
-            return Damage.Large;
-        }
-    }    
+    public int _damageValue;    
     public void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
@@ -51,6 +33,7 @@ public class FireBallSpell : AbilityBase
     {
         if (isCharging)
         {
+
             if (fireballInstance == null)//spawn the fireball only once 
             {
                 fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
@@ -58,7 +41,7 @@ public class FireBallSpell : AbilityBase
                 rb.useGravity = false;
             }            
             
-            FireBall();
+            MakeBallBigger();
         }
         if (fireballInstance != null)
         {
@@ -73,7 +56,6 @@ public class FireBallSpell : AbilityBase
             else if (!isCharging)
             {
                 lifeTime -= Time.deltaTime;
-                Debug.Log(lifeTime);
                 if(lifeTime < 0)
                 {
                     StartCoroutine(DestroyAfterTime(fireballInstance,0.1f));
@@ -95,16 +77,21 @@ public class FireBallSpell : AbilityBase
         fireCircleInstance = Instantiate(fireCirclePrefab, fireballInstance.transform.position, Quaternion.Euler(-90f, 0f, 0f));
         float radius = sphereCollider.radius;
         fireCircleInstance.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);//make the ball bigger
-        StartCoroutine(DestroyAfterTime(fireCircleInstance, 5f));        
+        StartCoroutine(DestroyAfterTime(fireCircleInstance, 5f));
+        Invoke("ResetDamageValue", 5f);
+    }
+    void ResetDamageValue()
+    {
+        _damageValue = 0;
     }
     public override void PerformAbility(CharacterBase character, bool isPlayer)
     {
-        Cast();
-
+        SetDamageScale();
+        Cast();//cast resets chargetime to 0 which is why set dmg first        
         ThrowFireball(fireballInstance);
         base.PerformAbility(character, isPlayer);
     }
-    void FireBall()
+    void MakeBallBigger()
     {
         fireballInstance.transform.position = transform.position;
         if (chargeTime < maxChargeTime)
@@ -116,27 +103,15 @@ public class FireBallSpell : AbilityBase
         }
 
     }
+    
     public void ThrowFireball(GameObject fireball)
     {
-        //fireball.transform.parent = null;
-        Damage damageScale = DamageScale();
-        switch (damageScale)
-        {
-            case Damage.Small:
-                // Apply small damage
-                break;
-            case Damage.Medium:
-                // Apply medium damage
-                break;
-            case Damage.Large:
-                // Apply large damage
-                break;
-        }
         SphereCollider sc;
         sc = fireball.AddComponent<SphereCollider>();
-        fireball.AddComponent<FireBallSpell>();
+        fireball.AddComponent<FireBallSpell>();        
         sc.radius = sphereCollider.radius;
         sc.isTrigger = true;
+        //sc.tag = "PlayerFireBall";
         Vector3 mousePosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -155,10 +130,36 @@ public class FireBallSpell : AbilityBase
         direction.y = distance * Mathf.Tan(Mathf.Deg2Rad * angle);
         rb.velocity = velocity * direction.normalized;
     }
-
+    void SetDamageScale()
+    {
+        if(chargeTime < 1.2f)
+        {
+            _damageValue = 10;
+        }
+        else
+        {
+            if(chargeTime < 2.5f)
+            {
+                _damageValue = 20;
+            }
+            else
+            {
+                _damageValue = 30;
+            }
+        }
+    }
+    
     IEnumerator DestroyAfterTime(GameObject objectToDestroy, float delay)
     {
         yield return new WaitForSeconds(delay);
         Destroy(objectToDestroy);
+    }
+    public override void HandleCollision(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<CharacterBase>().TakeDamage(_damageValue);
+            
+        }
     }
 }

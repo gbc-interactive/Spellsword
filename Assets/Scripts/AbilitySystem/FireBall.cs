@@ -9,7 +9,6 @@ namespace Spellsword
         {
             if (other.gameObject.CompareTag("Ground"))
             {
-                Debug.Log("Collided with ground");
                 FireBallSpell.isGrounded = true;                                
             }
         }

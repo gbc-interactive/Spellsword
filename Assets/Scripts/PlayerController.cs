@@ -26,7 +26,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.canceled += OnInputTeleportCanceled;
             GameManager._inputActions.Player.Gust.performed += OnInputGustPerformed;
             GameManager._inputActions.Player.FrostTrap.performed += OnInputFrostTrapPerformed;
-            GameManager._inputActions.Player.FireBall.performed += OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.started += OnInputFireBallPerformed;
             GameManager._inputActions.Player.FireBall.canceled += OnInputFireBallCanceled;
             _isInitialized = true;
         }
@@ -40,7 +40,7 @@ namespace Spellsword
             GameManager._inputActions.Player.Teleport.performed -= OnInputTeleportPerformed;
             GameManager._inputActions.Player.Gust.performed -= OnInputGustPerformed;
             GameManager._inputActions.Player.FrostTrap.performed -= OnInputFrostTrapPerformed;
-            GameManager._inputActions.Player.FireBall.performed -= OnInputFireBallPerformed;
+            GameManager._inputActions.Player.FireBall.started -= OnInputFireBallPerformed;
             GameManager._inputActions.Player.FireBall.canceled -= OnInputFireBallCanceled;
             _isInitialized = false;
         }
@@ -90,7 +90,7 @@ namespace Spellsword
             PerformAbility(_abilities[3], true);
         }
         private void OnInputFireBallPerformed(InputAction.CallbackContext value)
-        {
+        {            
             _abilities[4].isCharging = true;
             GameManager.Instance._playerController._moveSpeed /= 2;         
         }
@@ -99,6 +99,10 @@ namespace Spellsword
             _abilities[4].isCharging = false;
             GameManager.Instance._playerController._moveSpeed *= 2;
             PerformAbility(_abilities[4], true);
+        }
+        public override void Miscast(bool isPlayer)
+        {
+            PerformAbility(_abilities[4], isPlayer);
         }
         public override bool PerformAbility(AbilityBase ability, bool isPlayer)
         {

@@ -181,5 +181,21 @@ namespace Spellsword
                 _animator.Play(IDLE);
             }
         }
+        private void OnCollisionEnter(Collision other)
+        {
+            HandleCollision(other);
+        }
+        public virtual void HandleCollision(Collision other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                //Miscast(false);
+            }
+            else if (other.gameObject.CompareTag("Enemy"))
+            {
+                Miscast(true);
+            }
+        }
+        public virtual void Miscast(bool isPlayer) { }
     }
 }
