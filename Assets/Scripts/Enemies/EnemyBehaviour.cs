@@ -108,6 +108,9 @@ namespace Spellsword
 
         public void ResetAttackCooldowns()
         {
+            StunStatusEffect stunEffect = new StunStatusEffect();
+            stunEffect.ApplyEffect(this, 0.5f, 0.5f);
+
             foreach (AbilityForAI ability in _abilities)
             {
                 ability.cooldownCurrentCount = 0.0f;
