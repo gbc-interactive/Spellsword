@@ -18,6 +18,7 @@ namespace Spellsword
             Cast();
             base.PerformAbility(character, isPlayer);
         }
+
         void Update()
         {
             if (isActive)
@@ -25,6 +26,7 @@ namespace Spellsword
                 StartCoroutine(CastGust());
                 //screenShakeScript.StartScreenShake();
             }
+            CooldownManagement();//have to include this here to check cooldown status for the ability but not for the other abilities. why? am i dumb 
         }
 
         IEnumerator CastGust()
@@ -44,12 +46,23 @@ namespace Spellsword
                     rb.AddForce(direction.normalized * gustForce / distance, ForceMode.Impulse);
                     //if enemy collide with object get enemy vel  
                     //float damage = collision.relativeVelocity.magnitude;
+
+                    ResetEnemyAttacks(hitCollider);
                 }
             }
 
             isActive = false;
             Debug.Log("Done");
             yield return null;
+        }
+
+        private void ResetEnemyAttacks(Collider collider)
+        {
+            EnemyBehaviour enemy = collider.GetComponent<EnemyBehaviour>();
+            if (enemy == null)
+                return;
+
+            enemy.ResetAttackCooldowns();
         }
 
         //void OnDrawGizmos()//displays range of attack

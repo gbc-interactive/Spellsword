@@ -21,7 +21,6 @@ public class TeleportBehaviour : BaseAIBehaviour
         {
             if (hit.collider.gameObject.name == "GroundMesh")
             {
-
                 magicEnemy.PerformAbility(magicEnemy.teleportAbility.ability, false);
                 magicEnemy.transform.position = new Vector3(hit.point.x, enemyPosition.y, hit.point.z);
                 magicEnemy.teleportAbility.cooldownCurrentCount = 0.0f;

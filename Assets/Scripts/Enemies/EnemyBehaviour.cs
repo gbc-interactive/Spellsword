@@ -66,7 +66,7 @@ namespace Spellsword
 
         protected virtual void FixedUpdate()
         {
-            HPBar.transform.rotation = Camera.main.transform.rotation;
+            //HPBar.transform.rotation = Camera.main.transform.rotation;
             ChargeCooldowns();
             DetermineBehaviour();
             RunBehaviour();
@@ -106,18 +106,27 @@ namespace Spellsword
 
         }
 
+        public void ResetAttackCooldowns()
+        {
+            foreach (AbilityForAI ability in _abilities)
+            {
+                ability.cooldownCurrentCount = 0.0f;
+                ability.chargeUpCurrentCount = 0.0f;
+            }
+        }
+
         public void SetMaxHP(float hp)
         {
             _currentHP = hp;
-            HPBar.maxValue = hp;
-            HPBar.value = HPBar.maxValue;
+            //HPBar.maxValue = hp;
+            //HPBar.value = HPBar.maxValue;
         }
         
         public override bool TakeDamage(int damage)
         {
             base.TakeDamage(damage);
         
-            HPBar.value = _currentHP;
+            //HPBar.value = _currentHP;
             return true;
         }
 
