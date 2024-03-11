@@ -1,23 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TreeSpawner : MonoBehaviour
+public class BoundManager : MonoBehaviour
 {
     public List<GameObject> prefabsList = new List<GameObject>();
     public int numberOfPrefabs = 100;
     public float yOffset = 3.0f;
     public float edgePrefabSpacing = 1.5f; // Distance between trees on the edges
     public float edgePrefabVariation = 1f; // Small random variation on the XZ axis for edge trees
+    public MeshRenderer meshRenderer;
 
-    private MeshRenderer meshRenderer;
+    private List<GameObject> spawnedPrefabs = new List<GameObject>();
 
-    void OnEnable()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-        SpawnPrefabs();
-    }
-
-    void SpawnPrefabs()
+    public void SpawnPrefabs()
     {
         if (prefabsList.Count == 0)
         {
@@ -33,12 +28,12 @@ public class TreeSpawner : MonoBehaviour
             Vector3 randomPosition = GetRandomPositionInsideBounds(bounds);
 
             GameObject randomTreePrefab = prefabsList[Random.Range(0, prefabsList.Count)];
-
-            Instantiate(randomTreePrefab, randomPosition, Quaternion.identity);
+            GameObject treeInstance = Instantiate(randomTreePrefab, randomPosition, Quaternion.identity);
+            treeInstance.transform.parent = transform;
         }
 
         // Spawn trees on the edges at regular intervals with small random variations
-        SpawnTreesOnEdges(bounds);
+        SpawnPrefabsOnEdges(bounds);
 
         if (meshRenderer != null)
         {
@@ -46,41 +41,42 @@ public class TreeSpawner : MonoBehaviour
         }
     }
 
-    void SpawnTreesOnEdges(Bounds bounds)
+    void SpawnPrefabsOnEdges(Bounds bounds)
     {
         // Spawn on top edge
         for (float x = bounds.min.x; x <= bounds.max.x; x += edgePrefabSpacing)
         {
             Vector3 position = new Vector3(x + Random.Range(-edgePrefabVariation, edgePrefabVariation), yOffset, bounds.min.z);
-            InstantiateRandomTreeOnEdge(position);
+            InstantiateRandomPrefabOnEdge(position);
         }
 
         // Spawn on bottom edge
         for (float x = bounds.min.x; x <= bounds.max.x; x += edgePrefabSpacing)
         {
             Vector3 position = new Vector3(x + Random.Range(-edgePrefabVariation, edgePrefabVariation), yOffset, bounds.max.z);
-            InstantiateRandomTreeOnEdge(position);
+            InstantiateRandomPrefabOnEdge(position);
         }
 
         // Spawn on left edge
         for (float z = bounds.min.z; z <= bounds.max.z; z += edgePrefabSpacing)
         {
             Vector3 position = new Vector3(bounds.min.x, yOffset, z + Random.Range(-edgePrefabVariation, edgePrefabVariation));
-            InstantiateRandomTreeOnEdge(position);
+            InstantiateRandomPrefabOnEdge(position);
         }
 
         // Spawn on right edge
         for (float z = bounds.min.z; z <= bounds.max.z; z += edgePrefabSpacing)
         {
             Vector3 position = new Vector3(bounds.max.x, yOffset, z + Random.Range(-edgePrefabVariation, edgePrefabVariation));
-            InstantiateRandomTreeOnEdge(position);
+            InstantiateRandomPrefabOnEdge(position);
         }
     }
 
-    void InstantiateRandomTreeOnEdge(Vector3 position)
+    void InstantiateRandomPrefabOnEdge(Vector3 position)
     {
         GameObject randomTreePrefab = prefabsList[Random.Range(0, prefabsList.Count)];
-        Instantiate(randomTreePrefab, position, Quaternion.identity);
+        GameObject treeInstance = Instantiate(randomTreePrefab, position, Quaternion.identity);
+        treeInstance.transform.parent = transform;
     }
 
     Vector3 GetRandomPositionInsideBounds(Bounds bounds)

@@ -13,10 +13,10 @@ public class PrefabGenerator : MonoBehaviour
     void Start()
     {
         boundObj = GetComponent<GameObject>();
-        SpawnTrees();
+        SpawnPrefabs();
     }
 
-    void SpawnTrees()
+    public void SpawnPrefabs()
     {
         if (prefabsList.Count == 0)
         {

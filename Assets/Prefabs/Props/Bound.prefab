@@ -198,3 +198,4 @@ MonoBehaviour:
   yOffset: 3
   edgePrefabSpacing: 2.5
   edgePrefabVariation: 0.25
+  meshRenderer: {fileID: 3327044554805824117}
