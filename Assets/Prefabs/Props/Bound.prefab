@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 3899349060600582280, guid: afbc7424ff4da314ba0f4fb2d55f68f2, type: 3}
   - {fileID: 4785999867358512081, guid: 6abdb7ce41401bd41b9b6eb7bf507a1c, type: 3}
   numberOfPrefabs: 250
-  yOffset: 3
+  yOffset: 2.85
   edgePrefabSpacing: 2.5
   edgePrefabVariation: 0.25
   meshRenderer: {fileID: 3327044554805824117}
