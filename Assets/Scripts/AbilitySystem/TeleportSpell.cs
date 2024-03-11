@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Spellsword
 {
@@ -9,21 +10,43 @@ namespace Spellsword
         public override void PerformAbility(CharacterBase character, bool isPlayer)
         {
             Cast();
-            Teleport();
-            base.PerformAbility(character, isPlayer);
+            if (Teleport())
+            {
+                base.PerformAbility(character, isPlayer);
+            }
         }
 
-        private void Teleport()
+        private bool Teleport()
         {
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            Plane plane = new Plane(Vector3.up, new Vector3(0, 0.7f, 0)); // Plane at the players position y
+            Plane plane = new Plane(Vector3.up, new Vector3(0, 0.7f, 0)); // Plane at the player's position y
             if (plane.Raycast(ray, out float enter))
             {
                 Vector3 worldPosition = ray.GetPoint(enter);
-                GameManager.Instance._playerController.transform.position = worldPosition;
+
+                // Check if the clicked position is on the NavMesh
+                if (IsPositionOnNavMesh(worldPosition))
+                {
+                    GameManager.Instance._playerController.transform.position = worldPosition;
+                    Time.timeScale = 1; // Reset time
+                    return true;
+                }
+                else
+                {
+                    // Handle case where the clicked position is not on the NavMesh
+                    Debug.Log("Clicked position is not on the NavMesh.");
+                }
             }
-            Time.timeScale = 1; //reset time 
+            return false;
+        }
+
+        private bool IsPositionOnNavMesh(Vector3 position)
+        {
+            NavMeshHit hit;
+            // Check if the position is on the NavMesh
+            position = new Vector3(position.x, 0, position.z);
+            return NavMesh.SamplePosition(position, out hit, 0.1f, NavMesh.AllAreas);
         }
 
     }
