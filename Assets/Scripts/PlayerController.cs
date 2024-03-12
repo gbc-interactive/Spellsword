@@ -16,6 +16,8 @@ namespace Spellsword
         public Vector3 mousePosition;
         public Vector3 worldPosition;
 
+        public GameObject hat;
+
         public void Initialize()
         {
             GameManager._inputActions.Player.Move.performed += OnInputMovePerformed;
@@ -116,7 +118,17 @@ namespace Spellsword
 
         public override void Die()
         {
-            base.Die();
+            StartCoroutine(Death());
+            //base.Die();
+        }
+
+        IEnumerator Death()
+        {
+            gameObject.GetComponent<PlayerController>().enabled = false;
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            hat.SetActive(true);
+            yield return new WaitForSeconds(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

@@ -23,12 +23,22 @@ namespace Spellsword
         Default = Right
     }
 
+    public enum EAnimationState
+    {
+        Idle,
+        Run,
+        Melee,
+        Hurt
+    }
+
     public abstract class CharacterBase : MonoBehaviour
     {
         const string IDLE = "Idle";
         const string RUN = "Run";
-
-        bool isMoving = false;
+        const string MELEE = "Melee";
+        const string HURT = "Hurt";
+        public EAnimationState characterState = EAnimationState.Idle;
+        private bool isPlayingAnimation = false;
 
         [Header("References")]
         //[SerializeField] protected Animator m_animator = null;
@@ -97,13 +107,13 @@ namespace Spellsword
                     SetFacingDirection(EDirection.Right);
                 }
 
-                isMoving = true;
+                characterState = EAnimationState.Run;
                 return true;
             }
             else
             {
                 // Can't move if there's no direction to move in
-                isMoving = false;
+                characterState = EAnimationState.Idle;
                 return false;
             }
         }
@@ -130,9 +140,10 @@ namespace Spellsword
         {
             if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
-                //_timeSinceLastAbility = 0;
-                _currentMP -= ability._MPCost;
-                ability.PerformAbility(this, isPlayer);
+                if(ability.PerformAbility(this, isPlayer))
+                {
+                    _currentMP -= ability._MPCost;
+                }
                 return true;
 
             }
@@ -146,6 +157,8 @@ namespace Spellsword
         public virtual bool TakeDamage(int damage)
         {
             Debug.Log("taking damage" + damage);
+            characterState = EAnimationState.Hurt;
+            SetAnimation();
             _timeSinceLastHit = 0;
             _currentHP -= damage;
             if(_currentHP <= 0)
@@ -172,14 +185,36 @@ namespace Spellsword
 
         public void SetAnimation()
         {
-            if (isMoving)
+            if (_animator == null) return;
+
+            if (!isPlayingAnimation)
             {
-                _animator.Play(RUN);
+                switch (characterState)
+                {
+                    case EAnimationState.Idle:
+                        _animator.Play(IDLE);
+                        break;
+                    case EAnimationState.Run:
+                        _animator.Play(RUN);
+                        break;
+                    case EAnimationState.Melee:
+                        _animator.Play(MELEE);
+                        isPlayingAnimation = true;
+                        Invoke(nameof(ResetAnimation), 0.5f);
+                        break;
+                    case EAnimationState.Hurt:
+                        _animator.Play(HURT);
+                        isPlayingAnimation = true;
+                        Invoke(nameof(ResetAnimation), 0.5f);
+                        break;
+                }
             }
-            else
-            {
-                _animator.Play(IDLE);
-            }
+        }
+
+        private void ResetAnimation()
+        {
+            isPlayingAnimation = false;
+            characterState = EAnimationState.Idle;
         }
     }
 }
