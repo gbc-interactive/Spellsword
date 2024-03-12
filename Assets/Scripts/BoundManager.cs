@@ -3,32 +3,22 @@ using System.Collections.Generic;
 
 public class BoundManager : MonoBehaviour
 {
-    public List<GameObject> prefabsList = new List<GameObject>();
+    public GameObject treePrefab;
     public int numberOfPrefabs = 100;
     public float yOffset = 3.0f;
     public float edgePrefabSpacing = 1.5f; // Distance between trees on the edges
-    public float edgePrefabVariation = 1f; // Small random variation on the XZ axis for edge trees
+    public float edgePrefabVariation = 3f; // Small random variation on the XZ axis for edge trees
     public MeshRenderer meshRenderer;
-
-    private List<GameObject> spawnedPrefabs = new List<GameObject>();
 
     public void SpawnPrefabs()
     {
-        if (prefabsList.Count == 0)
-        {
-            Debug.LogError("Prefabs list is empty. Please assign prefabs in the Inspector.");
-            return;
-        }
-
         Bounds bounds = meshRenderer.bounds;
 
         // Spawn random trees inside the bounds
         for (int i = 0; i < numberOfPrefabs; i++)
         {
             Vector3 randomPosition = GetRandomPositionInsideBounds(bounds);
-
-            GameObject randomTreePrefab = prefabsList[Random.Range(0, prefabsList.Count)];
-            GameObject treeInstance = Instantiate(randomTreePrefab, randomPosition, Quaternion.identity);
+            GameObject treeInstance = Instantiate(treePrefab, randomPosition, Quaternion.identity);
             treeInstance.transform.parent = transform;
         }
 
@@ -43,39 +33,64 @@ public class BoundManager : MonoBehaviour
 
     void SpawnPrefabsOnEdges(Bounds bounds)
     {
-        // Spawn on top edge
-        for (float x = bounds.min.x; x <= bounds.max.x; x += edgePrefabSpacing)
-        {
-            Vector3 position = new Vector3(x + Random.Range(-edgePrefabVariation, edgePrefabVariation), yOffset, bounds.min.z);
-            InstantiateRandomPrefabOnEdge(position);
-        }
+        bool addOffset;
+        int iteration = 0;
 
-        // Spawn on bottom edge
-        for (float x = bounds.min.x; x <= bounds.max.x; x += edgePrefabSpacing)
+        // Spawn on all edges
+        for (float t = 0; t <= 1.0f; t += edgePrefabSpacing / bounds.size.x)
         {
-            Vector3 position = new Vector3(x + Random.Range(-edgePrefabVariation, edgePrefabVariation), yOffset, bounds.max.z);
-            InstantiateRandomPrefabOnEdge(position);
-        }
+            iteration++;
+            if (iteration % 2 == 0)
+            {
+                addOffset = true;
+            }
+            else
+            {
+                addOffset = false;
+            }
 
-        // Spawn on left edge
-        for (float z = bounds.min.z; z <= bounds.max.z; z += edgePrefabSpacing)
-        {
-            Vector3 position = new Vector3(bounds.min.x, yOffset, z + Random.Range(-edgePrefabVariation, edgePrefabVariation));
-            InstantiateRandomPrefabOnEdge(position);
-        }
+            float x = Mathf.Lerp(bounds.min.x, bounds.max.x, t);
+            float z = Mathf.Lerp(bounds.min.z, bounds.max.z, t);
 
-        // Spawn on right edge
-        for (float z = bounds.min.z; z <= bounds.max.z; z += edgePrefabSpacing)
-        {
-            Vector3 position = new Vector3(bounds.max.x, yOffset, z + Random.Range(-edgePrefabVariation, edgePrefabVariation));
+            Vector3 position;
+
+            // Spawn on top edge
+            position = new Vector3(x, yOffset, bounds.min.z);
+            if (addOffset)
+            {
+                position = new Vector3(x, yOffset, bounds.min.z + edgePrefabVariation);
+            }
+            InstantiateRandomPrefabOnEdge(position);
+
+            // Spawn on bottom edge
+            position = new Vector3(x, yOffset, bounds.max.z);
+            if (addOffset)
+            {
+                position = new Vector3(x, yOffset, bounds.max.z - edgePrefabVariation);
+            }
+            InstantiateRandomPrefabOnEdge(position);
+
+            // Spawn on left edge
+            position = new Vector3(bounds.min.x, yOffset, z);
+            if (addOffset)
+            {
+                position = new Vector3(bounds.min.x + edgePrefabVariation, yOffset, z);
+            }
+            InstantiateRandomPrefabOnEdge(position);
+
+            // Spawn on right edge
+            position = new Vector3(bounds.max.x, yOffset, z);
+            if (addOffset)
+            {
+                position = new Vector3(bounds.max.x - edgePrefabVariation, yOffset, z);
+            }
             InstantiateRandomPrefabOnEdge(position);
         }
     }
 
     void InstantiateRandomPrefabOnEdge(Vector3 position)
     {
-        GameObject randomTreePrefab = prefabsList[Random.Range(0, prefabsList.Count)];
-        GameObject treeInstance = Instantiate(randomTreePrefab, position, Quaternion.identity);
+        GameObject treeInstance = Instantiate(treePrefab, position, Quaternion.identity);
         treeInstance.transform.parent = transform;
     }
 

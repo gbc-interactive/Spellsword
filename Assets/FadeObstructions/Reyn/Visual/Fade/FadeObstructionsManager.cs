@@ -116,15 +116,6 @@ public class FadeObstructionsManager : MonoBehaviour
             Ray ray = new Ray(Camera.transform.position, Vector3.Normalize(diffVector));
             RaycastHit[] hits = Physics.SphereCastAll(ray, RayRadius, diffVector.magnitude, LayerMask.value);
 
-            // Draw the ray
-            Debug.DrawRay(Camera.transform.position, Vector3.Normalize(diffVector) * diffVector.magnitude, Color.blue);
-
-            // Draw the sphere cast
-            foreach (var hit in hits)
-            {
-                Debug.DrawLine(ray.origin, hit.point, Color.red);
-            }
-
             foreach (RaycastHit hit in hits)
             {
                 // Get the collider

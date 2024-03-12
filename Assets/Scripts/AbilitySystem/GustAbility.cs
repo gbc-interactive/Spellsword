@@ -11,22 +11,24 @@ namespace Spellsword
         public float gustRange = 5f;
         public float gustForce = 10f;
         public bool isActive = false;
+
         public override bool PerformAbility(CharacterBase character, bool isPlayer)
         {
-
             isActive = true;
             Cast();
             base.PerformAbility(character, isPlayer);
             character._timeSinceLastAbility = 0;
             return true;
         }
-        void Update()
+
+        public override void Update()
         {
             if (isActive)
             {
                 StartCoroutine(CastGust());
                 //screenShakeScript.StartScreenShake();
             }
+            base.Update();
         }
 
         IEnumerator CastGust()

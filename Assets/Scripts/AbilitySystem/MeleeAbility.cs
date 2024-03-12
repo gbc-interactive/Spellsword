@@ -78,11 +78,11 @@ namespace Spellsword
 
         public override void HandleCollision(Collider other)
         {
+            Vector3 spawnPos = new Vector3(other.transform.position.x, 0, other.transform.position.z);
+            Instantiate(hitFX, spawnPos, other.transform.rotation);
             if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
             {
                 other.GetComponent<CharacterBase>().TakeDamage(_damageValue);
-                Vector3 spawnPos = new Vector3(other.transform.position.x, 0, other.transform.position.z);
-                Instantiate(hitFX, spawnPos, other.transform.rotation);
 
                 Rigidbody rb = other.GetComponent<Rigidbody>();
                 if (rb != null)
@@ -90,6 +90,10 @@ namespace Spellsword
                     Vector3 direction = other.transform.position - transform.position;
                     rb.AddForce(direction.normalized * knockBackForce, ForceMode.Impulse);
                 }
+            }
+            else if (other.gameObject.CompareTag("Breakable"))
+            {
+                other.GetComponent<BreakableObject>().Break();
             }
         }
     }

@@ -49,7 +49,7 @@ namespace Spellsword
             }
         }
 
-        void Update()
+        public virtual void Update()
         {
             if (_isOnCooldown)
             {

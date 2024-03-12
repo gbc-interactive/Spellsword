@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5207044337280971644}
   - component: {fileID: 3256683983536148690}
   - component: {fileID: 4833042820346907010}
+  - component: {fileID: 3872903529139328250}
   - component: {fileID: 4305761682373315728}
   m_Layer: 0
   m_Name: Bound
@@ -151,6 +152,49 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3872903529139328250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7705748297048174530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8310e0c526dde4ab521e806031202d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variations:
+  - {fileID: -527724956, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1906170231, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 1339251725, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 535769501, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -2077264751, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 1833500439, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 1274505249, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -718219654, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 215905353, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -666549707, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -270499201, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1362573441, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 1853979729, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 705415040, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -681798366, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1122052427, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -830557752, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1142502974, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1405377610, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 310504235, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 608813983, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 972991853, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 328335646, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 476305266, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1466088791, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -1788828301, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: -2002952918, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 1746882863, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 489946921, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
+  - {fileID: 6469383, guid: 245b1ee04d3af7f4889dafe8af0e2dfa, type: 3}
 --- !u!114 &4305761682373315728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,39 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf916a89a5e46f408fafea93717a106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabsList:
-  - {fileID: 367909117945809976, guid: 967ad653052360947a83576c4aadefee, type: 3}
-  - {fileID: 5453591613428876026, guid: 2a74c12c7b4875745a3ca6ca53fe5a22, type: 3}
-  - {fileID: 1645556272479502045, guid: c0331d9162e20af438eb94153569bec1, type: 3}
-  - {fileID: 127926230393112468, guid: 5a27e3113061a7146bce9815d64f1cbd, type: 3}
-  - {fileID: 4537334645131056331, guid: cf4b49d8a29a1614298a5f348e767c97, type: 3}
-  - {fileID: 5775218792550739240, guid: 4b937fee1735a88458e213568c76856b, type: 3}
-  - {fileID: 7613147146672115943, guid: 91e1e6ef5603fb847bc7b3e2a0f632c4, type: 3}
-  - {fileID: 466710319806781123, guid: 90ee79f3805db884daf92f8d48671948, type: 3}
-  - {fileID: 8005136560428919768, guid: 6d57b6731c33e724dbda3b2f781c434c, type: 3}
-  - {fileID: 4234914973263641068, guid: 4cdae4bdc0bb6264099e2cc11a6191b3, type: 3}
-  - {fileID: 754649361995127410, guid: b68b3a2fc1f6aae40873ffd0447eeb2b, type: 3}
-  - {fileID: 5382098569524998993, guid: 5d991db5b7bb1a945b0f3bb5bb016d09, type: 3}
-  - {fileID: 7886665531724493586, guid: 0fcd7c6d743b6e341be60c53a3b97ba1, type: 3}
-  - {fileID: 5756342413079245951, guid: 8629397af1fb38b4f8d2b53bdaadb379, type: 3}
-  - {fileID: 4958127559062404349, guid: 91b686a0e832aa04bbf03a930284d731, type: 3}
-  - {fileID: 6233680335877406041, guid: 29c0dd7aacceb2343bebbe7e698c2595, type: 3}
-  - {fileID: 5248258878385574657, guid: b6ff13e9a2b0de8478ff3744ebc08fbb, type: 3}
-  - {fileID: 9134476707255917503, guid: cc22d7a89128e7845ae6f39a09fc7251, type: 3}
-  - {fileID: 8772032846725982026, guid: 9afcb566ce71c494a9b81f06153a0863, type: 3}
-  - {fileID: 8606659306780161201, guid: a9c58ea98c933fe468568700c321cbdf, type: 3}
-  - {fileID: 7436067713744714689, guid: c4b456dda28b0e84f9da1a081c61cd17, type: 3}
-  - {fileID: 753254444969534149, guid: c2f1cbb69c7858a418fa45f1e81699e8, type: 3}
-  - {fileID: 1320230958737828932, guid: 65e3ad28311e2514bb88f9010e8e8a1a, type: 3}
-  - {fileID: 8991828636666286522, guid: d155ba2a49e900d42bc33f6043aaa2f3, type: 3}
-  - {fileID: 1596571125158478926, guid: f5bf862e8b210424797f84d67b6c9f8d, type: 3}
-  - {fileID: 908780417704663788, guid: 0d0849221a440bd4e9b57342ab9e1ac0, type: 3}
-  - {fileID: 5824075114196230239, guid: 4494b68f83052d845b1fd560f1c4e21f, type: 3}
-  - {fileID: 5656698931533677168, guid: b2a6c509eb6f9b04490b5491b2c9097a, type: 3}
-  - {fileID: 3899349060600582280, guid: afbc7424ff4da314ba0f4fb2d55f68f2, type: 3}
-  - {fileID: 4785999867358512081, guid: 6abdb7ce41401bd41b9b6eb7bf507a1c, type: 3}
-  numberOfPrefabs: 250
-  yOffset: 2.85
-  edgePrefabSpacing: 2.5
-  edgePrefabVariation: 0.25
+  treePrefab: {fileID: 908780417704663788, guid: c9168558ef106a447972811ac5d7d903, type: 3}
+  numberOfPrefabs: 100
+  yOffset: 3
+  edgePrefabSpacing: 3
+  edgePrefabVariation: 1.5
   meshRenderer: {fileID: 3327044554805824117}

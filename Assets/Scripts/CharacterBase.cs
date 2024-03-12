@@ -67,6 +67,11 @@ namespace Spellsword
 
         private bool isUsingAbility = false;
 
+        public Material flashMaterial; // Material with the white flash shader
+        private float flashDuration = 0.25f; // Duration of the flash
+        private Material defaultMaterial; // Original material of the sprite
+
+
         private void Update()
         {
             if (_currentHP > 0)
@@ -158,6 +163,7 @@ namespace Spellsword
         {
             Debug.Log("taking damage" + damage);
             characterState = EAnimationState.Hurt;
+            Flash();
             SetAnimation();
             _timeSinceLastHit = 0;
             _currentHP -= damage;
@@ -166,6 +172,19 @@ namespace Spellsword
                 Die();
             }
             return true;
+        }
+
+        public void Flash()
+        {
+            defaultMaterial = _spriteRenderer.material; //TODO: move to Start/Awake later
+            StartCoroutine(FlashCoroutine());
+        }
+
+        private IEnumerator FlashCoroutine()
+        {
+            _spriteRenderer.material = flashMaterial;
+            yield return new WaitForSeconds(flashDuration);
+            _spriteRenderer.material = defaultMaterial;
         }
 
         public virtual void Die()
