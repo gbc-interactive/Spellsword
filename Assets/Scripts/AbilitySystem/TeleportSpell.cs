@@ -7,13 +7,16 @@ namespace Spellsword
 {
     public class TeleportSpell : AbilityBase
     {
-        public override void PerformAbility(CharacterBase character, bool isPlayer)
+        public override bool PerformAbility(CharacterBase character, bool isPlayer)
         {
             Cast();
             if (Teleport())
             {
+                character._timeSinceLastAbility = 0;
                 base.PerformAbility(character, isPlayer);
+                return true;
             }
+            return false;
         }
 
         private bool Teleport()

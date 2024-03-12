@@ -80,10 +80,11 @@ namespace Spellsword
             hp -= howMuch;
         }
 
-        public virtual void PerformAbility(CharacterBase character, bool isPlayer)
+        public virtual bool PerformAbility(CharacterBase character, bool isPlayer)
         {
             if(_particleSystem != null)
             _particleSystem.Play();
+            return true;
         }
         //https://docs.unity3d.com/Manual/PartSysTriggersModule.html
     }
