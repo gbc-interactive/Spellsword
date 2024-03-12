@@ -127,6 +127,7 @@ namespace Spellsword
             gameObject.GetComponent<PlayerController>().enabled = false;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            hat.GetComponent<SpriteRenderer>().flipX = gameObject.GetComponent<SpriteRenderer>().flipX;
             hat.SetActive(true);
             yield return new WaitForSeconds(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
