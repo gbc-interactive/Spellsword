@@ -34231,7 +34231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 8738191479344006176}
   _abilityType: 0
-  _cooldownTime: 0
+  _cooldownTime: 1
   _lastCastTime: 0
   _MPCost: 25
   _isOnCooldown: 0

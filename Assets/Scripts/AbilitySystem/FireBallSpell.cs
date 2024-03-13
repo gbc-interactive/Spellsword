@@ -85,6 +85,10 @@ public class FireBallSpell : AbilityBase
         
         ThrowFireball(fireballInstance);
         base.PerformAbility(character, isPlayer);
+        if (isPlayer)
+        {
+            UIManager.Instance._headsOverDisplay.StartCooldown(1, _cooldownTime);
+        }
         character._timeSinceLastAbility = 0;
         return true;
     }

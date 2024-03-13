@@ -4833,8 +4833,8 @@ MonoBehaviour:
   _isOnCooldown: 0
   chargeTime: 0
   isCharging: 0
-  gustRange: 10
-  gustForce: 50
+  gustRange: 2.5
+  gustForce: 10
   isActive: 0
 --- !u!199 &8762835922629414970
 ParticleSystemRenderer:

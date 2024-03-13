@@ -17,6 +17,10 @@ namespace Spellsword
             isActive = true;
             Cast();
             base.PerformAbility(character, isPlayer);
+            if (isPlayer)
+            {
+                UIManager.Instance._headsOverDisplay.StartCooldown(3, _cooldownTime);
+            }
             character._timeSinceLastAbility = 0;
             return true;
         }
@@ -33,6 +37,7 @@ namespace Spellsword
 
         IEnumerator CastGust()
         {
+            yield return new WaitForSeconds(0.1f);
             int playerLayer = LayerMask.NameToLayer("Player");
             int ignoreLayer = LayerMask.NameToLayer("IgnoreLayer");
             int layerMask = ~((1 << playerLayer) | (1 << ignoreLayer)); // will ignore the players layer and other ignore layers

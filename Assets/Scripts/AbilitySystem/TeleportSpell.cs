@@ -14,6 +14,10 @@ namespace Spellsword
             {
                 character._timeSinceLastAbility = 0;
                 base.PerformAbility(character, isPlayer);
+                if (isPlayer)
+                {
+                    UIManager.Instance._headsOverDisplay.StartCooldown(4, _cooldownTime);
+                }
                 return true;
             }
             return false;

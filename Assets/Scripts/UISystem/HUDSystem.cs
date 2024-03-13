@@ -1,4 +1,6 @@
 using Spellsword;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +13,8 @@ public class HUDSystem : MonoBehaviour
 
     private float maxHP;
     private float maxMP;
+
+    public List<Image> spellTimers;
 
     public void Initialize()
     {
@@ -55,5 +59,26 @@ public class HUDSystem : MonoBehaviour
         {
             InteractionPrompt.gameObject.SetActive(false);
         }
+    }
+
+    public void StartCooldown(int index, float duration)
+    {
+        StartCoroutine(AnimateFill(spellTimers[index], duration));
+    }
+
+    IEnumerator AnimateFill(Image image, float duration)
+    {
+        float elapsedTime = 0f;
+        float startFillAmount = 1f;
+        float targetFillAmount = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            image.fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, t);
+            yield return null;
+        }
+        image.fillAmount = targetFillAmount;
     }
 }

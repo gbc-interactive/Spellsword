@@ -31,6 +31,10 @@ public class FrostTrap : AbilityBase
         }
         Cast();
         base.PerformAbility(character, isPlayer);
+        if (isPlayer)
+        {
+            UIManager.Instance._headsOverDisplay.StartCooldown(2, _cooldownTime);
+        }
         character._timeSinceLastAbility = 0;
         return true;
     }

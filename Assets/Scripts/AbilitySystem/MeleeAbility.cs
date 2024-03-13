@@ -27,6 +27,10 @@ namespace Spellsword
             character.characterState = EAnimationState.Melee;
             character.SetAnimation();
             base.PerformAbility(character, isPlayer);
+            if (isPlayer)
+            {
+                UIManager.Instance._headsOverDisplay.StartCooldown(0, _cooldownTime);
+            }
             return true;
         }
         void Dash(bool isPlayer)
