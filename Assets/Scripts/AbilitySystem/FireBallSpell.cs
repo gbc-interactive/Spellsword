@@ -13,7 +13,7 @@ public class FireBallSpell : AbilityBase
     private SphereCollider sphereCollider;
     [SerializeField] private float maxChargeTime = 5f;
     [SerializeField] private float initialRadius = 0.25f;
-    [SerializeField] private float rate = 0.001f;
+    [SerializeField] private float rate = 0.0001f;
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private GameObject fireCirclePrefab;
     private GameObject fireballInstance;
@@ -21,11 +21,11 @@ public class FireBallSpell : AbilityBase
     [SerializeField] public static bool isGrounded = false;
     private Vector3 targetPosition;
     private float lifeTime = 2f;
-    public int _damageValue;    
+    public int _damageValue;   
+    private bool isCasting = false;
     public void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
-        sphereCollider.radius = initialRadius;
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class FireBallSpell : AbilityBase
 
             if (fireballInstance == null)//spawn the fireball only once 
             {
-                fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+                fireballInstance = Instantiate(fireballPrefab,transform.position, Quaternion.identity);
                 Rigidbody rb = fireballInstance.GetComponent<Rigidbody>();
                 rb.useGravity = false;
             }            
@@ -53,7 +53,7 @@ public class FireBallSpell : AbilityBase
                 sphereCollider.radius = 0.1f;
                 isGrounded = false;
             }
-            else if (!isCharging)
+            else if (!isCharging && isCasting)
             {
                 lifeTime -= Time.deltaTime;
                 if(lifeTime < 0)
@@ -74,7 +74,7 @@ public class FireBallSpell : AbilityBase
     
     public void InstantiateFireCircle()
     {
-        fireCircleInstance = Instantiate(fireCirclePrefab, fireballInstance.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        fireCircleInstance = Instantiate(fireCirclePrefab, fireballInstance.transform.position, Quaternion.Euler(0f, 0f, 0f));
         float radius = sphereCollider.radius;
         fireCircleInstance.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);//make the ball bigger
         StartCoroutine(DestroyAfterTime(fireCircleInstance, 5f));
@@ -97,7 +97,7 @@ public class FireBallSpell : AbilityBase
         if (chargeTime < maxChargeTime)
         {
             chargeTime += Time.deltaTime;
-            sphereCollider.radius += rate * chargeTime;
+            sphereCollider.radius += rate;
             float radius = sphereCollider.radius;
             fireballInstance.transform.localScale = new Vector3(radius, radius, radius);//make the ball bigger
         }
@@ -106,9 +106,11 @@ public class FireBallSpell : AbilityBase
     
     public void ThrowFireball(GameObject fireball)
     {
-        SphereCollider sc;
+        isCasting = true;
+        SphereCollider sc; 
+        fireball.AddComponent<FireBallSpell>();
         sc = fireball.AddComponent<SphereCollider>();
-        fireball.AddComponent<FireBallSpell>();        
+               
         sc.radius = sphereCollider.radius;
         sc.isTrigger = true;
         //sc.tag = "PlayerFireBall";

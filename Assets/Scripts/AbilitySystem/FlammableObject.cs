@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FlammableObject : MonoBehaviour
 {
-    //FlammableObject Needs a Rigidbody and a Collider
+    //FlammableObject needs a Collider
     public GameObject fireFXPrefab; 
     [SerializeField] public float burnTime = 5f;
     [SerializeField] public bool isExplosive = false;
@@ -15,11 +15,15 @@ public class FlammableObject : MonoBehaviour
     private ParticleSystem _particleSystem;
     public bool isBurning = false;    
     private bool isExploding = false;
-
+    private List<string> startFireTags;
     public int _damageValue = 25;
+    void Start()
+    {
+        startFireTags = new List<string> { "Flame", "PlayerFireBall", "EnemyFireBall" };
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Flame"))
+        if (startFireTags.Contains(other.gameObject.tag))
         {
             StartBurn();
         }
