@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class QuestActions
 {
-    public static Action<IQuestItem> AddIntentoryItem;
+    public static Action<IItem> AddIntentoryItem;
     public static Action<EnemyBehaviour> Killed;
 
 }

@@ -14,7 +14,7 @@ public class GetItemTask : TaskBase
         QuestActions.AddIntentoryItem+=CheckItem;
 
     }
-    void CheckItem(IQuestItem item){
+    void CheckItem(IItem item){
         if(_requiredItemType == item.GetType()){
             DecrementRemaining();
         }

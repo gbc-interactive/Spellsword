@@ -12,6 +12,9 @@ namespace Spellsword
 
         private Vector3 _moveVector = Vector3.zero;
 
+        public float damageStat = 10.0f;
+
+
         [SerializeField] private List<AbilityBase> _abilities = new List<AbilityBase>();
         public Vector3 mousePosition;
         public Vector3 worldPosition;

@@ -4,13 +4,13 @@ using Spellsword;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class QuestItemExample :MonoBehaviour, IQuestItem
+public class QuestItemExample :MonoBehaviour, IItem
 {   
     [SerializeField] private bool _isInteractable;
 
     [SerializeField] private string _prompt;
 
-    [SerializeField] private Sprite _inventoryIcon;
+    [SerializeField] private Sprite _inventoryIcon= Resources.Load<Sprite>("Menu/Spell_Icon_Blink");
 
     [SerializeField] private int _shopPrice = 50;
 
@@ -22,11 +22,11 @@ public class QuestItemExample :MonoBehaviour, IQuestItem
 
     public string InteractionPrompt => _prompt;
 
-    public Sprite inventoryIcon { get => _inventoryIcon; set => SetIcon(_inventoryIcon); }
-    public int shopPrice { get => _shopPrice; set => SetShopPrice(_shopPrice); }
-    public string description { get => _itemDescription; set => SetDescription(_itemDescription);}
+    public Sprite inventoryIcon { get => _inventoryIcon; set => _inventoryIcon = value; }
+    public int shopPrice { get => _shopPrice; set => _shopPrice = value; }
+    public string description { get => _itemDescription; set => _itemDescription = value;}
 
-    public string itemName { get => _itemName; set => SetName(_itemName); }
+    public string itemName { get => _itemName; set => _itemName = value; }
 
     void Start(){
         SetInteractable(true);
@@ -45,28 +45,12 @@ public class QuestItemExample :MonoBehaviour, IQuestItem
         }
     }
 
-    public void SetIcon(Sprite icon)
-    {
-        _inventoryIcon = icon;
-    }
-
     public void SetInteractable(bool value)
     {
         _isInteractable = value;
     }
 
-
-    public void SetShopPrice(int cost)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void SetDescription(string desc)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void SetName(string name)
+    public void OnClick()
     {
         throw new System.NotImplementedException();
     }
