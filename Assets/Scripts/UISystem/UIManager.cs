@@ -12,6 +12,8 @@ namespace Spellsword
 
         public HUDSystem _headsOverDisplay = null;
 
+        public SurveyPopup surveyPopup = null;
+
         private void OnEnable()
         {
             _instance = this;
