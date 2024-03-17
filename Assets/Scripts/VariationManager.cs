@@ -6,7 +6,7 @@ public class VariationManager : MonoBehaviour
 {
     [SerializeField] List<Sprite> variations = new List<Sprite>();
 
-    void OnEnable()
+    public void RunVariations()
     {
         foreach (Transform child in transform)
         {

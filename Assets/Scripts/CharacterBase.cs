@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Spellsword
 {
@@ -23,12 +22,24 @@ namespace Spellsword
         Default = Right
     }
 
+    public enum EAnimationState
+    {
+        Idle,
+        Run,
+        Melee,
+        Hurt
+    }
+
     public abstract class CharacterBase : MonoBehaviour
     {
+        public List<StatusEffect> statusEffects = new List<StatusEffect>();
+
         const string IDLE = "Idle";
         const string RUN = "Run";
-
-        bool isMoving = false;
+        const string MELEE = "Melee";
+        const string HURT = "Hurt";
+        public EAnimationState characterState = EAnimationState.Idle;
+        private bool isPlayingAnimation = false;
 
         [Header("References")]
         //[SerializeField] protected Animator m_animator = null;
@@ -57,8 +68,17 @@ namespace Spellsword
 
         private bool isUsingAbility = false;
 
+        public Material flashMaterial; // Material with the white flash shader
+        private float flashDuration = 0.25f; // Duration of the flash
+        private Material defaultMaterial; // Original material of the sprite
+
+        public GameObject hat;
+
+
         private void Update()
         {
+            UpdateStatusEffects();
+
             if (_currentHP > 0)
             {
                 //Regen HP
@@ -97,13 +117,13 @@ namespace Spellsword
                     SetFacingDirection(EDirection.Right);
                 }
 
-                isMoving = true;
+                characterState = EAnimationState.Run;
                 return true;
             }
             else
             {
                 // Can't move if there's no direction to move in
-                isMoving = false;
+                characterState = EAnimationState.Idle;
                 return false;
             }
         }
@@ -128,11 +148,15 @@ namespace Spellsword
 
         public virtual bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
+            if (!ability.gameObject.activeInHierarchy)
+                return false;
+
             if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
-                //_timeSinceLastAbility = 0;
-                _currentMP -= ability._MPCost;
-                ability.PerformAbility(this, isPlayer);
+                if(ability.PerformAbility(this, isPlayer))
+                {
+                    _currentMP -= ability._MPCost;
+                }
                 return true;
 
             }
@@ -146,6 +170,9 @@ namespace Spellsword
         public virtual bool TakeDamage(int damage)
         {
             Debug.Log("taking damage" + damage);
+            characterState = EAnimationState.Hurt;
+            Flash();
+            SetAnimation();
             _timeSinceLastHit = 0;
             _currentHP -= damage;
             if(_currentHP <= 0)
@@ -155,9 +182,25 @@ namespace Spellsword
             return true;
         }
 
+        public void Flash()
+        {
+            defaultMaterial = _spriteRenderer.material; //TODO: move to Start/Awake later
+            StartCoroutine(FlashCoroutine());
+        }
+
+        private IEnumerator FlashCoroutine()
+        {
+            _spriteRenderer.material = flashMaterial;
+            yield return new WaitForSeconds(flashDuration);
+            _spriteRenderer.material = defaultMaterial;
+        }
+
         public virtual void Die()
         {
-            gameObject.SetActive(false);
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            hat.GetComponent<SpriteRenderer>().flipX = gameObject.GetComponent<SpriteRenderer>().flipX;
+            hat.SetActive(true);
         }
 
         public virtual void RegenMP()
@@ -170,16 +213,49 @@ namespace Spellsword
             _currentHP = Mathf.Clamp(_currentHP + (_regenRateHP * Time.deltaTime), 0f, _maxHP);
         }
 
+        public virtual void UpdateStatusEffects()
+        {
+            for (int i = 0; i < statusEffects.Count; i++)
+            {
+                if (statusEffects[i] != null)
+                {
+                    statusEffects[i].UpdateEffect();
+                }
+            }
+        }
+
         public void SetAnimation()
         {
-            if (isMoving)
+            if (_animator == null) return;
+
+            if (!isPlayingAnimation)
             {
-                _animator.Play(RUN);
+                switch (characterState)
+                {
+                    case EAnimationState.Idle:
+                        _animator.Play(IDLE);
+                        break;
+                    case EAnimationState.Run:
+                        _animator.Play(RUN);
+                        break;
+                    case EAnimationState.Melee:
+                        _animator.Play(MELEE);
+                        isPlayingAnimation = true;
+                        Invoke(nameof(ResetAnimation), 0.5f);
+                        break;
+                    case EAnimationState.Hurt:
+                        _animator.Play(HURT);
+                        isPlayingAnimation = true;
+                        Invoke(nameof(ResetAnimation), 0.5f);
+                        break;
+                }
             }
-            else
-            {
-                _animator.Play(IDLE);
-            }
+        }
+
+        private void ResetAnimation()
+        {
+            isPlayingAnimation = false;
+            characterState = EAnimationState.Idle;
         }
         private void OnCollisionEnter(Collision other)
         {

@@ -9,13 +9,16 @@ namespace Spellsword
     {
         public GameObject _inventoryMenu;
         
-        public List<GameObject> _inventoryItems;
+        public List<IQuestItem> _inventoryItems;
+
+        public int _coins = 100;
 
         public GameObject _inventoryGrid;
 
         public GameObject _prefab;
         
-        void Start(){
+        void Start()
+        {
             Disable();
             QuestActions.AddIntentoryItem+=AddItem;
         }
@@ -40,7 +43,8 @@ namespace Spellsword
         }
         public void AddItem(IQuestItem item){
             var newIcon = Instantiate(_prefab, _inventoryGrid.transform);
-            newIcon.GetComponent<Image>().sprite = item.inventoryIcon; 
+            newIcon.GetComponent<Image>().sprite = item.inventoryIcon;
+            _inventoryItems.Add(item);
             
             //add icon and shit
         }

@@ -43,8 +43,7 @@ namespace Spellsword
             }
         }
 
-        
-        void Update()
+        public virtual void Update()
         {
             if (_isOnCooldown)
             {
@@ -70,10 +69,11 @@ namespace Spellsword
             }
         }
 
-        public virtual void PerformAbility(CharacterBase character, bool isPlayer)
+        public virtual bool PerformAbility(CharacterBase character, bool isPlayer)
         {
             if(_particleSystem != null)
             _particleSystem.Play();
+            return true;
         }
     }
 

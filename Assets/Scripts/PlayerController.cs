@@ -121,6 +121,13 @@ namespace Spellsword
         public override void Die()
         {
             base.Die();
+            StartCoroutine(Death());
+        }
+
+        IEnumerator Death()
+        {
+            gameObject.GetComponent<PlayerController>().enabled = false;
+            yield return new WaitForSeconds(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

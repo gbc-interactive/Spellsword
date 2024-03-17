@@ -84,12 +84,18 @@ public class FireBallSpell : AbilityBase
     {
         _damageValue = 0;
     }
-    public override void PerformAbility(CharacterBase character, bool isPlayer)
+    public override bool PerformAbility(CharacterBase character, bool isPlayer)
     {
         SetDamageScale();
         Cast();//cast resets chargetime to 0 which is why set dmg first        
         ThrowFireball(fireballInstance);
         base.PerformAbility(character, isPlayer);
+        if (isPlayer)
+        {
+            UIManager.Instance._headsOverDisplay.StartCooldown(1, _cooldownTime);
+        }
+        character._timeSinceLastAbility = 0;
+        return true;
     }
     void MakeBallBigger()
     {

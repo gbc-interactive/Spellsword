@@ -11,24 +11,33 @@ namespace Spellsword
         public float gustRange = 5f;
         public float gustForce = 10f;
         public bool isActive = false;
-        public override void PerformAbility(CharacterBase character, bool isPlayer)
-        {
 
+        public override bool PerformAbility(CharacterBase character, bool isPlayer)
+        {
             isActive = true;
             Cast();
             base.PerformAbility(character, isPlayer);
+            if (isPlayer)
+            {
+                UIManager.Instance._headsOverDisplay.StartCooldown(3, _cooldownTime);
+            }
+            character._timeSinceLastAbility = 0;
+            return true;
         }
-        void Update()
+
+        public override void Update()
         {
             if (isActive)
             {
                 StartCoroutine(CastGust());
                 //screenShakeScript.StartScreenShake();
             }
+            base.Update();
         }
 
         IEnumerator CastGust()
         {
+            yield return new WaitForSeconds(0.1f);
             int playerLayer = LayerMask.NameToLayer("Player");
             int ignoreLayer = LayerMask.NameToLayer("IgnoreLayer");
             int layerMask = ~((1 << playerLayer) | (1 << ignoreLayer)); // will ignore the players layer and other ignore layers
@@ -44,12 +53,23 @@ namespace Spellsword
                     rb.AddForce(direction.normalized * gustForce / distance, ForceMode.Impulse);
                     //if enemy collide with object get enemy vel  
                     //float damage = collision.relativeVelocity.magnitude;
+
+                    ResetEnemyAttacks(hitCollider);
                 }
             }
 
             isActive = false;
             Debug.Log("Done");
             yield return null;
+        }
+
+        private void ResetEnemyAttacks(Collider collider)
+        {
+            EnemyBehaviour enemy = collider.GetComponent<EnemyBehaviour>();
+            if (enemy == null)
+                return;
+
+            enemy.ResetAttackCooldowns();
         }
 
         //void OnDrawGizmos()//displays range of attack

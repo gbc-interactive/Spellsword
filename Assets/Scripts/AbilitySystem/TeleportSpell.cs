@@ -1,31 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Spellsword
 {
     public class TeleportSpell : AbilityBase
     {
-        public override void PerformAbility(CharacterBase character, bool isPlayer)
+        public override bool PerformAbility(CharacterBase character, bool isPlayer)
         {
             Cast();
-            Teleport();
-            base.PerformAbility(character, isPlayer);
+            if (Teleport())
+            {
+                character._timeSinceLastAbility = 0;
+                base.PerformAbility(character, isPlayer);
+                if (isPlayer)
+                {
+                    UIManager.Instance._headsOverDisplay.StartCooldown(4, _cooldownTime);
+                }
+                return true;
+            }
+            return false;
         }
 
-        private void Teleport()
+        private bool Teleport()
         {
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            Plane plane = new Plane(Vector3.up, new Vector3(0, 0.7f, 0)); // Plane at the players position y
+            Plane plane = new Plane(Vector3.up, new Vector3(0, 0.7f, 0)); // Plane at the player's position y
             if (plane.Raycast(ray, out float enter))
             {
+                InterruptEnemies();
+
                 Vector3 worldPosition = ray.GetPoint(enter);
-                GameManager.Instance._playerController.transform.position = worldPosition;
+
+                // Check if the clicked position is on the NavMesh
+                if (IsPositionOnNavMesh(worldPosition))
+                {
+                    GameManager.Instance._playerController.transform.position = worldPosition;
+                    Time.timeScale = 1; // Reset time
+                    return true;
+                }
+                else
+                {
+                    // Handle case where the clicked position is not on the NavMesh
+                    Debug.Log("Clicked position is not on the NavMesh.");
+                }
             }
-            Time.timeScale = 1; //reset time 
+            return false;
         }
 
+        private bool IsPositionOnNavMesh(Vector3 position)
+        {
+            NavMeshHit hit;
+            // Check if the position is on the NavMesh
+            position = new Vector3(position.x, 0, position.z);
+            return NavMesh.SamplePosition(position, out hit, 0.1f, NavMesh.AllAreas);
+        }
+
+        private void InterruptEnemies()
+        {
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int ignoreLayer = LayerMask.NameToLayer("IgnoreLayer");
+            int layerMask = ~((1 << playerLayer) | (1 << ignoreLayer)); // will ignore the players layer and other ignore layers
+
+            Collider[] hitColliders = Physics.OverlapSphere(GameManager.Instance._playerController.transform.position, 10.0f, layerMask); //NOTE use a variable later on for range
+            foreach (var hitCollider in hitColliders)
+            {
+                EnemyBehaviour enemy = hitCollider.GetComponent<EnemyBehaviour>();
+                if (enemy == null)
+                    continue;
+
+                enemy.ResetAttackCooldowns();
+            }
+        }
     }
 }
 
