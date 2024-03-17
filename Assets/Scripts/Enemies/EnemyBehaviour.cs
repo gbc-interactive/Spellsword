@@ -3,31 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
 public class AbilityForAI
 {
     public AbilityBase ability;
-        FoundPlayer,
+
     [HideInInspector] public float cooldownCurrentCount;
     public float cooldownMaxCount;
 
     [HideInInspector] public float chargeUpCurrentCount;
     public float chargeUpMaxCount;
 }
-        AttackPlayer,
-        RunFromPlayer
-
-    }
 
 namespace Spellsword
 {
     public class EnemyBehaviour : CharacterBase, ITriggerCallbackable
     {
         private GameObject _playerTarget;
-        public GameObject _getPlayerTarget {  get { return _playerTarget; } }
+        public GameObject _getPlayerTarget { get { return _playerTarget; } }
 
         private BaseAIBehaviour _behaviour;
         [HideInInspector] public NavMeshAgent _navAgent;
@@ -50,8 +45,12 @@ namespace Spellsword
         {
             _navAgent = GetComponent<NavMeshAgent>();
         }
+
+        protected virtual void Start()
+        {
+            _homePosition = transform.position;
             _behaviour = BehavioursAI.idle;
-            
+
             SetMaxHP(30.0f);
         }
 
@@ -63,7 +62,7 @@ namespace Spellsword
                 SetFacingDirection(EDirection.Right);
 
             else if (_navAgent.velocity.x < -0.05f)
-                SetFacingDirection(EDirection.Left);            
+                SetFacingDirection(EDirection.Left);
         }
 
         protected virtual void FixedUpdate()
@@ -88,7 +87,7 @@ namespace Spellsword
         protected void RunBehaviour()
         {
             _behaviour.UpdateBehaviour(this);
-            
+
         }
 
         protected void SwitchBehaviour(BaseAIBehaviour newBehaviour)
@@ -98,7 +97,7 @@ namespace Spellsword
 
             if (_behaviour != null)
                 _behaviour.ExitBehaviour(this);
-            
+
             _behaviour = newBehaviour;
             _behaviour.EnterBehaviour(this);
         }
@@ -106,10 +105,6 @@ namespace Spellsword
         protected virtual void DetermineBehaviour()
         {
 
-            _homePosition = transform.position;
-            _behaviour = EBehaviours.Idle;
-
-            Initialize();
         }
 
         public void ResetAttackCooldowns()
@@ -134,9 +129,9 @@ namespace Spellsword
         public override bool TakeDamage(int damage)
         {
             base.TakeDamage(damage);
-        
-        {
-            HPBar.transform.rotation = Camera.main.transform.rotation;
+
+            HPBar.value = _currentHP;
+            return true;
         }
 
         public void TriggerEnterCallback(Collider other)
@@ -148,6 +143,10 @@ namespace Spellsword
 
         public void TriggerExitCallback(Collider other)
         {
+            if (other.tag == "Player")
+                _playerTarget = null;
+        }
+
         public override void RegenHP()
         {
             base.RegenHP();
@@ -167,10 +166,7 @@ namespace Spellsword
             yield return new WaitForSeconds(5);
             Destroy(gameObject);
         }
-        {
-            base.RegenHP();
-            HPBar.value = _currentHP;
-        }
+
     }
 
 }
