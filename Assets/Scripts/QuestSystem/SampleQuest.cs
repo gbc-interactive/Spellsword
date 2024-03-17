@@ -12,12 +12,12 @@ public class SampleQuest :  QuestBase
         TaskBase TaskTwo = new SampleTask();
         TaskBase TaskThree = new GetItemTask(typeof(QuestItemExample));
 
-        _tasks.Add(TaskOne);
-        _tasks.Add(TaskTwo);
-        _tasks.Add(TaskThree);
+        //_tasks.Add(TaskOne);
+        //_tasks.Add(TaskTwo);
+        //_tasks.Add(TaskThree);
 
-        _questDescription = "Sample Quest Description";
-        _questName = "Sample Quest Name";
+        _questDescription = "Explore";
+        _questName = "SAMPLE";
     }
     
 

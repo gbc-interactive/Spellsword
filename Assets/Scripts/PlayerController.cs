@@ -56,49 +56,59 @@ namespace Spellsword
 
         private void OnInputMovePerformed(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             Vector2 moveVector2D = value.ReadValue<Vector2>();
             _moveVector = new Vector3(moveVector2D.x, 0, moveVector2D.y);
         }
 
         private void OnInputMoveCanceled(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             _moveVector = Vector3.zero;
         }
 
         private void OnInputInteractPerformed(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             GameManager.Instance._interactionSystem.isInteracting = true;
         }
 
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[0], true);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             Time.timeScale = 0.5f;
         }
         private void OnInputTeleportCanceled(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[1], true);
             Time.timeScale = 1f;
         }
         private void OnInputGustPerformed(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[2], true);
         }
         private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[3], true);
         }
         private void OnInputFireBallPerformed(InputAction.CallbackContext value)
-        {            
+        {
+            if (MenuManager.Instance._bIsOpen) return;
             _abilities[4].isCharging = true;
             GameManager.Instance._playerController._moveSpeed /= 2;         
         }
         private void OnInputFireBallCanceled(InputAction.CallbackContext value)
         {
+            if (MenuManager.Instance._bIsOpen) return;
             _abilities[4].isCharging = false;
             GameManager.Instance._playerController._moveSpeed *= 2;
             PerformAbility(_abilities[4], true);
