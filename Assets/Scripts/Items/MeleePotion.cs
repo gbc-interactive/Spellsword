@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MeleePotion : MonoBehaviour, IConsumable
 {
-    [SerializeField] private Sprite _inventoryIcon;
+    [SerializeField] private Sprite _inventoryIcon=Resources.Load<Sprite>("Menu/Spell_Icon_Fireball");
     [SerializeField] private int _shopPrice = 50;
     [SerializeField] private string _itemDescription = "2X your damage!";
     [SerializeField] private string _itemName = "Melee potion";

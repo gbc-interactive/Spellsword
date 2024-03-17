@@ -10,7 +10,7 @@ public class QuestItemExample :MonoBehaviour, IItem
 
     [SerializeField] private string _prompt;
 
-    [SerializeField] private Sprite _inventoryIcon;
+    [SerializeField] private Sprite _inventoryIcon= Resources.Load<Sprite>("Menu/Spell_Icon_Blink");
 
     [SerializeField] private int _shopPrice = 50;
 
