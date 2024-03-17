@@ -1,18 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using Spellsword;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ShareBurnEffect : MonoBehaviour
 {
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag != "Player" && collider.tag != "Enemy")
+        if (collider.tag != "Player" && collider.tag != "Enemy" && collider.tag != "Water")
             return;
 
         CharacterBase characterBase = null;
 
-        if (collider.tag == "Player")
+        if (collider.tag == "Water")
+        {
+            characterBase = gameObject.GetComponentInParent<CharacterBase>();
+            
+            foreach(StatusEffect effect in characterBase.statusEffects)
+            {
+                if (effect is BurnStatusEffect)
+                {
+                    effect.EndEffect();
+                    break;
+                }
+            }
+
+            Destroy(gameObject);
+        }
+        else if (collider.tag == "Player")
         {
             //characterBase = collider.GetComponent<PlayerController>();
         }

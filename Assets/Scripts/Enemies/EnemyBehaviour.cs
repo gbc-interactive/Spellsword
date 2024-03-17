@@ -28,6 +28,7 @@ namespace Spellsword
         [HideInInspector] public NavMeshAgent _navAgent;
 
         [HideInInspector] public Vector3 _homePosition;
+        [HideInInspector] public Vector3 _randomPosition;
         [HideInInspector] public bool _moveClockwise;
 
         [Header("Stats")]
