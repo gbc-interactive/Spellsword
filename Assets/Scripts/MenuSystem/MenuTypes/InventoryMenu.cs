@@ -9,17 +9,23 @@ namespace Spellsword
     {
         public GameObject _inventoryMenu;
         
-        public List<IQuestItem> _inventoryItems;
+        public int _maxInventorySlots = 10;
+        public List<IItem> _inventoryItems = new List<IItem>();
 
         public int _coins = 100;
-
         public GameObject _inventoryGrid;
 
         public GameObject _prefab;
+
         
         void Start(){
             Disable();
             QuestActions.AddIntentoryItem+=AddItem;
+            for (int i = 0; i < _maxInventorySlots; i++)
+            {
+               var newIcon = Instantiate(_prefab,_inventoryGrid.transform);
+
+            }
         }
         public void Enable()
         {
@@ -40,12 +46,10 @@ namespace Spellsword
                 MenuManager.Instance.ChangeMenu(FindObjectOfType<JournalMenu>());
             }
         }
-        public void AddItem(IQuestItem item){
-            var newIcon = Instantiate(_prefab, _inventoryGrid.transform);
-            newIcon.GetComponent<Image>().sprite = item.inventoryIcon;
+        public void AddItem(IItem item){
+            Debug.Log("Adding " + item.itemName);
+            _inventoryGrid.GetComponentsInChildren<Image>()[_inventoryItems.Count].sprite = item.inventoryIcon;
             _inventoryItems.Add(item);
-            
-            //add icon and shit
         }
     }
 }
