@@ -63,7 +63,7 @@ public class MainMenuCamera : MonoBehaviour
         if (t >= 1.0f)
         {
             isRotating = false;
-            SceneManager.LoadScene("PlaytestScene");
+            SceneManager.LoadScene(1);
         }
     }
 }

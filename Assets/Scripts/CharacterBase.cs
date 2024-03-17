@@ -71,6 +71,8 @@ namespace Spellsword
         private float flashDuration = 0.25f; // Duration of the flash
         private Material defaultMaterial; // Original material of the sprite
 
+        public GameObject hat;
+
 
         private void Update()
         {
@@ -189,7 +191,10 @@ namespace Spellsword
 
         public virtual void Die()
         {
-            gameObject.SetActive(false);
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            hat.GetComponent<SpriteRenderer>().flipX = gameObject.GetComponent<SpriteRenderer>().flipX;
+            hat.SetActive(true);
         }
 
         public virtual void RegenMP()
