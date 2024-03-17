@@ -11,26 +11,33 @@ namespace Spellsword
         public float gustRange = 5f;
         public float gustForce = 10f;
         public bool isActive = false;
-        public override void PerformAbility(CharacterBase character, bool isPlayer)
-        {
 
+        public override bool PerformAbility(CharacterBase character, bool isPlayer)
+        {
             isActive = true;
             Cast();
             base.PerformAbility(character, isPlayer);
+            if (isPlayer)
+            {
+                UIManager.Instance._headsOverDisplay.StartCooldown(3, _cooldownTime);
+            }
+            character._timeSinceLastAbility = 0;
+            return true;
         }
 
-        void Update()
+        public override void Update()
         {
             if (isActive)
             {
                 StartCoroutine(CastGust());
                 //screenShakeScript.StartScreenShake();
             }
-            CooldownManagement();//have to include this here to check cooldown status for the ability but not for the other abilities. why? am i dumb 
+            base.Update();
         }
 
         IEnumerator CastGust()
         {
+            yield return new WaitForSeconds(0.1f);
             int playerLayer = LayerMask.NameToLayer("Player");
             int ignoreLayer = LayerMask.NameToLayer("IgnoreLayer");
             int layerMask = ~((1 << playerLayer) | (1 << ignoreLayer)); // will ignore the players layer and other ignore layers

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Spellsword
 {
-    public class OptionsMenu : MonoBehaviour , IMenu
+    public class OptionsMenu : MonoBehaviour, IMenu
     {
         public GameObject _optionsMenu;
         [SerializeField] private Button _quitButton;
@@ -23,13 +23,14 @@ namespace Spellsword
             _resolutionDropdown.ClearOptions();
             List<String> options = new List<String>();
             int currentIndex = 0;
-            for(int i = 0; i < _resolutions.Length; i++){
+            for (int i = 0; i < _resolutions.Length; i++)
+            {
                 string option = _resolutions[i].width + " x " + _resolutions[i].height;
                 options.Add(option);
 
-                if(_resolutions[i].width == Screen.width && _resolutions[i].height == Screen.height)
+                if (_resolutions[i].width == Screen.width && _resolutions[i].height == Screen.height)
                 {
-                    currentIndex = i; 
+                    currentIndex = i;
                 }
             }
             _resolutionDropdown.AddOptions(options);

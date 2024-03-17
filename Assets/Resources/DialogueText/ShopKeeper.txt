@@ -1,0 +1,7 @@
+[NAME=Shop Keeper]Hello!
+
+Welcome to my Shop.
+
+Please buy something!
+
+EndQueue

@@ -3,19 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
 public class AbilityForAI
 {
     public AbilityBase ability;
-
+        FoundPlayer,
     [HideInInspector] public float cooldownCurrentCount;
     public float cooldownMaxCount;
 
     [HideInInspector] public float chargeUpCurrentCount;
     public float chargeUpMaxCount;
 }
+        AttackPlayer,
+        RunFromPlayer
+
+    }
 
 namespace Spellsword
 {
@@ -45,10 +50,6 @@ namespace Spellsword
         {
             _navAgent = GetComponent<NavMeshAgent>();
         }
- 
-        protected virtual void Start()
-        {
-            _homePosition = transform.position;
             _behaviour = BehavioursAI.idle;
             
             SetMaxHP(30.0f);
@@ -105,6 +106,10 @@ namespace Spellsword
         protected virtual void DetermineBehaviour()
         {
 
+            _homePosition = transform.position;
+            _behaviour = EBehaviours.Idle;
+
+            Initialize();
         }
 
         public void ResetAttackCooldowns()
@@ -125,13 +130,13 @@ namespace Spellsword
             HPBar.maxValue = hp;
             HPBar.value = HPBar.maxValue;
         }
-        
+
         public override bool TakeDamage(int damage)
         {
             base.TakeDamage(damage);
         
-            HPBar.value = _currentHP;
-            return true;
+        {
+            HPBar.transform.rotation = Camera.main.transform.rotation;
         }
 
         public void TriggerEnterCallback(Collider other)
@@ -143,10 +148,29 @@ namespace Spellsword
 
         public void TriggerExitCallback(Collider other)
         {
-            if (other.tag == "Player")
-                _playerTarget = null;
+        public override void RegenHP()
+        {
+            base.RegenHP();
+            HPBar.value = _currentHP;
         }
 
+        public override void Die()
+        {
+            base.Die();
+            StartCoroutine(Death());
+        }
+
+        IEnumerator Death()
+        {
+            gameObject.GetComponent<EnemyBehaviour>().enabled = false;
+            HPBar.gameObject.SetActive(false);
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
+        }
+        {
+            base.RegenHP();
+            HPBar.value = _currentHP;
+        }
     }
 
 }

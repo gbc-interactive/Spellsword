@@ -39,6 +39,15 @@ namespace Spellsword
 
             Vector3 targetPosition = _getPlayerTarget.transform.position;
             Vector3 enemySelfPosition = transform.position;
+                    break;
+
+                case EBehaviours.FoundPlayer:
+                    BehavioursAI.FoundPlayer(this);
+                    break;
+
+                case EBehaviours.MoveToPlayer:
+                    BehavioursAI.MoveToPlayer(this);
+                    break;
 
             bool isEnemyTooFarFromPlayer = Vector3.Distance(targetPosition, enemySelfPosition) > _safeZoneDistanceMax;
             bool isEnemyTooCloseToPlayer = Vector3.Distance(targetPosition, enemySelfPosition) < _safeZoneDistanceMin;
