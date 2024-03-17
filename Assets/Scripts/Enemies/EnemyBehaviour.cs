@@ -1,7 +1,9 @@
 using Spellsword;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -146,6 +148,19 @@ namespace Spellsword
             HPBar.value = _currentHP;
         }
 
+        public override void Die()
+        {
+            base.Die();
+            StartCoroutine(Death());
+        }
+
+        IEnumerator Death()
+        {
+            gameObject.GetComponent<EnemyBehaviour>().enabled = false;
+            HPBar.gameObject.SetActive(false);
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
+        }
     }
 
 }
