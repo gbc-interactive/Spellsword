@@ -169,6 +169,7 @@ namespace Spellsword
 
         public virtual bool TakeDamage(int damage)
         {
+            Miscast();
             Debug.Log("taking damage" + damage);
             characterState = EAnimationState.Hurt;
             Flash();
@@ -269,9 +270,9 @@ namespace Spellsword
             }
             else if (other.gameObject.CompareTag("Enemy"))
             {
-                Miscast(true);
+                //Miscast(true);
             }
         }
-        public virtual void Miscast(bool isPlayer) { }
+        public virtual void Miscast() { }
     }
 }

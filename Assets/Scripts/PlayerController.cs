@@ -100,9 +100,14 @@ namespace Spellsword
             GameManager.Instance._playerController._moveSpeed *= 2;
             PerformAbility(_abilities[4], true);
         }
-        public override void Miscast(bool isPlayer)
+        public override void Miscast()
         {
-            PerformAbility(_abilities[4], isPlayer);
+            if (_abilities[4].isCharging)
+            {
+                _abilities[4].isCharging = false;
+                GameManager.Instance._playerController._moveSpeed *= 2;
+                PerformAbility(_abilities[4], true);
+            }
         }
         public override bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
