@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2733124030341202992}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -69,11 +69,14 @@ MonoBehaviour:
   _particleSystem: {fileID: 0}
   _abilityType: 0
   _cooldownTime: 1.5
-  _lastCastTime: 6.468829
+  _lastCastTime: 0
   _MPCost: 15
   _isOnCooldown: 0
   chargeTime: 0
   isCharging: 0
   maxChargeTime: 5
+  initialRadius: 0.25
+  rate: 0.0005
   fireballPrefab: {fileID: 6511835088315114863, guid: ac18735e175ccfb499871c1c13c8e787, type: 3}
   fireCirclePrefab: {fileID: 171774534151884195, guid: 631287beee50f214aa40664e000b5f79, type: 3}
+  _damageValue: 0

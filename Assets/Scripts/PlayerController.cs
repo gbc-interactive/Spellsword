@@ -90,7 +90,7 @@ namespace Spellsword
             PerformAbility(_abilities[3], true);
         }
         private void OnInputFireBallPerformed(InputAction.CallbackContext value)
-        {
+        {            
             _abilities[4].isCharging = true;
             GameManager.Instance._playerController._moveSpeed /= 2;         
         }
@@ -99,6 +99,15 @@ namespace Spellsword
             _abilities[4].isCharging = false;
             GameManager.Instance._playerController._moveSpeed *= 2;
             PerformAbility(_abilities[4], true);
+        }
+        public override void Miscast()
+        {
+            if (_abilities[4].isCharging)
+            {
+                _abilities[4].isCharging = false;
+                GameManager.Instance._playerController._moveSpeed *= 2;
+                PerformAbility(_abilities[4], true);
+            }
         }
         public override bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
