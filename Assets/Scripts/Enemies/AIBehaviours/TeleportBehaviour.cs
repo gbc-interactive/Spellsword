@@ -19,7 +19,7 @@ public class TeleportBehaviour : BaseAIBehaviour
         RaycastHit hit;
         if (Physics.Raycast(enemyPosition, teleportVector, out hit, 10.0f))
         {
-            if (hit.collider.gameObject.name == "GroundMesh")
+            if (hit.collider.gameObject.tag == "Ground")
             {
                 magicEnemy.PerformAbility(magicEnemy.teleportAbility.ability, false);
                 magicEnemy.transform.position = new Vector3(hit.point.x, enemyPosition.y, hit.point.z);
