@@ -71,11 +71,7 @@ namespace Spellsword
             _currentMenu = menu;
             Enable();
         }
-        public void QuitGame()
-        {
-            //UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
-        }
+
     }
 }
 

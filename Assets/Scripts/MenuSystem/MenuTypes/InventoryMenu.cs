@@ -18,7 +18,8 @@ namespace Spellsword
         public GameObject _prefab;
 
         
-        void Start(){
+        void Start()
+        {
             Disable();
             QuestActions.AddIntentoryItem+=AddItem;
             for (int i = 0; i < _maxInventorySlots; i++)

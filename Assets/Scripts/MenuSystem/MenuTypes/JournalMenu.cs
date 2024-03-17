@@ -17,7 +17,8 @@ namespace Spellsword
         public GameObject _taskEntryPrefab;
         public GameObject _questGrid;
 
-        void Start(){
+        void Start()
+        {
             Disable();
             _questList.Add(new SampleQuest());
             //add more here

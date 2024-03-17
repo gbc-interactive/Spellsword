@@ -41,6 +41,7 @@ public class CirclePlayerBehaviour : BaseAIBehaviour
         Vector3 desiredDestination = enemySelfPosition + correctedPath.normalized * 1.5f;
         _enemySelf._navAgent.SetDestination(desiredDestination);
 
+        //if Desired destination is in a wall, reverse direction
         NavMeshHit hit;
         if (_enemySelf._navAgent.Raycast(desiredDestination, out hit))
             _enemySelf._moveClockwise = !_enemySelf._moveClockwise;

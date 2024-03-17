@@ -30,6 +30,8 @@ namespace Spellsword
             Plane plane = new Plane(Vector3.up, new Vector3(0, 0.7f, 0)); // Plane at the player's position y
             if (plane.Raycast(ray, out float enter))
             {
+                InterruptEnemies();
+
                 Vector3 worldPosition = ray.GetPoint(enter);
 
                 // Check if the clicked position is on the NavMesh
@@ -56,6 +58,22 @@ namespace Spellsword
             return NavMesh.SamplePosition(position, out hit, 0.1f, NavMesh.AllAreas);
         }
 
+        private void InterruptEnemies()
+        {
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int ignoreLayer = LayerMask.NameToLayer("IgnoreLayer");
+            int layerMask = ~((1 << playerLayer) | (1 << ignoreLayer)); // will ignore the players layer and other ignore layers
+
+            Collider[] hitColliders = Physics.OverlapSphere(GameManager.Instance._playerController.transform.position, 10.0f, layerMask); //NOTE use a variable later on for range
+            foreach (var hitCollider in hitColliders)
+            {
+                EnemyBehaviour enemy = hitCollider.GetComponent<EnemyBehaviour>();
+                if (enemy == null)
+                    continue;
+
+                enemy.ResetAttackCooldowns();
+            }
+        }
     }
 }
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5890067112411801688}
   - component: {fileID: 6716432784196494264}
   - component: {fileID: 5103377048538314270}
+  - component: {fileID: 3493415128337387524}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -136,3 +137,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3493415128337387524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3723434249825273899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d1e438c65452e48b36f40ac823a49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireFXPrefab: {fileID: 5501032723785068347, guid: 785ded617b50fce438e61016b80524e4, type: 3}
+  burnTime: 5
+  isExplosive: 0
+  explosionRadius: 5
+  explosionForce: 700
+  isBurning: 0
+  _damageValue: 25
