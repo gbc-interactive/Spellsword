@@ -53,12 +53,23 @@ namespace Spellsword
                     rb.AddForce(direction.normalized * gustForce / distance, ForceMode.Impulse);
                     //if enemy collide with object get enemy vel  
                     //float damage = collision.relativeVelocity.magnitude;
+
+                    ResetEnemyAttacks(hitCollider);
                 }
             }
 
             isActive = false;
             Debug.Log("Done");
             yield return null;
+        }
+
+        private void ResetEnemyAttacks(Collider collider)
+        {
+            EnemyBehaviour enemy = collider.GetComponent<EnemyBehaviour>();
+            if (enemy == null)
+                return;
+
+            enemy.ResetAttackCooldowns();
         }
 
         //void OnDrawGizmos()//displays range of attack

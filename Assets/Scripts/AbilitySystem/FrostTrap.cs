@@ -52,11 +52,16 @@ public class FrostTrap : AbilityBase
         isArmed = true;
         Debug.Log("done");
     }
-    void SpringTrap()
+    void SpringTrap(Collider affectedCollider)
     {
         isSpringed = true;
         Debug.Log("step 4");
-        //ice stuff here
+        
+        // ice stuff here
+        CharacterBase affectedCharacter = affectedCollider.GetComponent<CharacterBase>();
+
+        StunStatusEffect stunEffect = new StunStatusEffect();
+        stunEffect.ApplyEffect(affectedCharacter, 2.5f, 2.5f);
     }
     void OnTriggerEnter(Collider other)
     {
@@ -65,7 +70,7 @@ public class FrostTrap : AbilityBase
             if (isArmed && !isSpringed)
             {
                 Debug.Log("Springed!");
-                SpringTrap();
+                SpringTrap(other);
             }
         }
         

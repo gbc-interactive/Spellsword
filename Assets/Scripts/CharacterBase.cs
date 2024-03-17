@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Spellsword
 {
@@ -33,6 +32,8 @@ namespace Spellsword
 
     public abstract class CharacterBase : MonoBehaviour
     {
+        public List<StatusEffect> statusEffects = new List<StatusEffect>();
+
         const string IDLE = "Idle";
         const string RUN = "Run";
         const string MELEE = "Melee";
@@ -76,6 +77,8 @@ namespace Spellsword
 
         private void Update()
         {
+            UpdateStatusEffects();
+
             if (_currentHP > 0)
             {
                 //Regen HP
@@ -145,6 +148,9 @@ namespace Spellsword
 
         public virtual bool PerformAbility(AbilityBase ability, bool isPlayer)
         {
+            if (!ability.gameObject.activeInHierarchy)
+                return false;
+
             if (_currentMP >= ability._MPCost && !ability._isOnCooldown)
             {
                 if(ability.PerformAbility(this, isPlayer))
@@ -205,6 +211,17 @@ namespace Spellsword
         public virtual void RegenHP()
         {
             _currentHP = Mathf.Clamp(_currentHP + (_regenRateHP * Time.deltaTime), 0f, _maxHP);
+        }
+
+        public virtual void UpdateStatusEffects()
+        {
+            for (int i = 0; i < statusEffects.Count; i++)
+            {
+                if (statusEffects[i] != null)
+                {
+                    statusEffects[i].UpdateEffect();
+                }
+            }
         }
 
         public void SetAnimation()

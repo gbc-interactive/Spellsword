@@ -13,7 +13,7 @@ namespace Spellsword
         public IMenu _currentMenu;
 
         [SerializeField] private GameObject _menuPanel;
-        [SerializeField] private Button _quitButton;
+        
         private bool _bIsOpen = false;
 
         private void Start()
@@ -71,11 +71,7 @@ namespace Spellsword
             _currentMenu = menu;
             Enable();
         }
-        public void QuitGame()
-        {
-            //UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
-        }
+
     }
 }
 

@@ -1,8 +1,6 @@
 using Spellsword;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -21,6 +19,15 @@ namespace Spellsword
 
         protected override void DetermineBehaviour()
         {
+            foreach (StatusEffect effect in statusEffects)
+            {
+                if (effect is BurnStatusEffect)
+                {
+                    SwitchBehaviour(BehavioursAI.runRandomly);
+                    return;
+                }
+            }
+
             if (_getPlayerTarget == null)
             {
                 SwitchBehaviour(BehavioursAI.moveToHome);
