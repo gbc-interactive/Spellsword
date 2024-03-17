@@ -14,7 +14,7 @@ namespace Spellsword
 
         [SerializeField] private GameObject _menuPanel;
         [SerializeField] private Button _quitButton;
-        private bool _bIsOpen = false;
+        public bool _bIsOpen = false;
 
         private void Start()
         {
