@@ -6,7 +6,7 @@ using UnityEngine;
 public class FireBallCircle : MonoBehaviour
 {
     public float timeToDestroy = 5f;
-    public int _damageValue = 10;
+    public int _damageValue = 15;
     private float knockBackForce = 15.0f;
     public ParticleSystem fireCircle;
 

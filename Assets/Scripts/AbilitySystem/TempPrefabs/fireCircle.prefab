@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 5
-  _damageValue: 20
+  _damageValue: 15
   fireCircle: {fileID: 617220952055712504}
 --- !u!1 &617220952037135256
 GameObject:

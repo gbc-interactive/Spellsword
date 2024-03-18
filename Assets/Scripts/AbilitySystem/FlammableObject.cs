@@ -13,12 +13,13 @@ public class FlammableObject : MonoBehaviour
     [SerializeField] public float burnTime = 5f;
     [SerializeField] public bool isExplosive = false;
     [SerializeField] public float explosionRadius = 5f;
-    [SerializeField] public float explosionForce = 1000f;
+    [SerializeField] public float explosionForce = 10000f;
     private ParticleSystem _particleSystem;
     public bool isBurning = false;    
     private bool isExploding = false;
     private List<string> startFireTags;
-    public int _damageValue = 25;
+    private int _fireDamageValue = 15;
+    private int _explosionDamageValue = 65;
     void Start()
     {
         startFireTags = new List<string> { "Flame", "PlayerFireBall", "EnemyFireBall" };
@@ -36,7 +37,7 @@ public class FlammableObject : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
             {
-                other.GetComponent<CharacterBase>().TakeDamage(_damageValue);
+                other.GetComponent<CharacterBase>().TakeDamage(_explosionDamageValue);
             }
             else if (other.gameObject.CompareTag("Breakable"))
             {
@@ -45,6 +46,27 @@ public class FlammableObject : MonoBehaviour
             else if (other.gameObject.GetComponent<FlammableObject>())
             {
                 other.GetComponent<FlammableObject>().StartBurn();
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isBurning)
+        {
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<CharacterBase>().TakeDamage(_fireDamageValue);
+                Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    Vector3 direction = collision.gameObject.transform.position - transform.position;
+                    rb.AddForce(direction.normalized * 7.5f, ForceMode.Impulse);
+                }
+            }
+            else if (collision.gameObject.GetComponent<FlammableObject>())
+            {
+                collision.gameObject.GetComponent<FlammableObject>().StartBurn();
             }
         }
     }

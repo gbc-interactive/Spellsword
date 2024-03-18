@@ -157,4 +157,3 @@ MonoBehaviour:
   explosionRadius: 3.5
   explosionForce: 1000
   isBurning: 0
-  _damageValue: 50

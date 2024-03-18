@@ -51,7 +51,7 @@ namespace Spellsword
             _homePosition = transform.position;
             _behaviour = BehavioursAI.idle;
 
-            SetMaxHP(30.0f);
+            SetMaxHP(_maxHP);
         }
 
         private void Update()

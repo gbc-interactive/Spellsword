@@ -565,6 +565,7 @@ MonoBehaviour:
   hat: {fileID: 2738679639613313753}
   _navAgent: {fileID: 0}
   _homePosition: {x: 0, y: 0, z: 0}
+  _randomPosition: {x: 0, y: 0, z: 0}
   _moveClockwise: 0
   _circleSpeedScale: 0
   _abilities:
