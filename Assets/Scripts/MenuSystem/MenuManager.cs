@@ -16,8 +16,11 @@ namespace Spellsword
         [SerializeField] private Button _quitButton;
         public bool _bIsOpen = false;
 
+        public Texture2D _cursor;
+
         private void Start()
         {
+            Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
             Disable();
         }
 
@@ -41,9 +44,16 @@ namespace Spellsword
             {
                 _bIsOpen = !_bIsOpen;
                 if (_bIsOpen)
+                {
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                     Enable();
+                }
                 else
+                {
+                    Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
                     Disable();
+                }
+
             }
             if(_bIsOpen){
                 _currentMenu.HandleInput();
@@ -55,6 +65,7 @@ namespace Spellsword
             _currentMenu.Enable();
             Time.timeScale = 0;
             _bIsOpen = true;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
 
         void Disable()
@@ -63,6 +74,7 @@ namespace Spellsword
             _currentMenu.Disable();
             Time.timeScale = 1;
             _bIsOpen = false;
+            Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
         }
 
         public void ChangeMenu(IMenu menu)

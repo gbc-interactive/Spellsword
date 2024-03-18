@@ -69,18 +69,21 @@ namespace Spellsword
 
         private void OnInputInteractPerformed(InputAction.CallbackContext value)
         {
+            if (_abilities[4].isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             GameManager.Instance._interactionSystem.isInteracting = true;
         }
 
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
+            if (_abilities[4].isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[0], true);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
         {
+            if (_abilities[4].isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             Time.timeScale = 0.5f;
         }
@@ -92,12 +95,13 @@ namespace Spellsword
         }
         private void OnInputGustPerformed(InputAction.CallbackContext value)
         {
+            if (_abilities[4].isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[2], true);
         }
         private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
         {
-            return;
+            return; //disabled for playtest 2
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[3], true);
         }
