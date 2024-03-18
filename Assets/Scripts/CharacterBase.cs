@@ -169,6 +169,7 @@ namespace Spellsword
 
         public virtual bool TakeDamage(int damage)
         {
+            if (characterState == EAnimationState.Hurt) return false;
             Miscast();
             Debug.Log("taking damage" + damage);
             characterState = EAnimationState.Hurt;
@@ -186,14 +187,20 @@ namespace Spellsword
         public void Flash()
         {
             defaultMaterial = _spriteRenderer.material; //TODO: move to Start/Awake later
-            StartCoroutine(FlashCoroutine());
+            _spriteRenderer.material = flashMaterial;
+            Invoke(nameof(ResetFlash), 0.25f);
+        }
+
+        public void ResetFlash()
+        {
+            _spriteRenderer.material = defaultMaterial;
         }
 
         private IEnumerator FlashCoroutine()
         {
-            _spriteRenderer.material = flashMaterial;
+
             yield return new WaitForSeconds(flashDuration);
-            _spriteRenderer.material = defaultMaterial;
+
         }
 
         public virtual void Die()

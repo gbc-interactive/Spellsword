@@ -70,7 +70,7 @@ MonoBehaviour:
   _abilityType: 0
   _cooldownTime: 2.5
   _lastCastTime: 0
-  _MPCost: 15
+  _MPCost: 50
   _isOnCooldown: 0
   chargeTime: 0
   isCharging: 0

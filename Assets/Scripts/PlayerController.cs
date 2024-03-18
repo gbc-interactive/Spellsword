@@ -89,6 +89,7 @@ namespace Spellsword
         }
         private void OnInputTeleportCanceled(InputAction.CallbackContext value)
         {
+            if (_abilities[4].isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[1], true);
             Time.timeScale = 1f;

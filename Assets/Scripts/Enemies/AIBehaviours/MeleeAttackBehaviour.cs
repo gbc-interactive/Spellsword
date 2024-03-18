@@ -11,7 +11,7 @@ public class MeleeAttackBehaviour : BaseAIBehaviour
         Vector3 enemyPosition = meleeEnemy.transform.position;
         Vector3 playerPosition = meleeEnemy._getPlayerTarget.transform.position;
 
-        if (Vector3.Distance(enemyPosition, playerPosition) > 1.0f)
+        if (Vector3.Distance(enemyPosition, playerPosition) > 2.0f)
             BehavioursAI.moveToPlayer.UpdateBehaviour(meleeEnemy);
         else
         {
