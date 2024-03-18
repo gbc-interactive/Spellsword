@@ -80,7 +80,7 @@ namespace Spellsword
             GetComponent<SphereCollider>().enabled = false;
         }
 
-        public override void HandleCollision(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             Vector3 spawnPos = new Vector3(other.transform.position.x, 0, other.transform.position.z);
             Instantiate(hitFX, spawnPos, other.transform.rotation);

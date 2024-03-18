@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7593623457993358259}
   m_Layer: 0
   m_Name: fireBall
-  m_TagString: PlayerFireBall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7620b7ce7c9914294dbeb20df69245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 0
+  fireCirclePrefab: {fileID: 171774534151884195, guid: 631287beee50f214aa40664e000b5f79, type: 3}
 --- !u!1001 &2261146293989930276
 PrefabInstance:
   m_ObjectHideFlags: 0

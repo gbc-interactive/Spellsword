@@ -97,20 +97,21 @@ namespace Spellsword
         }
         private void OnInputFrostTrapPerformed(InputAction.CallbackContext value)
         {
+            return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[3], true);
         }
         private void OnInputFireBallPerformed(InputAction.CallbackContext value)
         {
             if (MenuManager.Instance._bIsOpen) return;
-            _abilities[4].isCharging = true;
-            GameManager.Instance._playerController._moveSpeed /= 2;         
+            _abilities[4].StartCharging();
+            _moveSpeed = 2.5f;         
         }
         private void OnInputFireBallCanceled(InputAction.CallbackContext value)
         {
             if (MenuManager.Instance._bIsOpen) return;
             _abilities[4].isCharging = false;
-            GameManager.Instance._playerController._moveSpeed *= 2;
+            _moveSpeed = 5f;
             PerformAbility(_abilities[4], true);
         }
         public override void Miscast()
@@ -118,7 +119,7 @@ namespace Spellsword
             if (_abilities[4].isCharging)
             {
                 _abilities[4].isCharging = false;
-                GameManager.Instance._playerController._moveSpeed *= 2;
+                GameManager.Instance._playerController._moveSpeed = 5f;
                 PerformAbility(_abilities[4], true);
             }
         }

@@ -24,24 +24,7 @@ namespace Spellsword
             Attack2,
             Default = Attack1
         }
-
-        //ability collision
-        private void OnTriggerEnter(Collider other)
-        {
-            HandleCollision(other);
-        }
-        
-        public virtual void HandleCollision(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-
-            }
-            else if (other.CompareTag("Enemy"))
-            {
-
-            }
-        }
+       
 
         public virtual void Update()
         {
@@ -67,6 +50,12 @@ namespace Spellsword
                 _lastCastTime = Time.time;
                 chargeTime = 0f;                
             }
+        }
+
+        public virtual void StartCharging()
+        {
+            if (isCharging) return;
+            isCharging = true;
         }
 
         public virtual bool PerformAbility(CharacterBase character, bool isPlayer)

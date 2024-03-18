@@ -150,9 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireFXPrefab: {fileID: 5501032723785068347, guid: 785ded617b50fce438e61016b80524e4, type: 3}
+  destroyFX: {fileID: 8598507912225647301, guid: 6e92b5e15a0c0a14c9dc66dfc6dc1aed, type: 3}
+  explodeFX: {fileID: 4593184484909914552, guid: cc4a4d0e9c631c04dafa5f0f2436f221, type: 3}
   burnTime: 5
   isExplosive: 0
-  explosionRadius: 5
-  explosionForce: 700
+  explosionRadius: 3.5
+  explosionForce: 1000
   isBurning: 0
-  _damageValue: 25
+  _damageValue: 50
