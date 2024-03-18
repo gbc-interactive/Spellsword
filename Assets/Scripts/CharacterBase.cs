@@ -188,19 +188,13 @@ namespace Spellsword
         {
             defaultMaterial = _spriteRenderer.material; //TODO: move to Start/Awake later
             _spriteRenderer.material = flashMaterial;
-            Invoke(nameof(ResetFlash), 0.25f);
+            Invoke(nameof(ResetFlash), 0.5f);
         }
 
         public void ResetFlash()
         {
             _spriteRenderer.material = defaultMaterial;
-        }
-
-        private IEnumerator FlashCoroutine()
-        {
-
-            yield return new WaitForSeconds(flashDuration);
-
+            if (characterState == EAnimationState.Hurt) characterState = EAnimationState.Idle;
         }
 
         public virtual void Die()
