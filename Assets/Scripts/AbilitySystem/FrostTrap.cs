@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 
 public class FrostTrap : AbilityBase
 {
     public GameObject frostTrapPrefab;
+    public GameObject iceSheetPrefab;
     public GameObject currentTrap = null;
     private float armingTime = 5f;
     private static bool isArmed = false;
@@ -59,9 +62,12 @@ public class FrostTrap : AbilityBase
         
         // ice stuff here
         CharacterBase affectedCharacter = affectedCollider.GetComponent<CharacterBase>();
-
+        GameObject icesheet = Instantiate(iceSheetPrefab, transform.position, Quaternion.identity);
+        icesheet.GetComponent<BreakableObject>().Break();
         StunStatusEffect stunEffect = new StunStatusEffect();
         stunEffect.ApplyEffect(affectedCharacter, 2.5f, 2.5f);
+
+        Destroy(gameObject);
     }
     void OnTriggerEnter(Collider other)
     {

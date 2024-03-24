@@ -20,10 +20,15 @@ public class FireBallSpell : AbilityBase
     private float lifeTime = 2f;
     private bool isCasting = false;
     public int _damageValue;
+    private Rigidbody rb;
     public void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
         defaultRadius = sphereCollider.radius;
+        if (fireballInstance != null)
+        {
+            rb = fireballInstance.GetComponent<Rigidbody>();            
+        }
     }
 
     public override void StartCharging()
@@ -32,8 +37,6 @@ public class FireBallSpell : AbilityBase
         sphereCollider.radius = defaultRadius;
         base.StartCharging();
     }
-
-    // Update is called once per frame
     public override void Update()
     {
         base.Update();
@@ -41,36 +44,23 @@ public class FireBallSpell : AbilityBase
         {
             if (fireballInstance == null)//spawn the fireball only once 
             {
-                fireballInstance = Instantiate(fireballPrefab,transform.position, Quaternion.identity);
+                fireballInstance = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
                 Rigidbody rb = fireballInstance.GetComponent<Rigidbody>();
                 rb.useGravity = false;
-            }            
-            
+            }
+
             MakeBallBigger();
         }
         if (fireballInstance != null)
         {
-            if(fireballInstance.GetComponent<FireBall>().isGrounded)
+            if (fireballInstance.GetComponent<FireBall>().isGrounded)
             {
                 fireballInstance = null;
                 sphereCollider.radius = defaultRadius;
                 Invoke(nameof(ResetDamageValue), 5f);
             }
-            else if (!isCharging && isCasting && !fireballInstance.GetComponent<FireBall>().isGrounded)
-            {
-                lifeTime -= Time.deltaTime;
-                if(lifeTime < 0)
-                {
-                    fireballInstance = null;
-                    sphereCollider.radius = defaultRadius;
-                    lifeTime = 2f;
-                }
-                
-            }
         }
     }
-    
-
 
     public override bool PerformAbility(CharacterBase character, bool isPlayer)
     {

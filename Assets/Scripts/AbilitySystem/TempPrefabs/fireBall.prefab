@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 6077857731843734942}
   - component: {fileID: 6183583343793944353}
   - component: {fileID: -9095551771523828959}
+  - component: {fileID: 4109307883418549747}
   - component: {fileID: -7593623457993358259}
   m_Layer: 0
   m_Name: fireBall
-  m_TagString: Untagged
+  m_TagString: PlayerFireBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +114,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &4109307883418549747
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511835088315114863}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-7593623457993358259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  vaporCloudPrefab: {fileID: 383169801230611367, guid: b2b3ec2b21bf43a4396f025eb06ba562, type: 3}
   fireCirclePrefab: {fileID: 171774534151884195, guid: 631287beee50f214aa40664e000b5f79, type: 3}
+  offset: {x: 0, y: 3, z: 0}
 --- !u!1001 &5815719167810741714
 PrefabInstance:
   m_ObjectHideFlags: 0

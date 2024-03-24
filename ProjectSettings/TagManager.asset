@@ -10,6 +10,9 @@ TagManager:
   - Ground
   - PlayerFireBall
   - EnemyFireBall
+  - FxTemporaire
+  - Breakable
+  - IceSheet
   layers:
   - Default
   - TransparentFX
