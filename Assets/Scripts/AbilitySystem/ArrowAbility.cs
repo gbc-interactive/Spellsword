@@ -12,13 +12,14 @@ public class ArrowAbility : AbilityBase
     public GameObject arrowPrefab;
     private GameObject arrowInstance;
     private Rigidbody rb;
-    public override void PerformAbility(CharacterBase character, bool isPlayer)
+    public override bool PerformAbility(CharacterBase character, bool isPlayer)
     {
         Cast();
 
         ShootArrow(isPlayer);
         rb = arrowInstance.GetComponent<Rigidbody>();
         base.PerformAbility(character, isPlayer);
+        return true;
     }
     private void SetArrowDirection(Vector3 startPosition, Vector3 targetPosition)
     {
