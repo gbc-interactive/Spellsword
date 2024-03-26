@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BreakableObject : MonoBehaviour
 {
-    [SerializeField] private float duration;
-    public ParticleSystem breakParticles;
+    [SerializeField] private float _duration;
+    public ParticleSystem _breakParticles;
     public void Break()
     {
-        if(breakParticles != null)
+        if(_breakParticles != null)
         {
-            Instantiate(breakParticles, transform.position, Quaternion.identity);
+            Instantiate(_breakParticles, transform.position, Quaternion.identity);
         }
         else
         {
@@ -18,9 +18,9 @@ public class BreakableObject : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (duration > 0)
+        if (_duration > 0)
         {
-            Destroy(gameObject,duration);
+            Destroy(gameObject,_duration);
         }
         else
         {            

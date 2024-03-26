@@ -40,7 +40,7 @@ public class FireBallSpell : AbilityBase
     public override void Update()
     {
         base.Update();
-        if (!_isOnCooldown && isCharging)
+        if (!_isOnCooldown && _isCharging)
         {
             if (fireballInstance == null)//spawn the fireball only once 
             {
@@ -78,9 +78,9 @@ public class FireBallSpell : AbilityBase
     void MakeBallBigger()
     {
         fireballInstance.transform.position = transform.position;
-        if (chargeTime < maxChargeTime)
+        if (_chargeTime < maxChargeTime)
         {
-            chargeTime += Time.deltaTime;
+            _chargeTime += Time.deltaTime;
             sphereCollider.radius += rate;
             float radius = sphereCollider.radius;
             fireballInstance.transform.localScale = new Vector3(radius, radius, radius);//make the ball bigger
@@ -125,13 +125,13 @@ public class FireBallSpell : AbilityBase
 
     void SetDamageScale()
     {
-        if (chargeTime < 1.2f)
+        if (_chargeTime < 1.2f)
         {
             _damageValue = 10;
         }
         else
         {
-            if (chargeTime < 2.5f)
+            if (_chargeTime < 2.5f)
             {
                 _damageValue = 20;
             }

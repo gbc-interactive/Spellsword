@@ -69,34 +69,34 @@ namespace Spellsword
 
         private void OnInputInteractPerformed(InputAction.CallbackContext value)
         {
-            if (_abilities[4].isCharging) return;
+            if (_abilities[4]._isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             GameManager.Instance._interactionSystem.isInteracting = true;
         }
 
         private void OnInputMeleePerformed(InputAction.CallbackContext value)
         {
-            if (_abilities[4].isCharging) return;
+            if (_abilities[4]._isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[0], true);
         }
 
         private void OnInputTeleportPerformed(InputAction.CallbackContext value)
         {
-            if (_abilities[4].isCharging) return;
+            if (_abilities[4]._isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             Time.timeScale = 0.5f;
         }
         private void OnInputTeleportCanceled(InputAction.CallbackContext value)
         {
-            if (_abilities[4].isCharging) return;
+            if (_abilities[4]._isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[1], true);
             Time.timeScale = 1f;
         }
         private void OnInputGustPerformed(InputAction.CallbackContext value)
         {
-            if (_abilities[4].isCharging) return;
+            if (_abilities[4]._isCharging) return;
             if (MenuManager.Instance._bIsOpen) return;
             PerformAbility(_abilities[2], true);
         }
@@ -115,15 +115,15 @@ namespace Spellsword
         private void OnInputFireBallCanceled(InputAction.CallbackContext value)
         {
             if (MenuManager.Instance._bIsOpen) return;
-            _abilities[4].isCharging = false;
+            _abilities[4]._isCharging = false;
             _moveSpeed = 5f;
             PerformAbility(_abilities[4], true);
         }
         public override void Miscast()
         {
-            if (_abilities[4].isCharging)
+            if (_abilities[4]._isCharging)
             {
-                _abilities[4].isCharging = false;
+                _abilities[4]._isCharging = false;
                 GameManager.Instance._playerController._moveSpeed = 5f;
                 PerformAbility(_abilities[4], true);
             }

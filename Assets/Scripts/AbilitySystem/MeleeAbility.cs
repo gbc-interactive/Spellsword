@@ -7,9 +7,9 @@ namespace Spellsword
 {
     public class MeleeAbility : AbilityBase
     {
-        private Vector3 originalScale;
-        private float dashForce = 15.0f;
-        private float knockBackForce = 15.0f;
+        private Vector3 _originalScale;
+        private float _dashForce = 15.0f;
+        private float _knockBackForce = 15.0f;
 
         public int _damageValue = 25;
 
@@ -17,7 +17,7 @@ namespace Spellsword
 
         void Start()
         {
-            originalScale = _particleSystem.gameObject.transform.localScale;
+            _originalScale = _particleSystem.gameObject.transform.localScale;
         }
 
         public override bool PerformAbility(CharacterBase character, bool isPlayer)
@@ -48,7 +48,7 @@ namespace Spellsword
                     Vector3 direction = worldPosition - GameManager.Instance._playerController.transform.position;
                     direction.Normalize();
 
-                    GameManager.Instance._playerController.GetComponent<Rigidbody>().AddForce(direction * dashForce, ForceMode.Impulse);
+                    GameManager.Instance._playerController.GetComponent<Rigidbody>().AddForce(direction * _dashForce, ForceMode.Impulse);
 
                     if(direction.x < 0)
                     {
@@ -92,7 +92,7 @@ namespace Spellsword
                 if (rb != null)
                 {
                     Vector3 direction = other.transform.position - transform.position;
-                    rb.AddForce(direction.normalized * knockBackForce, ForceMode.Impulse);
+                    rb.AddForce(direction.normalized * _knockBackForce, ForceMode.Impulse);
                 }
             }
             else if (other.gameObject.CompareTag("Breakable"))

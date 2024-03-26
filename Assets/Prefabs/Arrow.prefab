@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3071203166238714258}
   - component: {fileID: 1379504315796101638}
   - component: {fileID: 5207987601858127898}
-  - component: {fileID: 4934806905503556139}
   - component: {fileID: 3233369091009820313}
   m_Layer: 7
   m_Name: Arrow
@@ -4888,27 +4887,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!135 &4934806905503556139
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3153472991145048103}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3233369091009820313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4927,7 +4905,6 @@ MonoBehaviour:
   _lastCastTime: 0
   _MPCost: 0
   _isOnCooldown: 0
-  chargeTime: 0
-  isCharging: 0
-  speed: 10
-  arrowPrefab: {fileID: 6511835088315114863, guid: ac18735e175ccfb499871c1c13c8e787, type: 3}
+  _chargeTime: 0
+  _isCharging: 0
+  arrowPrefab: {fileID: 6511835088315114863, guid: 8882af2fda94d2f4e85a97fc243aab1e, type: 3}

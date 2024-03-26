@@ -10,19 +10,19 @@ public class FlammableObject : MonoBehaviour
     public GameObject fireFXPrefab;
     public GameObject destroyFX;
     public GameObject explodeFX;
-    [SerializeField] public float burnTime = 5f;
-    [SerializeField] public bool isExplosive = false;
-    [SerializeField] public float explosionRadius = 5f;
-    [SerializeField] public float explosionForce = 10000f;
+    [SerializeField] public float _burnTime = 5f;
+    [SerializeField] public bool _isExplosive = false;
+    [SerializeField] public float _explosionRadius = 5f;
+    [SerializeField] public float _explosionForce = 10000f;
     private ParticleSystem _particleSystem;
-    public bool isBurning = false;    
-    private bool isExploding = false;
-    private List<string> startFireTags;
+    public bool _isBurning = false;    
+    private bool _isExploding = false;
+    private List<string> _startFireTags;
     private int _fireDamageValue = 15;
     private int _explosionDamageValue = 65;
     void Start()
     {
-        startFireTags = new List<string> { "Flame", "PlayerFireBall", "EnemyFireBall" };
+        _startFireTags = new List<string> { "Flame", "PlayerFireBall", "EnemyFireBall" };
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -33,7 +33,7 @@ public class FlammableObject : MonoBehaviour
                 StartBurn();
             }
         }
-        if (isExploding)
+        if (_isExploding)
         {
             if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
             {
@@ -52,7 +52,7 @@ public class FlammableObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isBurning)
+        if (_isBurning)
         {
             if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
             {
@@ -60,8 +60,8 @@ public class FlammableObject : MonoBehaviour
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    Vector3 direction = collision.gameObject.transform.position - transform.position;
-                    rb.AddForce(direction.normalized * 7.5f, ForceMode.Impulse);
+                    Vector3 _direction = collision.gameObject.transform.position - transform.position;
+                    rb.AddForce(_direction.normalized * 7.5f, ForceMode.Impulse);
                 }
             }
             else if (collision.gameObject.GetComponent<FlammableObject>())
@@ -73,15 +73,15 @@ public class FlammableObject : MonoBehaviour
 
     void StartBurn()
     {
-        isBurning = true;
+        _isBurning = true;
         _particleSystem = Instantiate(fireFXPrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
         _particleSystem.transform.parent = transform;
         _particleSystem.Play();
-        Invoke(nameof(EndBurn), burnTime);
+        Invoke(nameof(EndBurn), _burnTime);
     }
     private void EndBurn()
     {
-        if(isExplosive)
+        if(_isExplosive)
         {
             StartCoroutine(Explode());
         }
@@ -90,27 +90,27 @@ public class FlammableObject : MonoBehaviour
             Instantiate(destroyFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
-        isBurning = false;
+        _isBurning = false;
     }
 
     IEnumerator Explode()
     {
         SphereCollider explosionTrigger = gameObject.AddComponent<SphereCollider>();
-        explosionTrigger.radius = explosionRadius;
+        explosionTrigger.radius = _explosionRadius;
         explosionTrigger.isTrigger = true;
-        isExploding = true;
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        _isExploding = true;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                rb.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
             }
         }
         Instantiate(explodeFX, transform.position, transform.rotation);
         yield return new WaitForSeconds(0.25f);
-        isExploding = false;
+        _isExploding = false;
         Destroy(gameObject);
     }
 }

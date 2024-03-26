@@ -8,13 +8,13 @@ namespace Spellsword
 {
     public class GustAbility : AbilityBase
     {
-        public float gustRange = 5f;
-        public float gustForce = 10f;
-        public bool isActive = false;
+        public float _gustRange = 5f;
+        public float _gustForce = 10f;
+        public bool _isActive = false;
 
         public override bool PerformAbility(CharacterBase character, bool isPlayer)
         {
-            isActive = true;
+            _isActive = true;
             Cast();
             base.PerformAbility(character, isPlayer);
             if (isPlayer)
@@ -27,7 +27,7 @@ namespace Spellsword
 
         public override void Update()
         {
-            if (isActive)
+            if (_isActive)
             {
                 StartCoroutine(CastGust());
                 //screenShakeScript.StartScreenShake();
@@ -42,15 +42,15 @@ namespace Spellsword
             int ignoreLayer = LayerMask.NameToLayer("IgnoreLayer");
             int layerMask = ~((1 << playerLayer) | (1 << ignoreLayer)); // will ignore the players layer and other ignore layers
 
-            Collider[] hitColliders = Physics.OverlapSphere(GameManager.Instance._playerController.transform.position, gustRange, layerMask);
+            Collider[] hitColliders = Physics.OverlapSphere(GameManager.Instance._playerController.transform.position, _gustRange, layerMask);
             foreach (var hitCollider in hitColliders)
             {
                 Rigidbody rb = hitCollider.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    Vector3 direction = hitCollider.transform.position - GameManager.Instance._playerController.transform.position;
-                    float distance = direction.magnitude;
-                    rb.AddForce(direction.normalized * gustForce / distance, ForceMode.Impulse);
+                    Vector3 _direction = hitCollider.transform.position - GameManager.Instance._playerController.transform.position;
+                    float distance = _direction.magnitude;
+                    rb.AddForce(_direction.normalized * _gustForce / distance, ForceMode.Impulse);
                     //if enemy collide with object get enemy vel  
                     //float damage = collision.relativeVelocity.magnitude;
 
@@ -58,7 +58,7 @@ namespace Spellsword
                 }
             }
 
-            isActive = false;
+            _isActive = false;
             Debug.Log("Done");
             yield return null;
         }
@@ -75,7 +75,7 @@ namespace Spellsword
         //void OnDrawGizmos()//displays range of attack
         //{
         //    Gizmos.color = Color.red;
-        //    Gizmos.DrawWireSphere(GameManager.Instance._playerController.transform.position, gustRange);
+        //    Gizmos.DrawWireSphere(GameManager.Instance._playerController.transform.position, _gustRange);
         //}
     }
 }
